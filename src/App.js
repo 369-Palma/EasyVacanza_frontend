@@ -2,13 +2,14 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import CustomNavbar from "./components/CustomNavbar";
+import Home from "./components/Home";
 
 function App() {
   return (
-    <div className="App">
+    <>
       <CustomNavbar claim="Were dreams come true!" />
-    </div>
+      <Home />
+    </>
   );
 }
-
 export default App;

@@ -7,11 +7,13 @@ import {
   Button,
 } from "react-bootstrap";
 
-const CustomNavbar = (props) => {
+const CustomNavbar = ({ claim }) => {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
+    <Navbar collapseOnSelect expand="lg" bg="info" variant="light" fixed="top">
       <Container className="d-flex justify-content-between">
-        <Navbar.Brand href="#home">EasyVacanza - {props.claim} </Navbar.Brand>
+        <Navbar.Brand href="#home">
+          <strong> EasyVacanza</strong> - {claim}{" "}
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse
           id="responsive-navbar-nav"
