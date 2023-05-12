@@ -1,15 +1,25 @@
 //import logo from "./logo.svg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CustomNavbar from "./components/CustomNavbar";
-import Home from "./components/Home";
-
+import HomePage from "./components/HomePage";
+import TuttiViaggi from "./components/TuttiViaggi";
+import PackageDetails from "./components/PackageDetails";
+import Login from "./components/Login";
+import GalleriaEventi from "./components/GalleriaEventi";
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <CustomNavbar claim="Were dreams come true!" />
-      <Home />
-    </>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/offerte" element={<TuttiViaggi />} />
+        <Route path="/eventi" element={<GalleriaEventi />} />
+        <Route path="/details/:vacanzaID" element={<PackageDetails />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 export default App;
