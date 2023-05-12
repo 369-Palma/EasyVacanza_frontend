@@ -1,0 +1,7 @@
+.navLinks {
+  font-size: 0.9em;
+}
+
+.navLinks > .nav-link:hover {
+  transform: scale(5);
+}

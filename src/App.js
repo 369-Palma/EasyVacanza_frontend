@@ -8,7 +8,8 @@ import TuttiViaggi from "./components/TuttiViaggi";
 import PackageDetails from "./components/PackageDetails";
 import Login from "./components/Login";
 import GalleriaEventi from "./components/GalleriaEventi";
-function App() {
+
+const App = () => {
   return (
     <BrowserRouter>
       <CustomNavbar claim="Were dreams come true!" />
@@ -21,5 +22,5 @@ function App() {
       </Routes>
     </BrowserRouter>
   );
-}
+};
 export default App;

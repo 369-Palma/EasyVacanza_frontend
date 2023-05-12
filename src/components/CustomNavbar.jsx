@@ -22,7 +22,7 @@ const CustomNavbar = ({ claim }) => {
           id="responsive-navbar-nav"
           className="d-flex align-items-end"
         >
-          <Nav className="ms-auto ">
+          <Nav className="navLinks ms-auto ">
             <Link to="/" className="nav-link">
               Home
             </Link>
