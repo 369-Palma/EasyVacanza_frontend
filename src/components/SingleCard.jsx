@@ -1,16 +1,19 @@
 import { Card, ListGroup, Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 const SingleCard = ({ data }) => {
   const navigate = useNavigate();
   return (
     <Card>
-      <Card.Img
-        className="img-fluid"
-        variant="top"
-        src={data?.immagineurl}
-        alt="offerta vacanza"
-      />
+      <Link to={"/detail/" + data?.id}>
+        <Card.Img
+          className="img-fluid"
+          variant="top"
+          src={data?.immagineurl}
+          alt="offerta vacanza"
+        />
+      </Link>
       <Card.Body>
         <Card.Title>{data?.citta}</Card.Title>
         <Card.Text>{data?.descrizione}</Card.Text>

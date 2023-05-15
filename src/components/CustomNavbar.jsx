@@ -1,11 +1,4 @@
-import {
-  Navbar,
-  Container,
-  Nav,
-  NavDropdown,
-  Form,
-  Button,
-} from "react-bootstrap";
+import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 
 const CustomNavbar = ({ claim }) => {
@@ -22,7 +15,7 @@ const CustomNavbar = ({ claim }) => {
           id="responsive-navbar-nav"
           className="d-flex align-items-end"
         >
-          <Nav className="navLinks ms-auto ">
+          <Nav className="navLinks ms-auto" id="navLinks">
             <Link to="/" className="nav-link">
               Home
             </Link>
@@ -66,18 +59,6 @@ const CustomNavbar = ({ claim }) => {
                 Tipologia vacanza
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Preferenze</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.3">
-                <Form className="d-flex">
-                  <Form.Control
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                  />
-                  <Button variant="outline-success">Cerca</Button>
-                </Form>
-              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
