@@ -13,12 +13,12 @@ h4 {
   margin-bottom: 2em;
 }
 
-#navLinks Link {
-  flex-direction: row !important;
-  margin-right: 5px !important;
+#navLinks .nav-link {
+  margin-right: 30px;
 }
-#navLinks Link:hover {
-  transform: scale(5);
+#navLinks .nav-link:hover {
+  transform: scale(1.2);
+  font-weight: bold;
 }
 
 #searchTab {

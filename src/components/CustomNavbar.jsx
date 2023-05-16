@@ -5,8 +5,15 @@ const CustomNavbar = ({ claim }) => {
   const location = useLocation();
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="info" variant="light" fixed="top">
-      <Container className="d-flex justify-content-between">
+    <Navbar
+      collapseOnSelect
+      expand="lg"
+      bg="info"
+      variant="light"
+      fixed="top"
+      classname="m-0 h-auto"
+    >
+      <Container className="d-flex justify-content-between w-100 mx-1.5">
         <Link to="/" className="navbar-brand">
           <strong> EasyVacanza</strong> - {claim}
         </Link>
@@ -15,7 +22,7 @@ const CustomNavbar = ({ claim }) => {
           id="responsive-navbar-nav"
           className="d-flex align-items-end"
         >
-          <Nav className="navLinks ms-auto" id="navLinks">
+          <Nav className="navLinks ms-auto flex-row " id="navLinks">
             <Link to="/" className="nav-link">
               Home
             </Link>
