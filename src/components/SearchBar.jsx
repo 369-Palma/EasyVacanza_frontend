@@ -6,7 +6,7 @@ const SearchBar = () => {
   const [data, setData] = useState([]);
   const [keyword, setKeyword] = useState("");
 
-  const url = `http://localhost:8086/api/attivita/partedescrizione/`;
+  const url = `api/attivita/partedescrizione/`;
 
   const searchKeyword = (event) => {
     if (event.key === "Enter") {
@@ -21,8 +21,8 @@ const SearchBar = () => {
 
   return (
     <>
-      <Row className=" d-flex flex-column mx-auto align-content-center mt-3 text-bg-primary border border-secondary">
-        <Col md={2} className="w-100 gradient-container mx-auto">
+      <Row className="d-flex flex-column mx-auto align-content-center text-bg-primary border border-secondary">
+        <Col md={2} className="w-100 gradient-container mx-auto mx-0">
           <Form className=" my-5 ">
             <Form.Control
               id="searchTab"

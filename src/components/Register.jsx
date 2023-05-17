@@ -1,67 +1,278 @@
 import { Form, Button } from "react-bootstrap";
-import { useState } from "react";
-import { Alert } from "bootstrap";
+import { useRef, useState, useEffect } from "react";
+import {
+  faCheck,
+  faXmark,
+  faCircleInfo,
+  faArrowRight,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Register = () => {
-  function checkRegistration(password, checkedPassword) {
-    if (password !== checkedPassword) {
-      return (
-        <Alert variant="danger"> Le passwords inserite sono diverse!</Alert>
-      );
-    } else {
-      return (
-        <Alert variant="success">
-          Complimenti! Ti sei registrato correttamente!
-        </Alert>
-      );
-    }
-  }
+  const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9_]{3,23}$/;
+  const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,}$/;
+  const registerUrl = `/api/auth/register`;
+
+  const userRef = useRef(null);
+  const passwordRef = useRef(null);
+  const errRef = useRef();
+
+  const [user, setUser] = useState("");
+  const [validName, setValidName] = useState(false);
+  const [userFocus, setUserFocus] = useState(false);
 
   const [password, setPassword] = useState("");
-  const [checkedPassword, setCheckedPassword] = useState("");
+  const [validPassword, setValidPassword] = useState(false);
+  const [passwordFocus, setPasswordFocus] = useState(false);
 
+  const [matchPwd, setMatchPwd] = useState("");
+  const [validMatch, setValidMatch] = useState(false);
+  const [matchFocus, setMatchFocus] = useState(false);
+
+  const [errMsg, setErrMsg] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    userRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    const result = USER_REGEX.test(user);
+    console.log(result);
+    console.log(user);
+    setValidName(result);
+  }, [user]);
+
+  useEffect(() => {
+    const result = PWD_REGEX.test(password);
+    console.log(result);
+    console.log(password);
+    setValidPassword(result);
+    const match = password === matchPwd;
+    setValidMatch(match);
+  }, [password, matchPwd]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    //double check
+    const check1 = USER_REGEX.test(user);
+    const check2 = PWD_REGEX.test(password);
+    if (!check1 || !check2) {
+      setErrMsg("Accesso negato! username o password errata!");
+      return;
+    }
+
+    try {
+      const response = await axios.post(registerUrl, {
+        user: user,
+        password: password,
+      });
+      console.log(response.data);
+      console.log(response.accessToken);
+      console.log(JSON.stringify(response));
+      setSuccess(true);
+    } catch (error) {
+      if (!error?.response) {
+        setErrMsg("C'è stato un errore nel contattare il server");
+      } else if (error.response?.status === 409) {
+        setErrMsg("Registrazione fallita!");
+      }
+      errRef.current.focus();
+    }
+  };
+
+  //REGISTRTION FORM
   return (
-    <Form className="p-3">
-      <h4> Registrati</h4>
+    <>
+      {success ? (
+        <section>
+          <h1> Sei registrato! </h1>
+          <p>
+            Clicca <Link to="/login"> qui </Link> per accedere alla tua are
+            privata.
+          </p>
+        </section>
+      ) : (
+        <section>
+          <p
+            ref={errRef}
+            className={errMsg ? "errMsg" : "offscreen"}
+            aria-live="assertive"
+          >
+            {errMsg}
+          </p>
+          <h4> Registrati</h4>
 
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Username</Form.Label>
-        <Form.Control type="text" required placeholder="Username" />
-      </Form.Group>
+          <Form onSubmit={handleSubmit} className="p-3">
+            <Form.Group className="mb-3" controlId="formBasicName">
+              <Form.Label>
+                Username:
+                <span className={validName ? "valid" : "d-none"}>
+                  <FontAwesomeIcon
+                    icon={faCheck}
+                    style={{ color: "#00ff00" }}
+                  />
+                </span>
+                <span className={validName || !user ? "d-none" : "invalid"}>
+                  <FontAwesomeIcon
+                    icon={faXmark}
+                    style={{ color: "#ff0000" }}
+                  />
+                </span>
+              </Form.Label>
+              <Form.Control
+                type="text"
+                required
+                placeholder="Username"
+                //id="username"
+                ref={userRef}
+                autoComplete="off"
+                onChange={(e) => setUser(e.target.value)}
+                aria-invalid={validName ? "false" : "true"}
+                aria-describedby="uidnote" //per fornire ulteriori indicazioni all'utente
+                onFocus={() => setUserFocus(true)}
+                onBlur={() => setUserFocus(false)}
+              />
+              <p
+                id="uidnote"
+                className={
+                  userFocus && user && !validName ? "instructions" : "d-none"
+                }
+              >
+                <FontAwesomeIcon
+                  icon={faCircleInfo}
+                  style={{ color: "#0dcaf0" }}
+                />
+                L'username deve essere formato da 4 a 24 caratteri. <br />
+                Deve iniziare con una lettera. <br />
+                Può contenere caratteri speciali, maiuscole e numeri.
+              </p>
+            </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          type="password"
-          required
-          placeholder="Password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-        />
-      </Form.Group>
+            {/* PASSWORD */}
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>
+                Password
+                <span className={validPassword ? "valid" : "d-none"}>
+                  <FontAwesomeIcon
+                    icon={faCheck}
+                    style={{ color: "#00ff00" }}
+                  />
+                </span>
+                <span
+                  className={validPassword || !password ? "d-none" : "invalid"}
+                >
+                  <FontAwesomeIcon
+                    icon={faXmark}
+                    style={{ color: "#ff0000" }}
+                  />
+                </span>
+              </Form.Label>
+              <Form.Control
+                type="password"
+                required
+                placeholder="Password"
+                //id="password"
+                ref={passwordRef}
+                autoComplete="off"
+                onChange={(e) => setPassword(e.target.value)}
+                aria-invalid={validPassword ? "false" : "true"}
+                aria-describedby="passwordnote" //per fornire ulteriori indicazioni all'utente
+                onFocus={() => setPasswordFocus(true)}
+                onBlur={() => setPasswordFocus(false)}
+              />
+              <p
+                id="passwordnote"
+                className={
+                  passwordFocus && user && !validPassword
+                    ? "instructions"
+                    : "d-none"
+                }
+              >
+                <FontAwesomeIcon
+                  icon={faCircleInfo}
+                  style={{ color: "#0dcaf0" }}
+                />
+                La password deve contenere almeno 8 caratteri. <br />
+                Deve contenere almeno una lettera maiuscola, <br />
+                Deve contenere almeno una lettera minuscola <br />
+                Deve contenere almeno un carattere speciale tra !, @, #, $ o %.
+              </p>
+            </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Conferma password</Form.Label>
-        <Form.Control
-          type="password"
-          required
-          placeholder="password"
-          value={checkedPassword}
-          onChange={(event) => setCheckedPassword(event.target.value)}
-        />
-      </Form.Group>
+            {/* METCHED PASSWORD */}
 
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Button
-        variant="primary"
-        type="button"
-        onClick={() => checkRegistration()}
-      >
-        REGISTRAMI
-      </Button>
-    </Form>
+            <Form.Group className="mb-3" controlId="form">
+              <Form.Label>
+                Conferma Password
+                <span className={validMatch && matchPwd ? "valid" : "d-none"}>
+                  <FontAwesomeIcon
+                    icon={faCheck}
+                    style={{ color: "#00ff00" }}
+                  />
+                </span>
+                <span
+                  className={validMatch || !matchPwd ? "d-none" : "invalid"}
+                >
+                  <FontAwesomeIcon
+                    icon={faXmark}
+                    style={{ color: "#ff0000" }}
+                  />
+                </span>
+              </Form.Label>
+              <Form.Control
+                type="password"
+                required
+                placeholder="Conferma Password"
+                //id="password"
+                ref={passwordRef}
+                autoComplete="off"
+                onChange={(e) => setMatchPwd(e.target.value)}
+                aria-invalid={validMatch ? "false" : "true"}
+                aria-describedby="confirmnote" //per fornire ulteriori indicazioni all'utente
+                onFocus={() => setMatchFocus(true)}
+                onBlur={() => setMatchFocus(false)}
+              />
+              <p
+                id="confirmnote"
+                className={
+                  matchFocus && !validMatch ? "instructions" : "d-none"
+                }
+              >
+                <FontAwesomeIcon
+                  icon={faCircleInfo}
+                  style={{ color: "#0dcaf0" }}
+                />
+                La password deve corrispondere alla password precedente.
+              </p>
+            </Form.Group>
+
+            <Form.Group
+              className="mb-3"
+              controlId="formBasicMatchPwd"
+            ></Form.Group>
+            <Button
+              disabled={
+                !validName || !validPassword || !validMatch ? true : false
+              }
+              variant="primary"
+              type="button "
+            >
+              REGISTRAMI
+            </Button>
+          </Form>
+          <p>
+            Hai già un account? <br />
+            Accedi qui
+            <FontAwesomeIcon icon={faArrowRight} style={{ color: "#0dcaf0" }} />
+            <Link to="/login"> Login </Link>
+          </p>
+        </section>
+      )}
+    </>
   );
 };
 

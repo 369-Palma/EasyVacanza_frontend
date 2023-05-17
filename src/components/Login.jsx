@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { useLocalState } from "../util/UseLocalStorage";
+//import { useState } from "react";
+//import { useLocalState } from "../util/UseLocalStorage";
 import { Button, Form } from "react-bootstrap";
 
 const Login = () => {
-  const [jwt, setJwt] = useLocalState("", "jwt");
+  /* const [jwt, setJwt] = useLocalState("", "jwt");
 
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -14,7 +14,7 @@ const Login = () => {
       password: password,
     };
 
-    fetch("api/auth/login", {
+    fetch("http://localhost:8086/api/auth/login", {
       headers: {
         "Content-Type": "application/json",
       },
@@ -36,7 +36,7 @@ const Login = () => {
         alert(message);
       });
   }
-
+ */
   return (
     <Form className="p-3">
       <h4> Sign in </h4>
@@ -46,8 +46,8 @@ const Login = () => {
           type="email"
           required
           placeholder="Username"
-          value={username}
-          onChange={(event) => setUserName(event.target.value)}
+          //value={username}
+          //onChange={(event) => setUserName(event.target.value)}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formPassword">
@@ -56,8 +56,8 @@ const Login = () => {
           type="password"
           required
           placeholder="Password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
+          //value={password}
+          //onChange={(event) => setPassword(event.target.value)}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formCheckbox">
@@ -68,7 +68,7 @@ const Login = () => {
         id="submit"
         variant="primary"
         type="button"
-        onClick={() => sendLoginRequest()}
+        //onClick={() => sendLoginRequest()}
       >
         LOGIN
       </Button>

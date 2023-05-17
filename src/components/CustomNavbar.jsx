@@ -11,7 +11,7 @@ const CustomNavbar = ({ claim }) => {
       bg="info"
       variant="light"
       fixed="top"
-      classname="m-0 h-auto"
+      className="m-0 h-auto"
     >
       <Container className="d-flex justify-content-between w-100 mx-1.5">
         <Link to="/" className="navbar-brand">

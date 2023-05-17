@@ -4,7 +4,7 @@ import Register from "./Register";
 
 const RegistrationPage = () => {
   return (
-    <Container className="flex-column my-5">
+    <Container className="flex-column my-5" id="authenticationForm">
       <Row className="w-100">
         <Col className="border border-black">
           <Register />
