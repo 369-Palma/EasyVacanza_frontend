@@ -8,18 +8,18 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../api/axios";
 
 const Register = () => {
   const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9_]{3,23}$/;
   const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,}$/;
-  const registerUrl = `/api/auth/register`;
+  const registerUrl = `/auth/register`;
 
   const userRef = useRef(null);
   const passwordRef = useRef(null);
   const errRef = useRef();
 
-  const [user, setUser] = useState("");
+  const [username, setUser] = useState("");
   const [validName, setValidName] = useState(false);
   const [userFocus, setUserFocus] = useState(false);
 
@@ -39,11 +39,11 @@ const Register = () => {
   }, []);
 
   useEffect(() => {
-    const result = USER_REGEX.test(user);
+    const result = USER_REGEX.test(username);
     console.log(result);
-    console.log(user);
+    console.log(username);
     setValidName(result);
-  }, [user]);
+  }, [username]);
 
   useEffect(() => {
     const result = PWD_REGEX.test(password);
@@ -58,7 +58,7 @@ const Register = () => {
     e.preventDefault();
 
     //double check
-    const check1 = USER_REGEX.test(user);
+    const check1 = USER_REGEX.test(username);
     const check2 = PWD_REGEX.test(password);
     if (!check1 || !check2) {
       setErrMsg("Accesso negato! username o password errata!");
@@ -66,8 +66,8 @@ const Register = () => {
     }
 
     try {
-      const response = await axios.post(registerUrl, {
-        user: user,
+      const response = await axiosInstance.post(registerUrl, {
+        username: username,
         password: password,
       });
       console.log(response.data);
@@ -84,7 +84,7 @@ const Register = () => {
     }
   };
 
-  //REGISTRTION FORM
+  //REGISTRATION FORM
   return (
     <>
       {success ? (
@@ -116,7 +116,7 @@ const Register = () => {
                     style={{ color: "#00ff00" }}
                   />
                 </span>
-                <span className={validName || !user ? "d-none" : "invalid"}>
+                <span className={validName || !username ? "d-none" : "invalid"}>
                   <FontAwesomeIcon
                     icon={faXmark}
                     style={{ color: "#ff0000" }}
@@ -139,7 +139,9 @@ const Register = () => {
               <p
                 id="uidnote"
                 className={
-                  userFocus && user && !validName ? "instructions" : "d-none"
+                  userFocus && username && !validName
+                    ? "instructions"
+                    : "d-none"
                 }
               >
                 <FontAwesomeIcon
@@ -187,7 +189,7 @@ const Register = () => {
               <p
                 id="passwordnote"
                 className={
-                  passwordFocus && user && !validPassword
+                  passwordFocus && username && !validPassword
                     ? "instructions"
                     : "d-none"
                 }

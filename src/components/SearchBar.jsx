@@ -6,17 +6,17 @@ const SearchBar = () => {
   const [data, setData] = useState([]);
   const [keyword, setKeyword] = useState("");
 
-  const url = `api/attivita/partedescrizione/`;
+  const url = `/api/attivita/partedescrizione/`;
 
   const searchKeyword = (event) => {
-    if (event.key === "Enter") {
+    /*  if (event.key === "Enter") {
       axios.get(url + keyword).then((response) => {
         setData(response.data);
         console.log(response.data);
         console.log(data);
       });
       setKeyword("");
-    }
+    } */
   };
 
   return (
