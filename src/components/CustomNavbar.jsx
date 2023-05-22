@@ -34,14 +34,7 @@ const CustomNavbar = ({ claim }) => {
             >
               Offerte
             </Link>
-            <Link
-              className={`nav-link ${
-                location.pathname === "/eventi" ? "active" : ""
-              }`}
-              to="/eventi"
-            >
-              Eventi
-            </Link>
+
             <Link
               className={`nav-link ${
                 location.pathname === "/prenotazione" ? "active" : ""

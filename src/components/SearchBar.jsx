@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Row, Col, Form } from "react-bootstrap";
+import { Row, Col, Form, Container } from "react-bootstrap";
 
 const SearchBar = () => {
   const [data, setData] = useState([]);
@@ -20,7 +20,7 @@ const SearchBar = () => {
   };
 
   return (
-    <>
+    <Container id="coverSearch">
       <Row className="d-flex flex-column mx-auto align-content-center text-bg-primary border border-secondary">
         <Col md={2} className="w-100 gradient-container mx-auto mx-0">
           <Form className=" my-5 ">
@@ -36,7 +36,7 @@ const SearchBar = () => {
           </Form>
         </Col>
       </Row>
-    </>
+    </Container>
   );
 };
 

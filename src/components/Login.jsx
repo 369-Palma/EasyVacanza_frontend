@@ -1,107 +1,176 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 //import { useLocalState } from "../util/UseLocalStorage";
 import { Button, Form } from "react-bootstrap";
-import axiosInstance from "../api/axios";
+import axios from "../api/axios";
+import { Link } from "react-router-dom";
+//import AuthContext from "../context/AuthProvider";
 
 const Login = () => {
-  /* const [jwt, setJwt] = useLocalState("", "jwt");
-
- 
-
-  function sendLoginRequest() {
-    const reqBody = {
-      username: username,
-      password: password,
-    };
-
-    fetch("http://localhost:8086/api/auth/login", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "post",
-      body: JSON.stringify(reqBody),
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          return Promise.all([response.json(), response.headers]);
-        } else {
-          return Promise.reject("Username o password errata");
-        }
-      })
-      .then(([body, headers]) => {
-        setJwt(headers.get("authorization"));
-        window.location.href = "dashboard";
-      })
-      .catch((message) => {
-        alert(message);
-      });
-  }
- */
+  /* const { setAuth } = useContext(AuthContext); */
   const loginUrl = `/auth/login`;
 
-  const [username, setUserName] = useState("");
+  const usernameRef = useRef(null);
+  const errRef = useRef();
+
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
 
+  useEffect(() => {
+    usernameRef.current?.focus();
+  }, []);
+
+  useEffect(() => {
+    setErrMsg("");
+  }, [username, password]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    /*  if (!check1 || !check2) {
-      setErrMsg(
-        "Accesso negato! username o password errata! Non sei ancora registrato?"
-      );
+    // Validazione dei campi di input
+    if (!username || !password) {
+      // Gestione dell'errore per campi vuoti o nulli
+      setErrMsg("Inserisci username e password");
       return;
-    } */
+    }
 
     try {
-      const response = await axiosInstance.post(loginUrl, {
-        username: username,
-        password: password,
-      });
+      const response = await axios.post(
+        loginUrl,
+        JSON.stringify({ username, password }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
       console.log(response.data);
       console.log(response.accessToken);
       console.log(JSON.stringify(response));
       setSuccess(true);
     } catch (error) {
       if (!error?.response) {
-        setErrMsg("C'è stato un errore nel contattare il server");
+        setErrMsg("Non c'è stata risposta dal server!");
+      } else if (error.response?.status === 400) {
+        setErrMsg("Username o Password errata");
+      } else if (ErrorEvent.response?.status === 401) {
+        setErrMsg("Mancata autorizzazione");
+      } else {
+        setErrMsg("Il login non è andato a buon fine!");
       }
       //errRef.current.focus();
     }
   };
 
+  /* const handleSubmit = async (e) => {
+    e.preventDefault();
+    setUsername("");
+    setPassword("");
+    setSuccess(true);
+
+    try {
+      const response = await axios.post(
+        loginUrl,
+        JSON.stringify({ username, password }),
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      console.log(JSON.stringify(response?.data));
+      // console.log(JSON.stringify(response));
+      console.log(response.data);
+      const accessToken = response?.data?.accessToken;
+      const roles = response?.data?.roles;
+      setAuth({ username, password, roles, accessToken });
+
+      setUsername("");
+      setPassword("");
+      setSuccess(true);
+    } catch (error) {
+      if (!error?.response) {
+        setErrMsg("Non c'è stata risposta dal server!");
+      } else if (error.response?.status === 400) {
+        setErrMsg("Username o Password errata");
+      } else if (ErrorEvent.response?.status === 401) {
+        setErrMsg("Mancata autorizzazione");
+      } else {
+        setErrMsg("Il login non è andato a buon fine!");
+      }
+
+      errRef.current?.focus();
+    }
+  }; */
+
   return (
-    <Form onSubmit={handleSubmit} className="p-3">
-      <h4> Sign in </h4>
-      <Form.Group className="mb-3" controlId="formUsername">
-        <Form.Label>Username</Form.Label>
-        <Form.Control
-          type="text"
-          required
-          placeholder="Username"
-          value={username}
-          onChange={(event) => setUserName(event.target.value)}
-        />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          type="password"
-          required
-          placeholder="Password"
-          //value={password}
-          //onChange={(event) => setPassword(event.target.value)}
-        />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Button className="bottone" id="submit" variant="primary" type="button">
-        LOGIN
-      </Button>
-    </Form>
+    <>
+      {success ? (
+        <article>
+          <h1> You are logged in!</h1>
+          <br />
+          <p>
+            {/* QUI ANDRA IL NOME DEL COMPONENTE DOVE SOLO I REGISTRATI POSSONO ACCEDERE */}
+            <Link to="/Prenotation form">
+              Benvenuto nella tua area privata! <br />
+              Prenota la tua vacanza da sogno!
+            </Link>
+          </p>
+        </article>
+      ) : (
+        <section>
+          <p
+            ref={errRef}
+            className={errMsg ? "errMsg" : "offscreen"}
+            aria-live="assertive"
+          >
+            {errMsg}
+          </p>
+          <h4> Sign in </h4>
+
+          <Form onSubmit={handleSubmit} className="p-3">
+            <Form.Group className="mb-3" controlId="formUsername">
+              <Form.Label>Username:</Form.Label>
+              <Form.Control
+                type="text"
+                required
+                placeholder="Username"
+                autoComplete="off"
+                ref={usernameRef}
+                onChange={(e) => setUsername(e.target.value)}
+                value={username}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                required
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formCheckbox">
+              <Form.Check type="checkbox" label="Check me out" />
+            </Form.Group>
+            <Button
+              className="bottone"
+              id="submit"
+              variant="primary"
+              type="button"
+              onClick={handleSubmit}
+            >
+              LOGIN
+            </Button>
+          </Form>
+          <p>
+            Non hai ancora un account? <br />
+            <Link to="/register"> Registrati qui </Link>
+          </p>
+        </section>
+      )}
+    </>
   );
 };
 

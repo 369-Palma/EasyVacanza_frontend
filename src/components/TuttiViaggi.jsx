@@ -1,21 +1,20 @@
-import axios from "axios";
+//import axios from "axios";
 import { Row, Col, Container } from "react-bootstrap";
 import SingleCard from "./SingleCard";
 import React, { useState, useEffect } from "react";
-import SearchBar from "./SearchBar";
-import axiosInstance from "../api/axios";
+import axios from "../api/axios";
 
 const TuttiViaggi = () => {
-  const urlAll = "/vacanze/pageable?page=0&size=5";
-
+  const urlAll = "/vacanze/pageable?page=1&size=6";
+  //const urlAll = "/vacanze";
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const resp = await axiosInstance.get(urlAll);
-        setData(resp.data.vacanza);
-        console.log(resp.data);
+        const resp = await axios.get(urlAll);
+        setData(resp.data.content);
+        console.log(resp.data.content);
       } catch (error) {
         console.error("Errore durante la richiesta: ", error);
       }
@@ -25,15 +24,15 @@ const TuttiViaggi = () => {
 
   return (
     <>
-      <SearchBar className="searchTab" />
+      {/* <SearchTab className="searchTab" /> */}
       <Container>
-        {data?.map((vacanza) => (
-          <Row className="justify-content-center" key={vacanza.id}>
-            <Col xs={6} md={4}>
-              <SingleCard data={vacanza} />
+        <Row className="justify-content-center">
+          {data?.map((content) => (
+            <Col xs={6} md={4} key={content.id}>
+              <SingleCard data={content} />
             </Col>
-          </Row>
-        ))}
+          ))}
+        </Row>
       </Container>
     </>
   );

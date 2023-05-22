@@ -8,20 +8,27 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import axiosInstance from "../api/axios";
-
+import axios from "../api/axios";
+import Login from "./Login";
 const Register = () => {
   const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9_]{3,23}$/;
   const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,}$/;
+  const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   const registerUrl = `/auth/register`;
 
   const userRef = useRef(null);
+  const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const errRef = useRef();
 
   const [username, setUser] = useState("");
   const [validName, setValidName] = useState(false);
   const [userFocus, setUserFocus] = useState(false);
+
+  const [email, setEmail] = useState("");
+  const [validEmail, setValidEmail] = useState(false);
+  const [emailFocus, setEmailFocus] = useState(false);
 
   const [password, setPassword] = useState("");
   const [validPassword, setValidPassword] = useState(false);
@@ -46,6 +53,13 @@ const Register = () => {
   }, [username]);
 
   useEffect(() => {
+    const result = EMAIL_REGEX.test(email);
+    console.log(result);
+    console.log(email);
+    setValidEmail(result);
+  }, [email]);
+
+  useEffect(() => {
     const result = PWD_REGEX.test(password);
     console.log(result);
     console.log(password);
@@ -66,12 +80,13 @@ const Register = () => {
     }
 
     try {
-      const response = await axiosInstance.post(registerUrl, {
+      const response = await axios.post(registerUrl, {
         username: username,
+        email: email,
         password: password,
       });
       console.log(response.data);
-      console.log(response.accessToken);
+      //console.log(response.accessToken);
       console.log(JSON.stringify(response));
       setSuccess(true);
     } catch (error) {
@@ -80,7 +95,7 @@ const Register = () => {
       } else if (error.response?.status === 409) {
         setErrMsg("Registrazione fallita!");
       }
-      errRef.current.focus();
+      errRef.current?.focus();
     }
   };
 
@@ -88,14 +103,15 @@ const Register = () => {
   return (
     <>
       {success ? (
-        <section>
+        <Login />
+      ) : (
+        /*  <section>
           <h1> Sei registrato! </h1>
-          <p>
+         {  <p>
             Clicca <Link to="/login"> qui </Link> per accedere alla tua are
             privata.
-          </p>
-        </section>
-      ) : (
+          </p> }
+        </section> */
         <section>
           <p
             ref={errRef}
@@ -151,6 +167,50 @@ const Register = () => {
                 L'username deve essere formato da 4 a 24 caratteri. <br />
                 Deve iniziare con una lettera. <br />
                 Può contenere caratteri speciali, maiuscole e numeri.
+              </p>
+            </Form.Group>
+
+            {/* EMAIL */}
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>
+                Email:
+                <span className={validEmail ? "valid" : "d-none"}>
+                  <FontAwesomeIcon
+                    icon={faCheck}
+                    style={{ color: "#00ff00" }}
+                  />
+                </span>
+                <span className={validEmail || !email ? "d-none" : "invalid"}>
+                  <FontAwesomeIcon
+                    icon={faXmark}
+                    style={{ color: "#ff0000" }}
+                  />
+                </span>
+              </Form.Label>
+              <Form.Control
+                type="email"
+                required
+                placeholder="Email"
+                ref={emailRef}
+                autoComplete="off"
+                onChange={(e) => setEmail(e.target.value)}
+                aria-invalid={validEmail ? "false" : "true"}
+                aria-describedby="emailNote"
+                onFocus={() => setEmailFocus(true)}
+                onBlur={() => setEmailFocus(false)}
+              />
+              <p
+                id="emailNote"
+                className={
+                  emailFocus && email && !validEmail ? "instructions" : "d-none"
+                }
+              >
+                <FontAwesomeIcon
+                  icon={faCircleInfo}
+                  style={{ color: "#0dcaf0" }}
+                />
+                L'email deve essere valida. <br />
+                Assicurati di inserire un indirizzo email corretto.
               </p>
             </Form.Group>
 

@@ -1,15 +1,14 @@
 import { Container } from "react-bootstrap";
-import GalleriaOfferte from "./GalleriaOfferte";
-import SearchBar from "./SearchBar";
-import Register from "./Register";
+import TuttiViaggi from "./TuttiViaggi";
+import SearchTab from "./SearchTab";
 
 const HomePage = () => {
   return (
     <>
-      <SearchBar className="searchTab" />
+      <SearchTab className="searchTab" />
       <Container className="boxContainer mx-auto">
         <h2> Lasciati ispirare dalle nostre offerte speciali!</h2>
-        {/* <GalleriaOfferte /> */}
+        <TuttiViaggi />
       </Container>
     </>
   );

@@ -54,22 +54,23 @@ h4 {
   box-shadow: 0 1px 0px 1px rgb(2 2 2 / 70%);
 }
 .boxContainer {
-  background-color: rgb(209, 213, 5);
+  background-color: rgb(223 234 240);
   border-radius: 0.6em;
+  max-width: 1050px;
   display: flex;
   flex-direction: column;
   margin-top: 1em;
   box-shadow: 0 2px 1px 1px rgb(150, 146, 146);
 }
 
-.gradient-container {
+/* .gradient-container {
   background: rgb(17, 17, 205);
   background: linear-gradient(
     0deg,
     rgb(209, 213, 5) 0%,
     rgba(13, 202, 240, 1) 69%
   );
-}
+} */
 
 .footer-links p {
   text-decoration-line: none;
