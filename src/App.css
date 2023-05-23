@@ -56,7 +56,9 @@ h4 {
 .boxContainer {
   background-color: rgb(223 234 240);
   border-radius: 0.6em;
-  max-width: 1050px;
+  min-width: 400px;
+  min-height: 350px;
+  max-width: 1695px;
   display: flex;
   flex-direction: column;
   margin-top: 1em;

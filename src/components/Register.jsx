@@ -261,7 +261,9 @@ const Register = () => {
                 La password deve contenere almeno 8 caratteri. <br />
                 Deve contenere almeno una lettera maiuscola, <br />
                 Deve contenere almeno una lettera minuscola <br />
-                Deve contenere almeno un carattere speciale tra !, @, #, $ o %.
+                Deve contenere almeno un carattere speciale tra !, @, #, $ o %{" "}
+                <br />
+                Deve contenere almeno un numero.
               </p>
             </Form.Group>
 
