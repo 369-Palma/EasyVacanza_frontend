@@ -3,6 +3,7 @@ import { Row, Col, Container } from "react-bootstrap";
 import SingleCard from "./SingleCard";
 import React, { useState, useEffect } from "react";
 import axios from "../api/axios";
+import CustomNavbar from "./CustomNavbar";
 
 const TuttiViaggi = () => {
   const urlAll = "/vacanze/pageable?page=1&size=6";
@@ -24,7 +25,7 @@ const TuttiViaggi = () => {
 
   return (
     <>
-      {/* <SearchTab className="searchTab" /> */}
+      <CustomNavbar className="mynavbar" claim="Were dreams come true!" />
       <Container className="mt-5">
         <Row className="justify-content-center">
           <h2> Lasciati ispirare dalle nostre offerte speciali!</h2>

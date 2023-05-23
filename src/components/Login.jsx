@@ -1,4 +1,6 @@
+import "../styles/registrationForm.css";
 import { useState, useEffect, useRef } from "react";
+import CustomNavbar from "./CustomNavbar";
 //import { useLocalState } from "../util/UseLocalStorage";
 import { Button, Form } from "react-bootstrap";
 import axios from "../api/axios";
@@ -66,20 +68,10 @@ const Login = () => {
 
   return (
     <>
+      <CustomNavbar className="mynavbar" claim="Were dreams come true!" />
       {success ? (
         <Dashboard />
       ) : (
-        /* <article>
-          <h1> You are logged in!</h1>
-          <br />
-          <p>
-            
-            <Link to="/Prenotation form">
-              Benvenuto nella tua area privata! <br />
-              Prenota la tua vacanza da sogno!
-            </Link>
-          </p>
-        </article> */
         <section>
           <p
             ref={errRef}
@@ -88,7 +80,7 @@ const Login = () => {
           >
             {errMsg}
           </p>
-          <h4> Sign in </h4>
+          <h4 className="ms-5 mb-3"> Sign in </h4>
 
           <Form onSubmit={handleSubmit} className="p-3">
             <Form.Group className="mb-3" controlId="formUsername">

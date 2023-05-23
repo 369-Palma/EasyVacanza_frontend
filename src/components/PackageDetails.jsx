@@ -1,8 +1,8 @@
-import SearchBar from "./SearchBar";
+import SearchTab from "./SearchTab";
 
 const PackageDetails = () => {
   <>
-    <SearchBar className="searchTab" />
+    <SearchTab className="searchTab" />
     <h1> Pagina dettagli dell'offerta selezionata </h1>
   </>;
 };

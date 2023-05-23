@@ -16,7 +16,7 @@ import CustomFooter from "./components/CustomFooter"; */
 const App = () => {
   return (
     <BrowserRouter>
-      <CustomNavbar className="mynavbar" claim="Were dreams come true!" />
+      {/* <CustomNavbar className="mynavbar" claim="Were dreams come true!" /> */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/offerte" element={<TuttiViaggi />} />

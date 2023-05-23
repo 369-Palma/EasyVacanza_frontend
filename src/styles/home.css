@@ -1,4 +1,4 @@
-#cover {
+.cover {
   position: relative;
   width: 100%;
   display: flex;
@@ -18,11 +18,6 @@
   bottom: 0;
   z-index: 1;
 }
-/* #cover img {
-  top: 0;
-  left: 0;
-  width: 100%;
-} */
 
 .searchContent {
   width: 100%;
@@ -44,10 +39,3 @@
   text-transform: uppercase;
   font-size: 2.5rem;
 }
-/* .formContainer {
-  position: relative;
-}
-#searchTab {
-  position: relative;
-  text-align: center;
-} */

@@ -15,7 +15,7 @@ const MyNav = ({ claim }) => {
     >
       <Container className="d-flex justify-content-between w-100 mx-1.5">
         <Link to="/" className="navbar-brand">
-          <strong> EasyVacanza</strong> - {claim}
+          <strong> EasyVacanza</strong>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse
@@ -23,18 +23,6 @@ const MyNav = ({ claim }) => {
           className="d-flex align-items-end"
         >
           <Nav className="navLinks ms-auto flex-row " id="navLinks">
-            <Link to="/" className="nav-link">
-              Home
-            </Link>
-            <Link
-              className={`nav-link ${
-                location.pathname === "/offerte" ? "active" : ""
-              }`}
-              to="/offerte"
-            >
-              Offerte
-            </Link>
-
             <Link
               className={`nav-link ${
                 location.pathname === "/prenotazione" ? "active" : ""
@@ -42,6 +30,15 @@ const MyNav = ({ claim }) => {
               to="/prenotazione"
             >
               Prenota
+            </Link>
+
+            <Link
+              className={`nav-link ${
+                location.pathname === "/offerte" ? "active" : ""
+              }`}
+              to="/offerte"
+            >
+              Offerte
             </Link>
 
             <Link

@@ -13,6 +13,7 @@ const SearchTab = () => {
   //const [datainizio, setDatainizio] = useState("");
 
   const urlCitta = `/vacanze/citta/`;
+  //const urlDate = `/datainizio/`;
 
   const handleCitySearch = async (event) => {
     if (event.key === "Enter") {
@@ -31,7 +32,7 @@ const SearchTab = () => {
   /*  const SearchDate = async (event) => {
     if (event.key === "Enter") {
       try {
-        const response = await axios.get(urlCitta + datainizio);
+        const response = await axios.get(urlDate + datainizio);
         setData(response.data);
         console.log(response.data);
       } catch (error) {
@@ -47,15 +48,13 @@ const SearchTab = () => {
 
   return (
     <>
-      <section id="cover">
+      <section className="cover">
         <div className="overlay"></div>
         <Container className="searchContent">
           <div>
             <h1> Cerca la tua vacanza </h1>
             <Form className="formContainer">
-              <Form.Label className="fs-2 w-max ">
-                La tua destinazione:
-              </Form.Label>
+              <Form.Label className="fs-2">La tua destinazione:</Form.Label>
               <Form.Control
                 className="searchCity d-flex mt-1 mb-3"
                 id="searchTab"

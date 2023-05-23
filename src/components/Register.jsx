@@ -1,4 +1,5 @@
-import { Form, Button } from "react-bootstrap";
+import "../styles/registrationForm.css";
+import { Form, Button, Col, Row } from "react-bootstrap";
 import { useRef, useState, useEffect } from "react";
 import {
   faCheck,
@@ -6,6 +7,7 @@ import {
   faCircleInfo,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CustomNavbar from "./CustomNavbar";
 import { Link } from "react-router-dom";
 import axios from "../api/axios";
 import Login from "./Login";
@@ -101,17 +103,11 @@ const Register = () => {
   //REGISTRATION FORM
   return (
     <>
+      <CustomNavbar claim="Accedi alla tua area privata!" />
       {success ? (
         <Login />
       ) : (
-        /*  <section>
-          <h1> Sei registrato! </h1>
-         {  <p>
-            Clicca <Link to="/login"> qui </Link> per accedere alla tua are
-            privata.
-          </p> }
-        </section> */
-        <section>
+        <Col md={6} className="authForm">
           <p
             ref={errRef}
             className={errMsg ? "errMsg" : "offscreen"}
@@ -119,7 +115,13 @@ const Register = () => {
           >
             {errMsg}
           </p>
-          <h4> Registrati</h4>
+          <Col className="titolo mx-auto">
+            <p className="ms-5 ">
+              Per prenotare il tuo pacchetto vacanza accedi alla tua area
+              privata oppure registrati qui.
+            </p>
+          </Col>
+          <h4 className="ms-5 mb-3"> Registrati</h4>
 
           <Form onSubmit={handleSubmit} className="p-3">
             <Form.Group className="mb-3" controlId="formBasicName">
@@ -327,11 +329,13 @@ const Register = () => {
               REGISTRAMI
             </Button>
           </Form>
-          <p className="mt-4">
-            Hai già un account? <br />
-            <Link to="/login">Accedi qui </Link>
-          </p>
-        </section>
+          <Col className="ms-5">
+            <p className="mt-4">
+              Hai già un account? <br />
+              <Link to="/login">Accedi qui </Link>
+            </p>
+          </Col>
+        </Col>
       )}
     </>
   );
