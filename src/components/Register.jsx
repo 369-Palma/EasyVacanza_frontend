@@ -4,7 +4,6 @@ import {
   faCheck,
   faXmark,
   faCircleInfo,
-  faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
@@ -328,11 +327,9 @@ const Register = () => {
               REGISTRAMI
             </Button>
           </Form>
-          <p>
+          <p className="mt-4">
             Hai già un account? <br />
-            Accedi qui
-            <FontAwesomeIcon icon={faArrowRight} style={{ color: "#0dcaf0" }} />
-            <Link to="/login"> Login </Link>
+            <Link to="/login">Accedi qui </Link>
           </p>
         </section>
       )}

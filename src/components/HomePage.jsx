@@ -7,7 +7,6 @@ const HomePage = () => {
     <>
       <SearchTab className="searchTab" />
       <Container className="boxContainer mx-auto">
-        <h2> Lasciati ispirare dalle nostre offerte speciali!</h2>
         <TuttiViaggi />
       </Container>
     </>

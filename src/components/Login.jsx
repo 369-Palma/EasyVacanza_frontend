@@ -164,7 +164,7 @@ const Login = () => {
               LOGIN
             </Button>
           </Form>
-          <p>
+          <p className="mt-4">
             Non hai ancora un account? <br />
             <Link to="/register"> Registrati qui </Link>
           </p>

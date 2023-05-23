@@ -25,8 +25,9 @@ const TuttiViaggi = () => {
   return (
     <>
       {/* <SearchTab className="searchTab" /> */}
-      <Container>
+      <Container className="mt-5">
         <Row className="justify-content-center">
+          <h2> Lasciati ispirare dalle nostre offerte speciali!</h2>
           {data?.map((content) => (
             <Col xs={6} md={4} key={content.id}>
               <SingleCard data={content} />
