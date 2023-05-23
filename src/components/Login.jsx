@@ -1,8 +1,9 @@
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useEffect, useRef } from "react";
 //import { useLocalState } from "../util/UseLocalStorage";
 import { Button, Form } from "react-bootstrap";
 import axios from "../api/axios";
 import { Link } from "react-router-dom";
+import Dashboard from "./Dashboard";
 //import AuthContext from "../context/AuthProvider";
 
 const Login = () => {
@@ -46,7 +47,7 @@ const Login = () => {
         }
       );
       console.log(response.data);
-      console.log(response.accessToken);
+      console.log(response.data.accessToken);
       console.log(JSON.stringify(response));
       setSuccess(true);
     } catch (error) {
@@ -63,61 +64,22 @@ const Login = () => {
     }
   };
 
-  /* const handleSubmit = async (e) => {
-    e.preventDefault();
-    setUsername("");
-    setPassword("");
-    setSuccess(true);
-
-    try {
-      const response = await axios.post(
-        loginUrl,
-        JSON.stringify({ username, password }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
-      console.log(JSON.stringify(response?.data));
-      // console.log(JSON.stringify(response));
-      console.log(response.data);
-      const accessToken = response?.data?.accessToken;
-      const roles = response?.data?.roles;
-      setAuth({ username, password, roles, accessToken });
-
-      setUsername("");
-      setPassword("");
-      setSuccess(true);
-    } catch (error) {
-      if (!error?.response) {
-        setErrMsg("Non c'è stata risposta dal server!");
-      } else if (error.response?.status === 400) {
-        setErrMsg("Username o Password errata");
-      } else if (ErrorEvent.response?.status === 401) {
-        setErrMsg("Mancata autorizzazione");
-      } else {
-        setErrMsg("Il login non è andato a buon fine!");
-      }
-
-      errRef.current?.focus();
-    }
-  }; */
-
   return (
     <>
       {success ? (
-        <article>
+        <Dashboard />
+      ) : (
+        /* <article>
           <h1> You are logged in!</h1>
           <br />
           <p>
-            {/* QUI ANDRA IL NOME DEL COMPONENTE DOVE SOLO I REGISTRATI POSSONO ACCEDERE */}
+            
             <Link to="/Prenotation form">
               Benvenuto nella tua area privata! <br />
               Prenota la tua vacanza da sogno!
             </Link>
           </p>
-        </article>
-      ) : (
+        </article> */
         <section>
           <p
             ref={errRef}

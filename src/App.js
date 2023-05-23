@@ -8,6 +8,7 @@ import PackageDetails from "./components/PackageDetails";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import RegistrationPage from "./components/RegistrationPage";
+import Dashboard from "./components/Dashboard";
 /* import Dashboard from "./components/Dashboard";
 import PrivateRoute from "./components/PrivateRoute";
 import CustomFooter from "./components/CustomFooter"; */
@@ -20,19 +21,12 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/offerte" element={<TuttiViaggi />} />
         <Route path="/details/:vacanzaId" element={<PackageDetails />} />
-        {/* <Route path="/prenotazione" element={<Register />} /> */}
-        <Route path="/prenotazione" element={<RegistrationPage />} />
+        <Route path="/prenotazione" element={<Register />} />
+        {/* <Route path="/prenotazione" element={<RegistrationPage />} /> */}
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/login" element={<RegistrationPage />} /> */}
-        {/* <Route
-          path="/dshboard"
-          element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          }
-        /> */}
+        {/* <Route path="/recensioni" element={<RecensioneForm />} /> */}
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
 
       {/*   <CustomFooter /> */}
