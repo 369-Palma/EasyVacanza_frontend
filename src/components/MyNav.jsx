@@ -25,9 +25,9 @@ const MyNav = ({ claim }) => {
           <Nav className="navLinks ms-auto flex-row " id="navLinks">
             <Link
               className={`nav-link ${
-                location.pathname === "/prenotazione" ? "active" : ""
+                location.pathname === "/prenota" ? "active" : ""
               }`}
-              to="/prenotazione"
+              to="/prenota"
             >
               Prenota
             </Link>

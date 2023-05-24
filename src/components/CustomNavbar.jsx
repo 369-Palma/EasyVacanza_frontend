@@ -6,6 +6,7 @@ const CustomNavbar = ({ claim }) => {
 
   return (
     <Navbar
+      id="customNav"
       collapseOnSelect
       expand="lg"
       bg="info"

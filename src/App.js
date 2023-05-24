@@ -9,6 +9,7 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import RegistrationPage from "./components/RegistrationPage";
 import Dashboard from "./components/Dashboard";
+import BookingForm from "./components/BookingForm";
 /* import Dashboard from "./components/Dashboard";
 import PrivateRoute from "./components/PrivateRoute";
 import CustomFooter from "./components/CustomFooter"; */
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         {/* <Route path="/recensioni" element={<RecensioneForm />} /> */}
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/prenota" element={<BookingForm />} />
       </Routes>
 
       {/*   <CustomFooter /> */}

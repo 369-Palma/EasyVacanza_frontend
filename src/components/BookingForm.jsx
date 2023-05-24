@@ -1,17 +1,24 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import axios from "../api/axios";
+import MyNav from "./MyNav";
 
 const BookingForm = () => {
   const [bookingData, setBookingData] = useState({
     nome: "",
     cognome: "",
     email: "",
-    età: 0,
-    pernotazione: {
-      numeropreotazione: generaCodice(),
-      dataprenotazione: getCurrentDate(),
-    },
+    age: 0,
+    prenotazioni: [
+      {
+        numeroprenotazione: 0,
+        dataprenotazione: null,
+        numerospiti: null,
+        stato: "IN_ELABORAZIONE",
+        vacanza: {},
+      },
+    ],
+    testimonianze: [],
   });
 
   const urlCliente = `/cliente`;
@@ -34,26 +41,52 @@ const BookingForm = () => {
   }
 
   // Funzione per gestire il cambiamento dei campi del form
-  const handleChange = (e) => {
-    const { nome, value } = e.target;
-    setBookingData({ ...bookingData, [nome]: value });
+  const handleChange = (propertyName, propertyValue) => {
+    setBookingData({ ...bookingData, [propertyName]: propertyValue });
   };
 
   // Funzione per gestire la sottomissione del form
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    //conversione da stringa a intero del numero ospiti.
+    const numerospitiInt = parseInt(
+      bookingData.prenotazioni[0].numerospiti,
+      10
+    );
+
+    if (isNaN(numerospitiInt)) {
+      console.error("Il valore di numerospiti non è un numero valido.");
+      return;
+    }
+
+    //funzione per generare il numero di prenotazione,  impostare la data di prenotazione e cambiare lo stato della prenotazione in "confermato"
+    const updatedPrenotazioni = {
+      ...bookingData.prenotazioni[0],
+      numeroprenotazione: generaCodice(),
+      dataprenotazione: getCurrentDate(),
+      numerospiti: numerospitiInt,
+      stato: "CONFERMATO",
+    };
+
+    // Aggiorna i dati della prenotazione
+    const updatedBookingData = {
+      ...bookingData,
+      prenotazioni: [updatedPrenotazioni],
+    };
     try {
-      const response = await axios.post(
-        urlCliente,
-        { bookingData },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.post(urlCliente, updatedBookingData, {
+        headers: {
+          //"Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      });
+
       console.log(response.data);
+      alert(
+        `La tua richiesta è andata a buon fine. La prenotazione è stata creata con codice di prenotazione: ${updatedPrenotazioni.numeroprenotazione}`
+      );
     } catch (error) {
       if (!error?.response) {
         console.log("C'è stato un errore nel contattare il server");
@@ -63,45 +96,99 @@ const BookingForm = () => {
 
   return (
     <>
-      <Form onSubmit={handleSubmit} className="formprenotazione p-3">
-        <Form.Label>Nome:</Form.Label>
-        <Form.Control
-          type="text"
-          name="nome"
-          value={bookingData.nome}
-          onChange={handleChange}
-          placeholder="Nome"
-        />
+      <MyNav />
+      <Container>
+        <Row className="justify-content-center  mt-5">
+          <Col xs={12} md={6}>
+            <h2 className="text-center">Prenota la tua vacanza:</h2>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group className="mb-3">
+                <Form.Label>Nome</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Inserisci il tuo nome"
+                  value={bookingData.nome}
+                  onChange={(e) => {
+                    console.log(e.target.value);
 
-        <Form.Label>Cognome:</Form.Label>
-        <Form.Control
-          type="text"
-          name="cognome"
-          value={bookingData.cognome}
-          onChange={handleChange}
-          placeholder="Cognome"
-        />
+                    handleChange("nome", e.target.value);
+                  }}
+                />
+              </Form.Group>
 
-        <Form.Label>Email:</Form.Label>
-        <Form.Control
-          type="email"
-          name="email"
-          value={bookingData.email}
-          onChange={handleChange}
-          placeholder="Email"
-        />
+              <Form.Group className="mb-3">
+                <Form.Label>Cognome</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Inserisci il tuo cognome"
+                  value={bookingData.cognome}
+                  onChange={(e) => {
+                    console.log(e.target.value);
 
-        <Form.Label>Età:</Form.Label>
-        <Form.Control
-          type="text"
-          name="age"
-          value={bookingData.age}
-          onChange={handleChange}
-          placeholder="Età"
-        />
+                    handleChange("cognome", e.target.value);
+                  }}
+                />
+              </Form.Group>
 
-        <Button type="submit">Prenota</Button>
-      </Form>
+              <Form.Group className="mb-3">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Inserisci la tua email"
+                  value={bookingData.email}
+                  onChange={(e) => {
+                    console.log(e.target.value);
+                    handleChange("email", e.target.value);
+                  }}
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Label>Numero di ospiti</Form.Label>
+                <Form.Select
+                  aria-label="Default select example"
+                  value={bookingData.prenotazioni[0].numerospiti}
+                  onChange={(e) => {
+                    console.log(e.target.value);
+                    const updatedPrenotazioni = [...bookingData.prenotazioni];
+                    updatedPrenotazioni[0].numerospiti = e.target.value;
+                    handleChange("prenotazioni", updatedPrenotazioni);
+                  }}
+                >
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                  <option>11</option>
+                  <option>12</option>
+                  <option>13</option>
+                  <option>14</option>
+                  <option>15</option>
+                  <option>16</option>
+                  <option>17</option>
+                  <option>18</option>
+                  <option>19</option>
+                  <option>20</option>
+                </Form.Select>
+              </Form.Group>
+
+              <Button
+                variant="primary"
+                type="submit"
+                className="d-block mx-auto"
+              >
+                Submit
+              </Button>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 };
