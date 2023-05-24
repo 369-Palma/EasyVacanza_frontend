@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-const CustomFooter = (props) => {
+const CustomFooter = () => {
   return (
     <Container className="border border-dark text-bg-dark fix-bottom mt-5 mx-0 px-0 w-100 border-none px-0">
       <Row id="footer" className="text-center mx-0 ">

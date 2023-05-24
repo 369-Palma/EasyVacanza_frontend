@@ -52,7 +52,7 @@ const CustomNavbar = ({ claim }) => {
             >
               Login
             </Link>
-            <NavDropdown title="Filtra per" id="collasible-nav-dropdown">
+            {/* <NavDropdown title="Filtra per" id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">
                 Tipologia alloggio
               </NavDropdown.Item>
@@ -60,7 +60,7 @@ const CustomNavbar = ({ claim }) => {
                 Tipologia vacanza
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Preferenze</NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown> */}
           </Nav>
         </Navbar.Collapse>
       </Container>

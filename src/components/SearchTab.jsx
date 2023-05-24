@@ -1,5 +1,5 @@
 import "../styles/searchTab.css";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Container, Col, Form } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import axios from "../api/axios";
 import "../styles/home.css";

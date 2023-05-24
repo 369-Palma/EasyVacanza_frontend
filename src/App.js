@@ -7,17 +7,15 @@ import TuttiViaggi from "./components/TuttiViaggi";
 import PackageDetails from "./components/PackageDetails";
 import Register from "./components/Register";
 import Login from "./components/Login";
-import RegistrationPage from "./components/RegistrationPage";
+//import RegistrationPage from "./components/RegistrationPage";
 import Dashboard from "./components/Dashboard";
 import BookingForm from "./components/BookingForm";
-/* import Dashboard from "./components/Dashboard";
-import PrivateRoute from "./components/PrivateRoute";
-import CustomFooter from "./components/CustomFooter"; */
+import SpecialRequest from "./components/SpecialRequest";
 
 const App = () => {
   return (
     <BrowserRouter>
-      {/* <CustomNavbar className="mynavbar" claim="Were dreams come true!" /> */}
+      <CustomNavbar className="mynavbar" claim="Were dreams come true!" />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/offerte" element={<TuttiViaggi />} />
@@ -29,6 +27,7 @@ const App = () => {
         {/* <Route path="/recensioni" element={<RecensioneForm />} /> */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/prenota" element={<BookingForm />} />
+        <Route path="/contatti" element={<SpecialRequest />} />
       </Routes>
 
       {/*   <CustomFooter /> */}

@@ -1,5 +1,5 @@
 import "../styles/registrationForm.css";
-import { Form, Button, Col, Row } from "react-bootstrap";
+import { Form, Button, Col } from "react-bootstrap";
 import { useRef, useState, useEffect } from "react";
 import {
   faCheck,
