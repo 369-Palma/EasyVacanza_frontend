@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import axios from "../api/axios";
 import MyNav from "./MyNav";
@@ -24,8 +24,14 @@ const BookingForm = () => {
   const [idCliente, setIdCliente] = useState();
   const [success, setSuccess] = useState(false);
 
-  const urlCliente = `/cliente`;
+  const urlCliente = `/cliente/id/`;
   const token = `eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJjaW1pQGdtYWlsLmNvbSIsImlhdCI6MTY4NDk0NTU4NywiZXhwIjoxNjkyODM0OTg3fQ.MV7tJm9dqB4PLaN81h_zFC1tD7pOKQhfs8KNdlYG68uvY8U84mh33toUGiDcI6ww`;
+
+  useEffect(() => {
+    if (idCliente) {
+      getCliente();
+    }
+  }, [idCliente]);
 
   //funzione per settare il numero di prenotazione
   function generaCodice() {
@@ -68,6 +74,7 @@ const BookingForm = () => {
 
     if (isNaN(ageInt)) {
       console.error("Il valore del campo etè non è valido.");
+      return;
     }
 
     //funzione per generare il numero di prenotazione,  impostare la data di prenotazione e cambiare lo stato della prenotazione in "confermato"
@@ -84,6 +91,7 @@ const BookingForm = () => {
       ...bookingData,
       prenotazioni: [updatedPrenotazioni],
     };
+
     try {
       const response = await axios.post(urlCliente, updatedBookingData, {
         headers: {
@@ -92,8 +100,11 @@ const BookingForm = () => {
         },
         withCredentials: true,
       });
+
       console.log(response.data);
       setSuccess(true);
+      setIdCliente(response.data.id);
+
       alert(
         `La tua richiesta è andata a buon fine. La prenotazione è stata creata con codice di prenotazione: ${updatedPrenotazioni.numeroprenotazione}`
       );
@@ -104,125 +115,141 @@ const BookingForm = () => {
     }
   };
 
-  return (
-    <>
-      {success ? (
-        <AccordionPrenotazione />
-      ) : (
-        <>
-          <MyNav />
-          <Container>
-            <Row className="justify-content-center  mt-5">
-              <Col xs={12} md={6}>
-                <h2 className="text-center">Prenota la tua vacanza:</h2>
-                <Form onSubmit={handleSubmit}>
-                  <Form.Group className="mb-3">
-                    <Form.Label>Nome</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Inserisci il tuo nome"
-                      value={bookingData.nome}
-                      onChange={(e) => {
-                        console.log(e.target.value);
+  const getCliente = async function () {
+    try {
+      const response = await axios.get(urlCliente + idCliente, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      });
+    } catch (error) {
+      if (!error?.response) {
+        console.log("C'è stato un errore nel contattare il server");
+      }
+    }
 
-                        handleChange("nome", e.target.value);
-                      }}
-                    />
-                  </Form.Group>
+    return (
+      <>
+        <MyNav />
+        {success ? (
+          <>
+            <AccordionPrenotazione />
+          </>
+        ) : (
+          <>
+            <Container>
+              <Row className="justify-content-center  mt-5">
+                <Col xs={12} md={6}>
+                  <h2 className="text-center">Prenota la tua vacanza:</h2>
+                  <Form onSubmit={handleSubmit}>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Nome</Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Inserisci il tuo nome"
+                        value={bookingData.nome}
+                        onChange={(e) => {
+                          console.log(e.target.value);
 
-                  <Form.Group className="mb-3">
-                    <Form.Label>Cognome</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Inserisci il tuo cognome"
-                      value={bookingData.cognome}
-                      onChange={(e) => {
-                        console.log(e.target.value);
+                          handleChange("nome", e.target.value);
+                        }}
+                      />
+                    </Form.Group>
 
-                        handleChange("cognome", e.target.value);
-                      }}
-                    />
-                  </Form.Group>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Cognome</Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Inserisci il tuo cognome"
+                        value={bookingData.cognome}
+                        onChange={(e) => {
+                          console.log(e.target.value);
 
-                  <Form.Group className="mb-3">
-                    <Form.Label>Età</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Inserisci la tu età"
-                      value={bookingData.ageInt}
-                      onChange={(e) => {
-                        console.log(e.target.value);
+                          handleChange("cognome", e.target.value);
+                        }}
+                      />
+                    </Form.Group>
 
-                        handleChange("age", e.target.value);
-                      }}
-                    />
-                  </Form.Group>
+                    <Form.Group className="mb-3">
+                      <Form.Label>Età</Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Inserisci la tu età"
+                        value={bookingData.ageInt}
+                        onChange={(e) => {
+                          console.log(e.target.value);
 
-                  <Form.Group className="mb-3">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                      type="email"
-                      placeholder="Inserisci la tua email"
-                      value={bookingData.email}
-                      onChange={(e) => {
-                        console.log(e.target.value);
-                        handleChange("email", e.target.value);
-                      }}
-                    />
-                  </Form.Group>
+                          handleChange("age", e.target.value);
+                        }}
+                      />
+                    </Form.Group>
 
-                  <Form.Group className="mb-3">
-                    <Form.Label>Numero di ospiti</Form.Label>
-                    <Form.Select
-                      aria-label="Default select example"
-                      value={bookingData.prenotazioni[0].numerospiti}
-                      onChange={(e) => {
-                        console.log(e.target.value);
-                        const updatedPrenotazioni = [
-                          ...bookingData.prenotazioni,
-                        ];
-                        updatedPrenotazioni[0].numerospiti = e.target.value;
-                        handleChange("prenotazioni", updatedPrenotazioni);
-                      }}
+                    <Form.Group className="mb-3">
+                      <Form.Label>Email</Form.Label>
+                      <Form.Control
+                        type="email"
+                        placeholder="Inserisci la tua email"
+                        value={bookingData.email}
+                        onChange={(e) => {
+                          console.log(e.target.value);
+                          handleChange("email", e.target.value);
+                        }}
+                      />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3">
+                      <Form.Label>Numero di ospiti</Form.Label>
+                      <Form.Select
+                        aria-label="Default select example"
+                        value={bookingData.prenotazioni[0].numerospiti}
+                        onChange={(e) => {
+                          console.log(e.target.value);
+                          const updatedPrenotazioni = [
+                            ...bookingData.prenotazioni,
+                          ];
+                          updatedPrenotazioni[0].numerospiti = e.target.value;
+                          handleChange("prenotazioni", updatedPrenotazioni);
+                        }}
+                      >
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                        <option>13</option>
+                        <option>14</option>
+                        <option>15</option>
+                        <option>16</option>
+                        <option>17</option>
+                        <option>18</option>
+                        <option>19</option>
+                        <option>20</option>
+                      </Form.Select>
+                    </Form.Group>
+
+                    <Button
+                      variant="primary"
+                      type="submit"
+                      className="d-block mx-auto"
                     >
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                      <option>6</option>
-                      <option>7</option>
-                      <option>8</option>
-                      <option>9</option>
-                      <option>10</option>
-                      <option>11</option>
-                      <option>12</option>
-                      <option>13</option>
-                      <option>14</option>
-                      <option>15</option>
-                      <option>16</option>
-                      <option>17</option>
-                      <option>18</option>
-                      <option>19</option>
-                      <option>20</option>
-                    </Form.Select>
-                  </Form.Group>
-
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    className="d-block mx-auto"
-                  >
-                    Submit
-                  </Button>
-                </Form>
-              </Col>
-            </Row>
-          </Container>
-        </>
-      )}
-    </>
-  );
+                      Submit
+                    </Button>
+                  </Form>
+                </Col>
+              </Row>
+            </Container>
+          </>
+        )}
+      </>
+    );
+  };
 };
-
 export default BookingForm;

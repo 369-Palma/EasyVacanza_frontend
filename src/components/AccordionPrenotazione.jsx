@@ -2,18 +2,8 @@ import { Row, Col, Accordion } from "react-bootstrap";
 import { faFaceSmileWink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 
 const AccordionPrenotazione = ({ nome, cognome, email, prenotazioni }) => {
-  const [data, setData] = useState({});
-  const [idCliente, setIdCliente] = useState(24);
-
-  const urlCliente = `/cliente/`;
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   return (
     <Row>
       <h2> Prenotazione avvenuta con successo!</h2>
