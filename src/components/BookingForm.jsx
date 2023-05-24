@@ -8,7 +8,7 @@ const BookingForm = () => {
     nome: "",
     cognome: "",
     email: "",
-    age: 0,
+    age: null,
     prenotazioni: [
       {
         numeroprenotazione: 0,
@@ -40,7 +40,7 @@ const BookingForm = () => {
     return `${year}-${month}-${day}`;
   }
 
-  // Funzione per gestire il cambiamento dei campi del form
+  // CAMBIO DI STATO
   const handleChange = (propertyName, propertyValue) => {
     setBookingData({ ...bookingData, [propertyName]: propertyValue });
   };
@@ -58,6 +58,13 @@ const BookingForm = () => {
     if (isNaN(numerospitiInt)) {
       console.error("Il valore di numerospiti non è un numero valido.");
       return;
+    }
+
+    // conversione in intero della proprietà age
+    const ageInt = parseInt(bookingData.age, 10);
+
+    if (isNaN(ageInt)) {
+      console.error("Il valore del campo etè non è valido.");
     }
 
     //funzione per generare il numero di prenotazione,  impostare la data di prenotazione e cambiare lo stato della prenotazione in "confermato"
@@ -126,6 +133,20 @@ const BookingForm = () => {
                     console.log(e.target.value);
 
                     handleChange("cognome", e.target.value);
+                  }}
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Label>Età</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Inserisci la tu età"
+                  value={bookingData.ageInt}
+                  onChange={(e) => {
+                    console.log(e.target.value);
+
+                    handleChange("age", e.target.value);
                   }}
                 />
               </Form.Group>
