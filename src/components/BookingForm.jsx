@@ -4,6 +4,7 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import axios from "../api/axios";
 import MyNav from "./MyNav";
 import AccordionPrenotazione from "./AccordionPrenotazione";
+
 const BookingForm = () => {
   const [bookingData, setBookingData] = useState({
     nome: "",
@@ -24,7 +25,8 @@ const BookingForm = () => {
 
   const [idCliente, setIdCliente] = useState();
   const [success, setSuccess] = useState(false);
-  const [dataCliente, setDataCliente] = useState({});
+  const [data, setData] = useState({});
+  const [prenotazioni, setPrenotazioni] = useState([]);
 
   const urlGet = `/cliente/id/`;
   const urlPost = `/cliente`;
@@ -34,6 +36,7 @@ const BookingForm = () => {
     if (idCliente) {
       getCliente();
       console.log("Nuovo valore di idCliente:", idCliente);
+      console.log("Nuovo valore di data:", data);
     }
   }, [idCliente]);
 
@@ -46,9 +49,9 @@ const BookingForm = () => {
         withCredentials: true,
       });
 
-      console.log(response.data);
+      //console.log(response.data);
 
-      setDataCliente(response.data);
+      //setData(response.data);
     } catch (error) {
       if (!error?.response) {
         console.log("C'è stato un errore nel contattare il server");
@@ -127,6 +130,10 @@ const BookingForm = () => {
       setSuccess(true);
       setIdCliente(response.data.id);
       console.log(response.data.id);
+      setData(response.data);
+      console.log(response.data);
+      setPrenotazioni(response.data?.prenotazioni[0]);
+      console.log(response.data.prenotazioni[0]);
       alert(
         `La tua richiesta è andata a buon fine. La prenotazione è stata creata con codice di prenotazione: ${updatedPrenotazioni.numeroprenotazione}`
       );
@@ -142,7 +149,12 @@ const BookingForm = () => {
       <MyNav />
       {success && idCliente ? (
         <>
-          <AccordionPrenotazione />
+          <AccordionPrenotazione
+            nome={data.nome}
+            cognome={data.cognome}
+            prenotazioni={prenotazioni}
+            email={data.email}
+          />
         </>
       ) : (
         <>

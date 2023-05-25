@@ -16,6 +16,7 @@ const MyNav = ({ claim }) => {
       <Container className="d-flex justify-content-between w-100 mx-1.5">
         <Link to="/" className="navbar-brand">
           <strong> EasyVacanza</strong>
+          {/* <img src="../assets/img/logo.jpg" alt="EasyVacanza" /> */}
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse
@@ -50,14 +51,14 @@ const MyNav = ({ claim }) => {
               Offerte
             </Link> */}
 
-            <Link
+            {/* <Link
               className={`nav-link ${
                 location.pathname === "/recensioni" ? "active" : ""
               }`}
               to="/recensioni"
             >
               Recensioni
-            </Link>
+            </Link> */}
 
             <Link
               className={`nav-link ${

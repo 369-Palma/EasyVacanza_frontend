@@ -4,13 +4,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CustomNavbar from "./components/CustomNavbar";
 import HomePage from "./components/HomePage";
 import TuttiViaggi from "./components/TuttiViaggi";
-import PackageDetails from "./components/PackageDetails";
 import Register from "./components/Register";
 import Login from "./components/Login";
 //import RegistrationPage from "./components/RegistrationPage";
 import Dashboard from "./components/Dashboard";
 import BookingForm from "./components/BookingForm";
 import SpecialRequest from "./components/SpecialRequest";
+import Dettaglio from "./components/Dettaglio";
 
 const App = () => {
   return (
@@ -19,7 +19,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/offerte" element={<TuttiViaggi />} />
-        <Route path="/details/:vacanzaId" element={<PackageDetails />} />
+        <Route path="/details/:id" element={<Dettaglio />} />
         <Route path="/prenotazione" element={<Register />} />
         {/* <Route path="/prenotazione" element={<RegistrationPage />} /> */}
         <Route path="/register" element={<Register />} />

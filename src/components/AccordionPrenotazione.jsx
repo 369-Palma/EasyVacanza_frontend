@@ -3,7 +3,7 @@ import { faFaceSmileWink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
-const AccordionPrenotazione = (props) => {
+const AccordionPrenotazione = ({ nome, cognome, prenotazioni, email }) => {
   return (
     <Row>
       <h2> Prenotazione avvenuta con successo!</h2>
@@ -15,16 +15,17 @@ const AccordionPrenotazione = (props) => {
               <p>
                 Gentile
                 <strong>
-                  ${props?.nome} ${props?.cognome}
+                  {" "}
+                  {nome} {cognome}
                 </strong>
                 , grazie per aver scelto Easy Vacanza! Ecco i dettagli della tua
                 prenotazione.
                 <br />
                 Il tuo codice di prenotazione è:
-                <strong> ${props?.prenotazioni?.numeroprenotazione}</strong>
-                <br />A breve riceverà una email all'indirizzo
-                <strong> ${props?.email}</strong> . Ricordati di controllare
-                nella cartella dello spam!
+                <strong> {prenotazioni?.numeroprenotazione}</strong>
+                <br />A breve riceverai una email all'indirizzo
+                <strong> {email}</strong> . Ricordati di controllare nella
+                cartella dello spam!
                 <span className="ps-2">
                   <FontAwesomeIcon icon={faFaceSmileWink} />
                 </span>

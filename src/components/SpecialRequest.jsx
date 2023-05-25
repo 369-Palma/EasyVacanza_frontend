@@ -1,27 +1,31 @@
-import { Form, Button } from "react-bootstrap";
+import CustomNavbar from "./CustomNavbar";
+import { Form } from "react-bootstrap";
 
 const SpecialRequest = () => {
   return (
-    <form action="example-server.com">
-      <fieldset>
-        <legend>Contact me</legend>
-        <div class="form-control">
-          <label for="name">Name</label>
-          <input type="name" id="name" placeholder="Enter your name" required />
-        </div>
+    <>
+      <CustomNavbar className="mynavbar" claim="Scrivici!" />
+      <Form>
+        <fieldset>
+          <h2>Contact us</h2>
+          <Form.Label>Name</Form.Label>
 
-        <div class="form-control">
-          <label for="email">Email</label>
-          <input
+          <Form.Control
+            type="name"
+            id="name"
+            placeholder="Enter your name"
+            required
+          />
+
+          <Form.Label>Email</Form.Label>
+          <Form.Control
             type="email"
             id="email"
             placeholder="Enter your email"
             required
           />
-        </div>
 
-        <div class="form-control">
-          <label for="message">Message</label>
+          <Form.Label>Message</Form.Label>
           <textarea
             id="message"
             cols="30"
@@ -29,28 +33,11 @@ const SpecialRequest = () => {
             placeholder="Enter your message"
             required
           ></textarea>
-        </div>
-        <input type="submit" value="Send" class="submit-btn" />
-      </fieldset>
-    </form>
-  );
-  {
-    /* <Form>
-      <Form.Group className="mb-3">
-        <Form.Label>Richieste Speciali</Form.Label>
-        <Form.Control
-          type="text"
-          as="textarea"
-          rows={5}
-          placeholder="Domande, richieste per bambini, attrezzature..."
-        />
-      </Form.Group>
-      <Button variant="primary" type="submit" className="d-block mx-auto">
-        Submit
-      </Button>
-    </Form> 
-  );*/
-  }
-};
 
+          <Form.Control type="submit" value="Send" className="submit-btn" />
+        </fieldset>
+      </Form>
+    </>
+  );
+};
 export default SpecialRequest;
