@@ -24,15 +24,37 @@ const BookingForm = () => {
 
   const [idCliente, setIdCliente] = useState();
   const [success, setSuccess] = useState(false);
+  const [dataCliente, setDataCliente] = useState({});
 
-  const urlCliente = `/cliente/id/`;
-  const token = `eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJjaW1pQGdtYWlsLmNvbSIsImlhdCI6MTY4NDk0NTU4NywiZXhwIjoxNjkyODM0OTg3fQ.MV7tJm9dqB4PLaN81h_zFC1tD7pOKQhfs8KNdlYG68uvY8U84mh33toUGiDcI6ww`;
+  const urlGet = `/cliente/id/`;
+  const urlPost = `/cliente`;
+  const token = `eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwYWxtYWlhY29iZWxsaTkyQGdtYWlsLmNvbSIsImlhdCI6MTY4NTAwNDg2MiwiZXhwIjoxNjkyODk0MjYyfQ.ilGOQRgPFa545J3KDTMfpU7rCpLcSZviJUtGKqb1FZ6DJXD4G0ZcJGRRIi8oK-NE`;
 
   useEffect(() => {
     if (idCliente) {
       getCliente();
+      console.log("Nuovo valore di idCliente:", idCliente);
     }
   }, [idCliente]);
+
+  const getCliente = async function () {
+    try {
+      const response = await axios.get(urlGet + idCliente, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      });
+
+      console.log(response.data);
+
+      setDataCliente(response.data);
+    } catch (error) {
+      if (!error?.response) {
+        console.log("C'è stato un errore nel contattare il server");
+      }
+    }
+  };
 
   //funzione per settare il numero di prenotazione
   function generaCodice() {
@@ -78,7 +100,7 @@ const BookingForm = () => {
       return;
     }
 
-    //funzione per generare il numero di prenotazione,  impostare la data di prenotazione e cambiare lo stato della prenotazione in "confermato"
+    //funzione per generare il numero di prenotazione, impostare la data di prenotazione e cambiare lo stato della prenotazione in "confermato"
     const updatedPrenotazioni = {
       ...bookingData.prenotazioni[0],
       numeroprenotazione: generaCodice(),
@@ -94,9 +116,8 @@ const BookingForm = () => {
     };
 
     try {
-      const response = await axios.post(urlCliente, updatedBookingData, {
+      const response = await axios.post(urlPost, updatedBookingData, {
         headers: {
-          //"Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
         withCredentials: true,
@@ -105,7 +126,7 @@ const BookingForm = () => {
       console.log(response.data);
       setSuccess(true);
       setIdCliente(response.data.id);
-
+      console.log(response.data.id);
       alert(
         `La tua richiesta è andata a buon fine. La prenotazione è stata creata con codice di prenotazione: ${updatedPrenotazioni.numeroprenotazione}`
       );
@@ -116,24 +137,10 @@ const BookingForm = () => {
     }
   };
 
-  const getCliente = async function () {
-    try {
-      const response = await axios.get(urlCliente + idCliente, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        withCredentials: true,
-      });
-    } catch (error) {
-      if (!error?.response) {
-        console.log("C'è stato un errore nel contattare il server");
-      }
-    }
-  };
   return (
     <>
       <MyNav />
-      {success ? (
+      {success && idCliente ? (
         <>
           <AccordionPrenotazione />
         </>
