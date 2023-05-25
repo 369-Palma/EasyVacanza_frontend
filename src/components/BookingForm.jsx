@@ -1,3 +1,4 @@
+import "../styles/specialRequest.css";
 import React, { useState, useEffect } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import axios from "../api/axios";
@@ -128,128 +129,128 @@ const BookingForm = () => {
         console.log("C'è stato un errore nel contattare il server");
       }
     }
-
-    return (
-      <>
-        <MyNav />
-        {success ? (
-          <>
-            <AccordionPrenotazione />
-          </>
-        ) : (
-          <>
-            <Container>
-              <Row className="justify-content-center  mt-5">
-                <Col xs={12} md={6}>
-                  <h2 className="text-center">Prenota la tua vacanza:</h2>
-                  <Form onSubmit={handleSubmit}>
-                    <Form.Group className="mb-3">
-                      <Form.Label>Nome</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="Inserisci il tuo nome"
-                        value={bookingData.nome}
-                        onChange={(e) => {
-                          console.log(e.target.value);
-
-                          handleChange("nome", e.target.value);
-                        }}
-                      />
-                    </Form.Group>
-
-                    <Form.Group className="mb-3">
-                      <Form.Label>Cognome</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="Inserisci il tuo cognome"
-                        value={bookingData.cognome}
-                        onChange={(e) => {
-                          console.log(e.target.value);
-
-                          handleChange("cognome", e.target.value);
-                        }}
-                      />
-                    </Form.Group>
-
-                    <Form.Group className="mb-3">
-                      <Form.Label>Età</Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="Inserisci la tu età"
-                        value={bookingData.ageInt}
-                        onChange={(e) => {
-                          console.log(e.target.value);
-
-                          handleChange("age", e.target.value);
-                        }}
-                      />
-                    </Form.Group>
-
-                    <Form.Group className="mb-3">
-                      <Form.Label>Email</Form.Label>
-                      <Form.Control
-                        type="email"
-                        placeholder="Inserisci la tua email"
-                        value={bookingData.email}
-                        onChange={(e) => {
-                          console.log(e.target.value);
-                          handleChange("email", e.target.value);
-                        }}
-                      />
-                    </Form.Group>
-
-                    <Form.Group className="mb-3">
-                      <Form.Label>Numero di ospiti</Form.Label>
-                      <Form.Select
-                        aria-label="Default select example"
-                        value={bookingData.prenotazioni[0].numerospiti}
-                        onChange={(e) => {
-                          console.log(e.target.value);
-                          const updatedPrenotazioni = [
-                            ...bookingData.prenotazioni,
-                          ];
-                          updatedPrenotazioni[0].numerospiti = e.target.value;
-                          handleChange("prenotazioni", updatedPrenotazioni);
-                        }}
-                      >
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                        <option>6</option>
-                        <option>7</option>
-                        <option>8</option>
-                        <option>9</option>
-                        <option>10</option>
-                        <option>11</option>
-                        <option>12</option>
-                        <option>13</option>
-                        <option>14</option>
-                        <option>15</option>
-                        <option>16</option>
-                        <option>17</option>
-                        <option>18</option>
-                        <option>19</option>
-                        <option>20</option>
-                      </Form.Select>
-                    </Form.Group>
-
-                    <Button
-                      variant="primary"
-                      type="submit"
-                      className="d-block mx-auto"
-                    >
-                      Submit
-                    </Button>
-                  </Form>
-                </Col>
-              </Row>
-            </Container>
-          </>
-        )}
-      </>
-    );
   };
+  return (
+    <>
+      <MyNav />
+      {success ? (
+        <>
+          <AccordionPrenotazione />
+        </>
+      ) : (
+        <>
+          <Container>
+            <Row className="justify-content-center  mt-5">
+              <Col xs={12} md={6}>
+                <h2 className="text-center">Prenota la tua vacanza:</h2>
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Nome</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Inserisci il tuo nome"
+                      value={bookingData.nome}
+                      onChange={(e) => {
+                        console.log(e.target.value);
+
+                        handleChange("nome", e.target.value);
+                      }}
+                    />
+                  </Form.Group>
+
+                  <Form.Group className="mb-3">
+                    <Form.Label>Cognome</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Inserisci il tuo cognome"
+                      value={bookingData.cognome}
+                      onChange={(e) => {
+                        console.log(e.target.value);
+
+                        handleChange("cognome", e.target.value);
+                      }}
+                    />
+                  </Form.Group>
+
+                  <Form.Group className="mb-3">
+                    <Form.Label>Età</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Inserisci la tu età"
+                      value={bookingData.ageInt}
+                      onChange={(e) => {
+                        console.log(e.target.value);
+
+                        handleChange("age", e.target.value);
+                      }}
+                    />
+                  </Form.Group>
+
+                  <Form.Group className="mb-3">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                      type="email"
+                      placeholder="Inserisci la tua email"
+                      value={bookingData.email}
+                      onChange={(e) => {
+                        console.log(e.target.value);
+                        handleChange("email", e.target.value);
+                      }}
+                    />
+                  </Form.Group>
+
+                  <Form.Group className="mb-3">
+                    <Form.Label>Numero di ospiti</Form.Label>
+                    <Form.Select
+                      aria-label="Default select example"
+                      value={bookingData.prenotazioni[0].numerospiti}
+                      onChange={(e) => {
+                        console.log(e.target.value);
+                        const updatedPrenotazioni = [
+                          ...bookingData.prenotazioni,
+                        ];
+                        updatedPrenotazioni[0].numerospiti = e.target.value;
+                        handleChange("prenotazioni", updatedPrenotazioni);
+                      }}
+                    >
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                      <option>7</option>
+                      <option>8</option>
+                      <option>9</option>
+                      <option>10</option>
+                      <option>11</option>
+                      <option>12</option>
+                      <option>13</option>
+                      <option>14</option>
+                      <option>15</option>
+                      <option>16</option>
+                      <option>17</option>
+                      <option>18</option>
+                      <option>19</option>
+                      <option>20</option>
+                    </Form.Select>
+                  </Form.Group>
+
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    className="d-block mx-auto"
+                  >
+                    Submit
+                  </Button>
+                </Form>
+              </Col>
+            </Row>
+          </Container>
+        </>
+      )}
+    </>
+  );
 };
+
 export default BookingForm;

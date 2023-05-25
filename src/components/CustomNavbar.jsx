@@ -44,6 +44,16 @@ const CustomNavbar = ({ claim }) => {
             >
               Prenota
             </Link>
+
+            <Link
+              className={`nav-link ${
+                location.pathname === "/contatti" ? "active" : ""
+              }`}
+              to="/contatti"
+            >
+              Contatti
+            </Link>
+
             <Link
               className={`nav-link ${
                 location.pathname === "/login" ? "active" : ""

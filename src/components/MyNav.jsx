@@ -25,6 +25,15 @@ const MyNav = ({ claim }) => {
           <Nav className="navLinks ms-auto flex-row " id="navLinks">
             <Link
               className={`nav-link ${
+                location.pathname === "/dashboard" ? "active" : ""
+              }`}
+              to="/dashboard"
+            >
+              Dashboard
+            </Link>
+
+            <Link
+              className={`nav-link ${
                 location.pathname === "/prenota" ? "active" : ""
               }`}
               to="/prenota"
@@ -32,14 +41,14 @@ const MyNav = ({ claim }) => {
               Prenota
             </Link>
 
-            <Link
+            {/*  <Link
               className={`nav-link ${
                 location.pathname === "/offerte" ? "active" : ""
               }`}
               to="/offerte"
             >
               Offerte
-            </Link>
+            </Link> */}
 
             <Link
               className={`nav-link ${
@@ -52,21 +61,21 @@ const MyNav = ({ claim }) => {
 
             <Link
               className={`nav-link ${
-                location.pathname === "/login" ? "active" : ""
+                location.pathname === "/contatti" ? "active" : ""
               }`}
-              to="/login"
+              to="/contatti"
+            >
+              Contatti
+            </Link>
+
+            <Link
+              className={`nav-link ${
+                location.pathname === "/" ? "active" : ""
+              }`}
+              to="/"
             >
               Logout
             </Link>
-            <NavDropdown title="Filtra per" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">
-                Tipologia alloggio
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Tipologia vacanza
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Preferenze</NavDropdown.Item>
-            </NavDropdown>
             <span> Welcome user!</span>
           </Nav>
         </Navbar.Collapse>
