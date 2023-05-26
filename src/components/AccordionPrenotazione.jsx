@@ -2,8 +2,37 @@ import { Row, Col, Accordion } from "react-bootstrap";
 import { faFaceSmileWink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import emailjs from "emailjs-com";
+import { useEffect } from "react";
 
 const AccordionPrenotazione = ({ nome, cognome, prenotazioni, email }) => {
+  const sendEmail = () => {
+    const templateParams = {
+      to_email: email,
+      nome,
+      cognome,
+      codice_prenotazione: prenotazioni?.numeroprenotazione,
+    };
+
+   /*  emailjs
+      .send(
+        "YOUR_SERVICE_ID",
+        "YOUR_TEMPLATE_ID",
+        templateParams,
+        "YOUR_USER_ID"
+      )
+      .then((response) => {
+        console.log("Email inviata con successo:", response.text);
+      })
+      .catch((error) => {
+        console.error("Errore durante l'invio dell'email:", error);
+      });
+  };
+
+  useEffect(() => {
+    sendEmail();
+  }, []) */;
+
   return (
     <Row>
       <h2> Prenotazione avvenuta con successo!</h2>
