@@ -1,11 +1,15 @@
 import "../styles/specialRequest.css";
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import axios from "../api/axios";
 import MyNav from "./MyNav";
 import AccordionPrenotazione from "./AccordionPrenotazione";
 
 const BookingForm = () => {
+  const location = useLocation();
+  const token = location.state?.token || "";
+
   const [bookingData, setBookingData] = useState({
     nome: "",
     cognome: "",
@@ -30,8 +34,6 @@ const BookingForm = () => {
 
   const urlGet = `/cliente/id/`;
   const urlPost = `/cliente`;
-  const token = `eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJjbGhiZWRAZ21haWwuY29tIiwiaWF0IjoxNjg1MTEzMzg3LCJleHAiOjE2OTMwMDI3ODd9.p4cEEtOS_lLzgsV0BtfjLcKNa3GIHvb6Nj8cghJKB8NBLtpfQY00zrNUvLBCMZ20`;
-
   useEffect(() => {
     if (idCliente) {
       getCliente();

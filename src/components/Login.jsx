@@ -4,13 +4,15 @@ import CustomNavbar from "./CustomNavbar";
 //import { useLocalState } from "../util/UseLocalStorage";
 import { Button, Form } from "react-bootstrap";
 import axios from "../api/axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Dashboard from "./Dashboard";
 //import AuthContext from "../context/AuthProvider";
 
 const Login = () => {
   /* const { setAuth } = useContext(AuthContext); */
   const loginUrl = `/auth/login`;
+
+  const navigate = useNavigate();
 
   const usernameRef = useRef(null);
   const errRef = useRef();
@@ -51,7 +53,10 @@ const Login = () => {
       console.log(response.data);
       console.log(response.data.accessToken);
       console.log(JSON.stringify(response));
+
       setSuccess(true);
+
+      navigate("/dashboard", { state: { token: response.data.accessToken } });
     } catch (error) {
       if (!error?.response) {
         setErrMsg("Non c'è stata risposta dal server!");
