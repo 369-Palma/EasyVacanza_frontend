@@ -21,12 +21,13 @@ const Dettaglio = () => {
 
   const [data, setData] = useState({});
   const [attivita, setAttivita] = useState([]);
-  //const [testimonianze, setTestimonianze] = useState([]);
+  const [testimonianze, setTestimonianze] = useState([]);
   const urlVacanza = `vacanze/id/${id}`;
 
   useEffect(() => {
     getData();
     console.log(attivita);
+    console.log(testimonianze);
   }, [id]);
 
   const getData = async function () {
@@ -37,8 +38,9 @@ const Dettaglio = () => {
       console.log(response.data.attivita);
       setAttivita(response.data.attivita);
       console.log(response.data.attivita);
-      /* setTestimonianze(response.data.attivita.testimonianze);
-      console.log(response.data.attivita.testimonianze); */
+
+      setTestimonianze(response.data?.attivita[0]?.testimonianze);
+      console.log(response.data?.attivita[0]?.testimonianze);
     } catch (error) {
       console.log("C'è stato un errore nel contattare il server", error);
     }
@@ -73,26 +75,32 @@ const Dettaglio = () => {
             </p>
             <Button className="bottone">PRENOTA</Button>
           </Col>
-          <Row>
+          <Row className="flex-column">
             <Col>
               <h2>
                 Attività proposta:{" "}
                 {/* <strong> {data?.attivita[0].attivita}</strong> */}
-                <strong> {attivita[0].attivita}</strong>
+                <strong> {attivita[0]?.attivita}</strong>
               </h2>
-              <p>{attivita?.descrizione}</p>
-              {/* <p>{data?.attivita[0].descrizione}</p> */}
+              <p>{attivita[0]?.descrizione}.</p>
             </Col>
-            {/*  <Col>
-               <ListGroup>
-                {data?.attivita[0].testimonianze.length > 0 ? (
+            <Col>
+              <h3> Cosa dicono i nostri clienti?</h3>
+              <ListGroup>
+                {testimonianze.length > 0 ? (
                   testimonianze.map((test) => (
                     <ListGroup.Item key={`feedback-${test.id}`}>
-                      <Badge bg="dark" className="me-2">
-                        {test.nome} {test.cognome}
-                      </Badge>
-                      {test.feedback}
-                      {test.rating}
+                      <Row>
+                        <Col>
+                          <Badge bg="dark" className="me-2">
+                            {test.nome} {test.cognome}
+                          </Badge>
+                        </Col>
+                        <Row className="flex-column">
+                          <Col>{test.feedback}</Col>
+                          <Col>{test.rating}</Col>
+                        </Row>
+                      </Row>
                     </ListGroup.Item>
                   ))
                 ) : (
@@ -100,8 +108,8 @@ const Dettaglio = () => {
                     Nessun elemento da visualizzare
                   </ListGroup.Item>
                 )}
-              </ListGroup> 
-            </Col>*/}
+              </ListGroup>
+            </Col>
           </Row>
         </Row>
       </Container>
