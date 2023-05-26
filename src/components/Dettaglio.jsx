@@ -1,5 +1,6 @@
 import "../styles/dettaglio.css";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import {
   Card,
   Container,
@@ -17,6 +18,8 @@ import CustomNav from "./CustomNavbar";
 
 const Dettaglio = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+
   console.log("PARAMS", id);
 
   const [data, setData] = useState({});
@@ -73,7 +76,12 @@ const Dettaglio = () => {
               Riesci già a sentire il profumo della {data?.tipoluogo}? Prenota
               subito!
             </p>
-            <Button className="bottone">PRENOTA</Button>
+            <Button
+              className="bottone"
+              onClick={() => navigate("/prenotazione")}
+            >
+              PRENOTA
+            </Button>
           </Col>
           <Row className="flex-column">
             <Col>

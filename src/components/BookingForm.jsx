@@ -30,7 +30,7 @@ const BookingForm = () => {
 
   const urlGet = `/cliente/id/`;
   const urlPost = `/cliente`;
-  const token = `eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwYWxtYWlhY29iZWxsaTkyQGdtYWlsLmNvbSIsImlhdCI6MTY4NTAwNDg2MiwiZXhwIjoxNjkyODk0MjYyfQ.ilGOQRgPFa545J3KDTMfpU7rCpLcSZviJUtGKqb1FZ6DJXD4G0ZcJGRRIi8oK-NE`;
+  const token = `eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJjbGhiZWRAZ21haWwuY29tIiwiaWF0IjoxNjg1MTEzMzg3LCJleHAiOjE2OTMwMDI3ODd9.p4cEEtOS_lLzgsV0BtfjLcKNa3GIHvb6Nj8cghJKB8NBLtpfQY00zrNUvLBCMZ20`;
 
   useEffect(() => {
     if (idCliente) {
