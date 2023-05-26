@@ -12,7 +12,6 @@ const Dashboard = () => {
       </section>
       <Container className="contenitoreP bg-light">
         <Row>
-          <h1> Prenota la tua vacanza </h1>
           <Col>
             <BookingForm />
           </Col>
