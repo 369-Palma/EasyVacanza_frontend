@@ -6,14 +6,15 @@ import "../styles/home.css";
 import "../assets/img/spiaggia.jpg";
 import SingleCard from "./SingleCard";
 import Carosello from "./Carosello";
+import { LocalDate, DateTimeFormatter } from "@js-joda/core";
 
 const SearchTab = () => {
   const [data, setData] = useState([]);
   const [citta, setCitta] = useState("");
-  //const [datainizio, setDatainizio] = useState("");
+  const [datainizio, setDatainizio] = useState("");
 
   const urlCitta = `/vacanze/citta/`;
-  //const urlDate = `/datainizio/`;
+  const urlDate = `/vacanze/datainizio/`;
 
   const handleCitySearch = async (event) => {
     if (event.key === "Enter") {
@@ -29,10 +30,13 @@ const SearchTab = () => {
     }
   };
 
-  /*  const SearchDate = async (event) => {
+  const handleDateSearch = async (event) => {
     if (event.key === "Enter") {
       try {
-        const response = await axios.get(urlDate + datainizio);
+        const formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        const parsedDate = LocalDate.parse(datainizio, formatter);
+        const formattedDate = parsedDate.format(formatter);
+        const response = await axios.get(urlDate + formattedDate);
         setData(response.data);
         console.log(response.data);
       } catch (error) {
@@ -40,11 +44,11 @@ const SearchTab = () => {
       }
       setDatainizio("");
     }
-  }; */
+  };
 
   useEffect(() => {
     console.log(data);
-  }, [data]);
+  }, [datainizio, citta]);
 
   return (
     <>
@@ -66,19 +70,19 @@ const SearchTab = () => {
                 type="text"
               />
 
-              {/*  <Form.Label className="fs-2 w-max ">
-              La tua data di arrivo:
-            </Form.Label>
-            <Form.Control
-              className="searchCity d-flex mt-1 mb-3"
-              id="searchTab"
-              value={datainizio}
-              onChange={(event) => setDatainizio(event.target.value)}
-              placeholder="data di arrivo"
-              autoComplete="off"
-              onKeyPress={(event) => SearchDate(event)}
-              type="date"
-            /> */}
+              <Form.Label className="fs-2 w-max ">
+                La tua data di arrivo:
+              </Form.Label>
+              <Form.Control
+                className="searchCity d-flex mt-1 mb-3"
+                id="searchTab"
+                value={datainizio}
+                onChange={(event) => setDatainizio(event.target.value)}
+                placeholder="data di arrivo"
+                autoComplete="off"
+                onKeyPress={(event) => handleDateSearch(event)}
+                type="date"
+              />
             </Form>
           </div>
         </Container>

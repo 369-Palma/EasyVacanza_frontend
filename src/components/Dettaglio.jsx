@@ -1,17 +1,7 @@
 import "../styles/dettaglio.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import {
-  Card,
-  Container,
-  Row,
-  Col,
-  Button,
-  Spinner,
-  Alert,
-  Badge,
-  ListGroup,
-} from "react-bootstrap";
+import { Container, Row, Col, Button, Badge, ListGroup } from "react-bootstrap";
 import axios from "../api/axios";
 import { useParams } from "react-router-dom";
 import CustomNav from "./CustomNavbar";
@@ -106,7 +96,7 @@ const Dettaglio = () => {
                         </Col>
                         <Row className="flex-column">
                           <Col>{test.feedback}</Col>
-                          <Col>{test.rating}</Col>
+                          <Col>Rating: {test.rating}/5</Col>
                         </Row>
                       </Row>
                     </ListGroup.Item>
