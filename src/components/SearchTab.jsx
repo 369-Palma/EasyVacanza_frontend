@@ -12,6 +12,7 @@ const SearchTab = () => {
   const [data, setData] = useState([]);
   const [citta, setCitta] = useState("");
   const [datainizio, setDatainizio] = useState("");
+  const [showSingleCard, setShowSingleCard] = useState(false);
 
   const urlCitta = `/vacanze/citta/`;
   const urlDate = `/vacanze/datainizio/`;
@@ -22,9 +23,10 @@ const SearchTab = () => {
       try {
         const response = await axios.get(urlCitta + citta);
         setData(response.data.content);
+        setShowSingleCard(response.data.content.length === 1);
         console.log(response.data.content);
       } catch (error) {
-        console.log("Ops, non è stato possibile contattare il server!");
+        console.log("Ops, non è stato possibile contattare il server!", error);
       }
       setCitta("");
     }
@@ -37,10 +39,14 @@ const SearchTab = () => {
         const parsedDate = LocalDate.parse(datainizio, formatter);
         const formattedDate = parsedDate.format(formatter);
         const response = await axios.get(urlDate + formattedDate);
-        setData(response.data);
-        console.log(response.data);
+        setData(response.data.content);
+        setShowSingleCard(response.data.content.length === 1);
+        console.log(response.data.content);
       } catch (error) {
-        console.error(error);
+        console.error(
+          "Ops, non è stato possibile contattare il server!",
+          error
+        );
       }
       setDatainizio("");
     }
@@ -88,7 +94,7 @@ const SearchTab = () => {
         </Container>
       </section>
 
-      {data && data.length === 1 && (
+      {data && data.length === 1 && showSingleCard && (
         <Col
           xs={4}
           className="cardSingola sx-justify-content-center mx-auto my-3 text-md-center"
@@ -96,12 +102,12 @@ const SearchTab = () => {
           <SingleCard data={data[0]} />
         </Col>
       )}
-      {data && data?.length > 1 ? (
+      {data && data?.length > 1 && !showSingleCard ? (
         <Col
           xs={6}
           className="justify-content-center mx-auto my-3 text-md-center"
         >
-          {data && data.length > 1 ? <Carosello data={data} /> : <SingleCard />}
+          <Carosello data={data} />
         </Col>
       ) : (
         <Col className="d-none"></Col>
