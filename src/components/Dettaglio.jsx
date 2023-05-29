@@ -6,11 +6,17 @@ import axios from "../api/axios";
 import { useParams } from "react-router-dom";
 import CustomNav from "./CustomNavbar";
 
-const Dettaglio = () => {
+const Dettaglio = ({ selectedVacanza, updateSelectedVacanza }) => {
   const { id } = useParams();
   const navigate = useNavigate();
 
   console.log("PARAMS", id);
+
+  //funzione per memrizzare i dati della vacanza selezionata e reindirizzamento al from di registrazione
+  const handlePrenotaClick = () => {
+    updateSelectedVacanza(data);
+    navigate("/prenotazione");
+  };
 
   const [data, setData] = useState({});
   const [attivita, setAttivita] = useState([]);
@@ -64,10 +70,7 @@ const Dettaglio = () => {
               Riesci già a sentire il profumo della {data?.tipoluogo}? Prenota
               subito!
             </p>
-            <Button
-              className="bottone"
-              onClick={() => navigate("/prenotazione")}
-            >
+            <Button className="bottone" onClick={handlePrenotaClick}>
               PRENOTA
             </Button>
           </Col>

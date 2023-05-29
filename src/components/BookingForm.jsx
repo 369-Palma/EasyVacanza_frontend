@@ -6,10 +6,7 @@ import axios from "../api/axios";
 import MyNav from "./MyNav";
 import AccordionPrenotazione from "./AccordionPrenotazione";
 
-const BookingForm = ({ selectedVacanza, updateSelectedVacanza }) => {
-  const location = useLocation();
-  const token = location.state?.token || "";
-
+const BookingForm = ({ selectedVacanza, token }) => {
   const [bookingData, setBookingData] = useState({
     nome: "",
     cognome: "",
@@ -21,7 +18,7 @@ const BookingForm = ({ selectedVacanza, updateSelectedVacanza }) => {
         dataprenotazione: "",
         numerospiti: 0,
         stato: "IN_ELABORAZIONE",
-        vacanza: {},
+        vacanza: selectedVacanza,
       },
     ],
     testimonianze: [],
@@ -42,6 +39,17 @@ const BookingForm = ({ selectedVacanza, updateSelectedVacanza }) => {
       console.log("Nuovo valore di data:", data); */
     }
   }, [idCliente]);
+
+  useEffect(() => {
+    if (selectedVacanza) {
+      setBookingData({
+        ...bookingData,
+        prenotazioni: [
+          { ...bookingData.prenotazioni[0], vacanza: selectedVacanza },
+        ],
+      }); // Riprendi i dati della vacanza selezionata
+    }
+  }, [selectedVacanza]);
 
   const getCliente = async function () {
     try {
@@ -98,7 +106,7 @@ const BookingForm = ({ selectedVacanza, updateSelectedVacanza }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    /* // Verifica se la vacanza selezionata è presente
+    // Verifica se la vacanza selezionata è presente
     if (!selectedVacanza) {
       console.log("Errore: nessuna vacanza selezionata");
       return;
@@ -107,20 +115,26 @@ const BookingForm = ({ selectedVacanza, updateSelectedVacanza }) => {
     const payload = {
       prenotazioni: [
         {
-          vacanza: selectedVacanza, // Utilizza i dati corretti della vacanza selezionata
-          // Altri campi dati necessari per la prenotazione
+          vacanza: selectedVacanza,
+          e, // Utilizza i dati corretti della vacanza selezionata
+          // Altri campi dati necessari per la prenotazion
         },
       ],
       // Altri campi dati per la richiesta di prenotazione
     };
     try {
-      const response = await axios.post(`/cliente`, payload);
+      const response = await axios.post(`/cliente`, payload, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      });
       console.log("Risposta:", response.data);
       // Gestisci la risposta della richiesta POST
     } catch (error) {
       console.log("Errore:", error);
       // Gestisci l'errore della richiesta POST
-    } */
+    }
 
     //conversione da stringa a intero del numero ospiti.
     const numerospitiInt = parseInt(
@@ -156,27 +170,29 @@ const BookingForm = ({ selectedVacanza, updateSelectedVacanza }) => {
       prenotazioni: [updatedPrenotazioni],
     };
 
+    console.log(token);
+
     try {
-      const response = await axios.post(urlPost, updatedBookingData, {
+      const postResp = await axios.post(urlPost, updatedBookingData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
         withCredentials: true,
       });
 
-      console.log(response.data);
+      console.log(postResp.data);
       setSuccess(true);
-      setIdCliente(response.data.id);
-      console.log(response.data.id);
-      setData(response.data);
-      console.log(response.data);
-      setPrenotazioni(response.data?.prenotazioni[0]);
-      console.log(response.data.prenotazioni[0]);
+      setIdCliente(postResp.data.id);
+      console.log(postResp.data.id);
+      setData(postResp.data);
+      console.log(postResp.data);
+      setPrenotazioni(postResp.data?.prenotazioni[0]);
+      console.log(postResp.data.prenotazioni[0]);
       alert(
         `La tua richiesta è andata a buon fine. La prenotazione è stata creata con codice di prenotazione: ${updatedPrenotazioni.numeroprenotazione}`
       );
     } catch (error) {
-      if (!error?.response) {
+      if (!error?.postResp) {
         console.log("C'è stato un errore nel contattare il server");
       }
     }
@@ -260,7 +276,10 @@ const BookingForm = ({ selectedVacanza, updateSelectedVacanza }) => {
                     <Form.Label>Numero di ospiti</Form.Label>
                     <Form.Select
                       aria-label="Default select example"
-                      value={bookingData.prenotazioni[0].numerospiti}
+                      value={
+                        bookingData.prenotazioni?.length > 0 &&
+                        bookingData.prenotazioni[0].numerospiti
+                      }
                       onChange={(e) => {
                         console.log(e.target.value);
                         const updatedPrenotazioni = [

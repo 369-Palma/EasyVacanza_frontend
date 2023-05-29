@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Dashboard from "./Dashboard";
 //import AuthContext from "../context/AuthProvider";
 
-const Login = () => {
+const Login = ({ setToken }) => {
   /* const { setAuth } = useContext(AuthContext); */
   const loginUrl = `/auth/login`;
 
@@ -52,6 +52,7 @@ const Login = () => {
       );
       console.log(response.data);
       console.log(response.data.accessToken);
+      setToken(response.data.accessToken);
       console.log(JSON.stringify(response));
 
       setSuccess(true);

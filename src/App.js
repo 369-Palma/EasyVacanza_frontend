@@ -16,9 +16,10 @@ import Dettaglio from "./components/Dettaglio";
 const App = () => {
   const [selectedVacanza, setSelectedVacanza] = useState({});
 
-  const updateSelectedVacanza = (vacanza) => {
+  const handleUpdateSelectedVacanza = (vacanza) => {
     setSelectedVacanza(vacanza);
   };
+  const [token, setToken] = useState("");
 
   return (
     <BrowserRouter>
@@ -28,12 +29,17 @@ const App = () => {
         <Route path="/offerte" element={<TuttiViaggi />} />
         <Route
           path="/details/:id"
-          element={<Dettaglio selectedVacanza={selectedVacanza} />}
+          element={
+            <Dettaglio
+              selectedVacanza={selectedVacanza}
+              updateSelectedVacanza={handleUpdateSelectedVacanza}
+            />
+          }
         />
         <Route path="/prenotazione" element={<Register />} />
         {/* <Route path="/prenotazione" element={<RegistrationPage />} /> */}
         <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login setToken={setToken} />} />
         {/* <Route path="/recensioni" element={<RecensioneForm />} /> */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route
@@ -41,7 +47,8 @@ const App = () => {
           element={
             <BookingForm
               selectedVacanza={selectedVacanza}
-              updateSelectedVacanza={updateSelectedVacanza}
+              token={token}
+              updateSelectedVacanza={handleUpdateSelectedVacanza}
             />
           }
         />
