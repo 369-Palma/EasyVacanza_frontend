@@ -2,8 +2,46 @@ import { Row, Col, Accordion } from "react-bootstrap";
 import { faFaceSmileWink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import axios from "../api/axios";
+import { useState, useEffect } from "react";
+const AccordionPrenotazione = ({
+  nome,
+  cognome,
+  prenotazioni,
+  email,
+  token,
+}) => {
+  const urlPrenotazione = `/prenotazioni/numero_prenotazione/`;
+  const [data, setData] = useState();
 
-const AccordionPrenotazione = ({ nome, cognome, prenotazioni, email }) => {
+  const getPrenotazione = async function () {
+    console.log(urlPrenotazione);
+    console.log(prenotazioni[0]?.numeroprenotazione);
+    console.log(token);
+    try {
+      const response = await axios.get(
+        urlPrenotazione + prenotazioni[0].numeroprenotazione,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        }
+      );
+      console.log("risposta ok");
+      setData(response.data);
+      console.log(response.data);
+    } catch (error) {
+      if (!error?.response) {
+        console.log("C'è stato un errore nel contattare il server", error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    getPrenotazione();
+  }, []);
+
   return (
     <Row>
       <h2> Prenotazione avvenuta con successo!</h2>

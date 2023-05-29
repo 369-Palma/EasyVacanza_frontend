@@ -28,7 +28,7 @@ const BookingForm = ({ selectedVacanza, token }) => {
   const [success, setSuccess] = useState(false);
   const [data, setData] = useState({});
   const [prenotazioni, setPrenotazioni] = useState([]);
-
+  const [accodion, setAccodion] = useState();
   const urlGet = `/cliente/id/`;
   const urlPost = `/cliente`;
 
@@ -188,6 +188,7 @@ const BookingForm = ({ selectedVacanza, token }) => {
       console.log(postResp.data);
       setPrenotazioni(postResp.data?.prenotazioni[0]);
       console.log(postResp.data.prenotazioni[0]);
+      setAccodion(updatedBookingData);
       alert(
         `La tua richiesta è andata a buon fine. La prenotazione è stata creata con codice di prenotazione: ${updatedPrenotazioni.numeroprenotazione}`
       );
@@ -206,8 +207,9 @@ const BookingForm = ({ selectedVacanza, token }) => {
           <AccordionPrenotazione
             nome={data.nome}
             cognome={data.cognome}
-            prenotazioni={prenotazioni}
+            prenotazioni={accodion.prenotazioni}
             email={data.email}
+            token={token}
           />
         </>
       ) : (
