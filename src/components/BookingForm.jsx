@@ -6,7 +6,7 @@ import axios from "../api/axios";
 import MyNav from "./MyNav";
 import AccordionPrenotazione from "./AccordionPrenotazione";
 
-const BookingForm = () => {
+const BookingForm = ({ selectedVacanza, updateSelectedVacanza }) => {
   const location = useLocation();
   const token = location.state?.token || "";
 
@@ -34,6 +34,7 @@ const BookingForm = () => {
 
   const urlGet = `/cliente/id/`;
   const urlPost = `/cliente`;
+
   useEffect(() => {
     if (idCliente) {
       getCliente();
@@ -69,22 +70,57 @@ const BookingForm = () => {
   }
 
   //funzione per settare la data di prenotazione corrente
+
   function getCurrentDate() {
     const date = new Date();
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
-    return `${day}-${month}-${year}`;
+    return `${year}-${month}-${day}`;
   }
 
   // CAMBIO DI STATO
   const handleChange = (propertyName, propertyValue) => {
-    setBookingData({ ...bookingData, [propertyName]: propertyValue });
+    if (propertyName === "numerospiti") {
+      const updatedPrenotazioni = [
+        {
+          ...bookingData.prenotazioni[0],
+          numerospiti: propertyValue,
+        },
+      ];
+      setBookingData({ ...bookingData, prenotazioni: updatedPrenotazioni });
+    } else {
+      setBookingData({ ...bookingData, [propertyName]: propertyValue });
+    }
   };
 
   // Funzione per gestire la sottomissione del form
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    /* // Verifica se la vacanza selezionata è presente
+    if (!selectedVacanza) {
+      console.log("Errore: nessuna vacanza selezionata");
+      return;
+    }
+
+    const payload = {
+      prenotazioni: [
+        {
+          vacanza: selectedVacanza, // Utilizza i dati corretti della vacanza selezionata
+          // Altri campi dati necessari per la prenotazione
+        },
+      ],
+      // Altri campi dati per la richiesta di prenotazione
+    };
+    try {
+      const response = await axios.post(`/cliente`, payload);
+      console.log("Risposta:", response.data);
+      // Gestisci la risposta della richiesta POST
+    } catch (error) {
+      console.log("Errore:", error);
+      // Gestisci l'errore della richiesta POST
+    } */
 
     //conversione da stringa a intero del numero ospiti.
     const numerospitiInt = parseInt(
@@ -101,7 +137,7 @@ const BookingForm = () => {
     const ageInt = parseInt(bookingData.age, 10);
 
     if (isNaN(ageInt)) {
-      console.error("Il valore del campo etè non è valido.");
+      console.error("Il valore del campo età non è valido.");
       return;
     }
 

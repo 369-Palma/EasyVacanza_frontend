@@ -28,10 +28,8 @@ const Dettaglio = () => {
       const response = await axios.get(urlVacanza);
       setData(response.data);
       console.log(response.data);
-      console.log(response.data.attivita);
       setAttivita(response.data.attivita);
       console.log(response.data.attivita);
-
       setTestimonianze(response.data?.attivita[0]?.testimonianze);
       console.log(response.data?.attivita[0]?.testimonianze);
     } catch (error) {
