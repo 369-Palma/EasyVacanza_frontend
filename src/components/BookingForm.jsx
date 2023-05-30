@@ -28,14 +28,15 @@ const BookingForm = ({ selectedVacanza, token }) => {
   const [data, setData] = useState({});
   const [prenotazioni, setPrenotazioni] = useState([]);
   const [accodion, setAccodion] = useState();
-  const urlGet = `/cliente/id/`;
+  //const urlGet = `/cliente/id/`;
   const urlPost = `/cliente`;
+  //const [cliente, setCliente] = useState();
 
-  useEffect(() => {
+  /*  useEffect(() => {
     if (idCliente) {
       getCliente();
     }
-  }, [idCliente]);
+  }, [idCliente]); */
 
   useEffect(() => {
     if (selectedVacanza) {
@@ -48,7 +49,7 @@ const BookingForm = ({ selectedVacanza, token }) => {
     }
   }, [selectedVacanza]);
 
-  const getCliente = async function () {
+  /* const getCliente = async function () {
     try {
       const response = await axios.get(urlGet + idCliente, {
         headers: {
@@ -56,16 +57,13 @@ const BookingForm = ({ selectedVacanza, token }) => {
         },
         withCredentials: true,
       });
-
-      //console.log(response.data);
-
-      //setData(response.data);
+      setCliente(response.data);
     } catch (error) {
       if (!error?.response) {
         console.log("C'è stato un errore nel contattare il server");
       }
     }
-  };
+  }; */
 
   //funzione per settare il numero di prenotazione
   function generaCodice() {
@@ -183,6 +181,8 @@ const BookingForm = ({ selectedVacanza, token }) => {
             prenotazioni={accodion.prenotazioni}
             email={data.email}
             token={token}
+            accodion={accodion}
+            //cliente={cliente}
           />
         </>
       ) : (

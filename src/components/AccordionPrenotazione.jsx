@@ -1,10 +1,14 @@
-import { Row, Col, Accordion } from "react-bootstrap";
+import { Row, Col, Accordion, Button } from "react-bootstrap";
 import { faFaceSmileWink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import axios from "../api/axios";
 import { useState, useEffect } from "react";
+import emailjs from "emailjs-com";
+import { toast } from "react-toastify";
+
 const AccordionPrenotazione = ({
+  accodion,
   nome,
   cognome,
   prenotazioni,
@@ -13,6 +17,30 @@ const AccordionPrenotazione = ({
 }) => {
   const urlPrenotazione = `/prenotazioni/numero_prenotazione/`;
   const [data, setData] = useState();
+  /*   const [cliente, setCliente] = useState();
+
+  const urlGet = `/cliente/id/`;
+
+  useEffect(() => {
+    if (idCliente) {
+      getCliente();
+    }
+  }, [idCliente]);
+  const getCliente = async function () {
+    try {
+      const response = await axios.get(urlGet + idCliente, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      });
+      setCliente(response.data);
+    } catch (error) {
+      if (!error?.response) {
+        console.log("C'è stato un errore nel contattare il server");
+      }
+    }
+  }; */
 
   const getPrenotazione = async function () {
     console.log(urlPrenotazione);
@@ -45,6 +73,28 @@ const AccordionPrenotazione = ({
     console.log(data?.prenotazioni[0]?.vacanza?.citta);
     console.log(data);
   }, []);
+
+  //per invio email
+  emailjs.init(`3cG7_5IGDFHm5po4E`);
+  const sendEmail = async (e) => {
+    e.preventDefault();
+    try {
+      const templateParams = {
+        to_email: email,
+        from_name: "Easy Vacanza",
+        subject: "Dettagli della tua prenotazione",
+        data: data,
+        accodion: accodion,
+      };
+      console.log(accodion);
+      console.log(accodion.nome);
+      await emailjs.send("service_uf2isy6", "template_bzx7lll", templateParams);
+      toast.success("Email inviata con successo");
+      e.target.reset();
+    } catch (error) {
+      console.log(error.text);
+    }
+  };
 
   return (
     <Row>
@@ -107,8 +157,16 @@ const AccordionPrenotazione = ({
             </Accordion.Item>
           </Accordion>
         ) : (
-          <p>No prenotazioni data available.</p>
+          <p>Non ci sono prenotazioni.</p>
         )}
+      </Col>
+      <Col>
+        <h3>
+          {" "}
+          Clicca per ricevere il dettaglio della tua prenotazione al tuo
+          indirizzo email.{" "}
+        </h3>
+        <Button onClick={sendEmail}>Inviami il dettaglio</Button>
       </Col>
     </Row>
   );
