@@ -16,7 +16,7 @@ const AccordionPrenotazione = ({
 
   const getPrenotazione = async function () {
     console.log(urlPrenotazione);
-    //console.log(prenotazioni[0]?.numeroprenotazione);
+    console.log(prenotazioni[0]?.numeroprenotazione);
 
     try {
       const response = await axios.get(
@@ -65,7 +65,7 @@ const AccordionPrenotazione = ({
                   tua prenotazione.
                   <br />
                   Il tuo codice di prenotazione è:
-                  <strong> {data?.prenotazioni?.numeroprenotazione}</strong>
+                  <strong> {data?.numeroprenotazione}</strong>
                   <br />A breve riceverai una email all'indirizzo
                   <strong> {email}</strong> . Ricordati di controllare nella
                   cartella dello spam!
@@ -96,7 +96,7 @@ const AccordionPrenotazione = ({
                   alla nostra attività,{" "}
                   {prenotazioni[0]?.vacanza?.attivita[0]?.attivita}. <br />
                   Questa è un'attività di livello di difficoltà{" "}
-                  {prenotazioni[0]?.vacanza?.attivita[0]?.livello}.{" "}
+                  {prenotazioni[0]?.vacanza?.attivita[0]?.difficolta}.{" "}
                 </p>
               </Accordion.Body>
             </Accordion.Item>

@@ -120,7 +120,7 @@ const BookingForm = ({ selectedVacanza, token }) => {
       ],
     };
     try {
-      const response = await axios.post(`/vacanze`, payload, {
+      const response = await axios.post(`/prenotazioni`, payload, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
