@@ -1,11 +1,35 @@
 import CustomNavbar from "./CustomNavbar";
 import { Form } from "react-bootstrap";
+import emailjs from "emailjs-com";
+import { toast } from "react-toastify";
 
 const SpecialRequest = () => {
+  const inviaEmail = (e) => {
+    e.preventDefault();
+    emailjs
+      .sendForm(
+        `service_uf2isy6`,
+        `template_j8faovd`,
+        e.target,
+        `3cG7_5IGDFHm5po4E`
+      )
+      .then(
+        (result) => {
+          toast.success("Email inviata con successo");
+          console.log(result.text);
+        },
+        (error) => {
+          toast.error("Invio Email non riuscito");
+          console.log(error.text);
+        }
+      );
+    e.target.reset();
+  };
+
   return (
     <>
       <CustomNavbar className="mynavbar" claim="Scrivici!" />
-      <Form>
+      <Form onSubmit={inviaEmail}>
         <fieldset>
           <h2>Contattaci</h2>
           <Form.Label>Name</Form.Label>
