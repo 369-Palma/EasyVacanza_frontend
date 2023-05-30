@@ -1,4 +1,4 @@
-import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 
 const CustomNavbar = ({ claim }) => {
@@ -62,15 +62,6 @@ const CustomNavbar = ({ claim }) => {
             >
               Login
             </Link>
-            {/* <NavDropdown title="Filtra per" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">
-                Tipologia alloggio
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Tipologia vacanza
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Preferenze</NavDropdown.Item>
-            </NavDropdown> */}
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -23,7 +23,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      {/* <CustomNavbar className="mynavbar" claim="Were dreams come true!" /> */}
+      {/* <CustomNavbar className="mynavbar" claim="Where dreams come true!" /> */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/offerte" element={<TuttiViaggi />} />
@@ -41,7 +41,12 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login setToken={setToken} />} />
         {/* <Route path="/recensioni" element={<RecensioneForm />} /> */}
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/dashboard"
+          element={
+            <Dashboard selectedVacanza={selectedVacanza} token={token} />
+          }
+        />
         <Route
           path="/prenota"
           element={

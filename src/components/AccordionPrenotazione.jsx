@@ -16,11 +16,11 @@ const AccordionPrenotazione = ({
 
   const getPrenotazione = async function () {
     console.log(urlPrenotazione);
-    console.log(prenotazioni[0]?.numeroprenotazione);
-    console.log(token);
+    //console.log(prenotazioni[0]?.numeroprenotazione);
+
     try {
       const response = await axios.get(
-        urlPrenotazione + prenotazioni[0].numeroprenotazione,
+        urlPrenotazione + prenotazioni[0]?.numeroprenotazione,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -40,47 +40,70 @@ const AccordionPrenotazione = ({
 
   useEffect(() => {
     getPrenotazione();
+    console.log(prenotazioni[0]?.vacanza?.citta);
+    //console.log(prenotazioni.prenotazioni[0]?.vacanza.citta);
+    console.log(data?.prenotazioni[0]?.vacanza?.citta);
+    console.log(data);
   }, []);
 
   return (
     <Row>
       <h2> Prenotazione avvenuta con successo!</h2>
       <Col>
-        <Accordion defaultActiveKey="0" flush>
-          <Accordion.Item eventKey="0">
-            <Accordion.Header>Dati della tua prenotazione</Accordion.Header>
-            <Accordion.Body>
-              <p>
-                Gentile
-                <strong>
+        {prenotazioni && prenotazioni?.length > 0 ? (
+          <Accordion defaultActiveKey="0" flush>
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>Dati della tua prenotazione</Accordion.Header>
+              <Accordion.Body>
+                <p>
+                  Gentile
+                  <strong>
+                    {" "}
+                    {nome} {cognome}
+                  </strong>
+                  , grazie per aver scelto Easy Vacanza! Ecco i dettagli della
+                  tua prenotazione.
+                  <br />
+                  Il tuo codice di prenotazione è:
+                  <strong> {data?.prenotazioni?.numeroprenotazione}</strong>
+                  <br />A breve riceverai una email all'indirizzo
+                  <strong> {email}</strong> . Ricordati di controllare nella
+                  cartella dello spam!
+                  <span className="ps-2">
+                    <FontAwesomeIcon icon={faFaceSmileWink} />
+                  </span>
+                </p>
+                <p>
+                  Hai esigenze particolari?
+                  <Link to="/contatti"> Scrivici qui </Link>
+                </p>
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="1">
+              <Accordion.Header>
+                Informazioni sul tuo pacchetto vacanza
+              </Accordion.Header>
+              <Accordion.Body>
+                <p>
                   {" "}
-                  {nome} {cognome}
-                </strong>
-                , grazie per aver scelto Easy Vacanza! Ecco i dettagli della tua
-                prenotazione.
-                <br />
-                Il tuo codice di prenotazione è:
-                <strong> {prenotazioni?.numeroprenotazione}</strong>
-                <br />A breve riceverai una email all'indirizzo
-                <strong> {email}</strong> . Ricordati di controllare nella
-                cartella dello spam!
-                <span className="ps-2">
-                  <FontAwesomeIcon icon={faFaceSmileWink} />
-                </span>
-              </p>
-              <p>
-                Hai esigenze particolari?
-                <Link to="/contatti"> Scrivici qui </Link>
-              </p>
-            </Accordion.Body>
-          </Accordion.Item>
-          <Accordion.Item eventKey="1">
-            <Accordion.Header>
-              Informazioni sul vostro pacchetto vacanza
-            </Accordion.Header>
-            <Accordion.Body></Accordion.Body>
-          </Accordion.Item>
-        </Accordion>
+                  Prepara le valige, {prenotazioni[0]?.vacanza?.citta} ti
+                  aspetta!
+                </p>
+                <p>
+                  Dal {prenotazioni[0]?.vacanza?.datainizio} al{" "}
+                  {prenotazioni[0]?.vacanza?.datafine} alloggerai presso{" "}
+                  {prenotazioni[0]?.vacanza?.indirizzo} e potrai partecipare
+                  alla nostra attività,{" "}
+                  {prenotazioni[0]?.vacanza?.attivita[0]?.attivita}. <br />
+                  Questa è un'attività di livello di difficoltà{" "}
+                  {prenotazioni[0]?.vacanza?.attivita[0]?.livello}.{" "}
+                </p>
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+        ) : (
+          <p>No prenotazioni data available.</p>
+        )}
       </Col>
     </Row>
   );

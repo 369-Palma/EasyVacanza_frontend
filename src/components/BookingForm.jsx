@@ -1,6 +1,5 @@
 import "../styles/specialRequest.css";
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import axios from "../api/axios";
 import MyNav from "./MyNav";
@@ -41,6 +40,7 @@ const BookingForm = ({ selectedVacanza, token }) => {
   }, [idCliente]);
 
   useEffect(() => {
+    console.log(prenotazioni);
     if (selectedVacanza) {
       setBookingData({
         ...bookingData,
@@ -72,8 +72,8 @@ const BookingForm = ({ selectedVacanza, token }) => {
 
   //funzione per settare il numero di prenotazione
   function generaCodice() {
-    const min = 1000000000; // Numero minimo di 10 cifre
-    const max = 9999999999; // Numero massimo di 10 cifre
+    const min = 1000000000;
+    const max = 9999999999;
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
@@ -116,24 +116,19 @@ const BookingForm = ({ selectedVacanza, token }) => {
       prenotazioni: [
         {
           vacanza: selectedVacanza,
-          e, // Utilizza i dati corretti della vacanza selezionata
-          // Altri campi dati necessari per la prenotazion
         },
       ],
-      // Altri campi dati per la richiesta di prenotazione
     };
     try {
-      const response = await axios.post(`/cliente`, payload, {
+      const response = await axios.post(`/vacanze`, payload, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
         withCredentials: true,
       });
       console.log("Risposta:", response.data);
-      // Gestisci la risposta della richiesta POST
     } catch (error) {
       console.log("Errore:", error);
-      // Gestisci l'errore della richiesta POST
     }
 
     //conversione da stringa a intero del numero ospiti.
@@ -183,12 +178,12 @@ const BookingForm = ({ selectedVacanza, token }) => {
       console.log(postResp.data);
       setSuccess(true);
       setIdCliente(postResp.data.id);
-      console.log(postResp.data.id);
       setData(postResp.data);
       console.log(postResp.data);
       setPrenotazioni(postResp.data?.prenotazioni[0]);
       console.log(postResp.data.prenotazioni[0]);
       setAccodion(updatedBookingData);
+
       alert(
         `La tua richiesta è andata a buon fine. La prenotazione è stata creata con codice di prenotazione: ${updatedPrenotazioni.numeroprenotazione}`
       );
@@ -241,7 +236,6 @@ const BookingForm = ({ selectedVacanza, token }) => {
                       value={bookingData.cognome}
                       onChange={(e) => {
                         console.log(e.target.value);
-
                         handleChange("cognome", e.target.value);
                       }}
                     />
@@ -250,7 +244,7 @@ const BookingForm = ({ selectedVacanza, token }) => {
                   <Form.Group className="mb-3">
                     <Form.Label>Età</Form.Label>
                     <Form.Control
-                      type="text"
+                      type="number"
                       placeholder="Inserisci la tu età"
                       value={bookingData.ageInt}
                       onChange={(e) => {
