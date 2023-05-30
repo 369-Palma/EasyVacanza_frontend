@@ -34,13 +34,10 @@ const BookingForm = ({ selectedVacanza, token }) => {
   useEffect(() => {
     if (idCliente) {
       getCliente();
-      /* console.log("Nuovo valore di idCliente:", idCliente);
-      console.log("Nuovo valore di data:", data); */
     }
   }, [idCliente]);
 
   useEffect(() => {
-    console.log(prenotazioni);
     if (selectedVacanza) {
       setBookingData({
         ...bookingData,
@@ -110,25 +107,6 @@ const BookingForm = ({ selectedVacanza, token }) => {
     if (!selectedVacanza) {
       console.log("Errore: nessuna vacanza selezionata");
       return;
-    }
-
-    const payload = {
-      prenotazioni: [
-        {
-          vacanza: selectedVacanza,
-        },
-      ],
-    };
-    try {
-      const response = await axios.post(`/prenotazioni`, payload, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        withCredentials: true,
-      });
-      console.log("Risposta:", response.data);
-    } catch (error) {
-      console.log("Errore:", error);
     }
 
     //conversione da stringa a intero del numero ospiti.

@@ -86,15 +86,18 @@ const AccordionPrenotazione = ({
               <Accordion.Body>
                 <p>
                   {" "}
-                  Prepara le valige, {prenotazioni[0]?.vacanza?.citta} ti
-                  aspetta!
+                  Prepara le valige,{" "}
+                  <strong>{prenotazioni[0]?.vacanza?.citta}</strong> ti aspetta!
                 </p>
                 <p>
                   Dal {prenotazioni[0]?.vacanza?.datainizio} al{" "}
                   {prenotazioni[0]?.vacanza?.datafine} alloggerai presso{" "}
                   {prenotazioni[0]?.vacanza?.indirizzo} e potrai partecipare
                   alla nostra attività,{" "}
-                  {prenotazioni[0]?.vacanza?.attivita[0]?.attivita}. <br />
+                  <strong>
+                    {prenotazioni[0]?.vacanza?.attivita[0]?.attivita}
+                  </strong>
+                  . <br />
                   Questa è un'attività di livello di difficoltà{" "}
                   {prenotazioni[0]?.vacanza?.attivita[0]?.difficolta}.{" "}
                 </p>
