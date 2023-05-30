@@ -17,30 +17,6 @@ const AccordionPrenotazione = ({
 }) => {
   const urlPrenotazione = `/prenotazioni/numero_prenotazione/`;
   const [data, setData] = useState();
-  /*   const [cliente, setCliente] = useState();
-
-  const urlGet = `/cliente/id/`;
-
-  useEffect(() => {
-    if (idCliente) {
-      getCliente();
-    }
-  }, [idCliente]);
-  const getCliente = async function () {
-    try {
-      const response = await axios.get(urlGet + idCliente, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        withCredentials: true,
-      });
-      setCliente(response.data);
-    } catch (error) {
-      if (!error?.response) {
-        console.log("C'è stato un errore nel contattare il server");
-      }
-    }
-  }; */
 
   const getPrenotazione = async function () {
     console.log(urlPrenotazione);
@@ -59,6 +35,8 @@ const AccordionPrenotazione = ({
       console.log("risposta ok");
       setData(response.data);
       console.log(response.data);
+      console.log(response.data?.vacanza?.attivita[0].attivita);
+      console.log(response.data?.vacanza?.attivita[0].difficolta);
     } catch (error) {
       if (!error?.response) {
         console.log("C'è stato un errore nel contattare il server", error);
@@ -69,7 +47,6 @@ const AccordionPrenotazione = ({
   useEffect(() => {
     getPrenotazione();
     console.log(prenotazioni[0]?.vacanza?.citta);
-    //console.log(prenotazioni.prenotazioni[0]?.vacanza.citta);
     console.log(data?.prenotazioni[0]?.vacanza?.citta);
     console.log(data);
   }, []);
@@ -85,9 +62,8 @@ const AccordionPrenotazione = ({
         subject: "Dettagli della tua prenotazione",
         data: data,
         accodion: accodion,
+        prenotazioni,
       };
-      console.log(accodion);
-      console.log(accodion.nome);
       await emailjs.send("service_uf2isy6", "template_bzx7lll", templateParams);
       toast.success("Email inviata con successo");
       e.target.reset();

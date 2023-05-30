@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CustomNavbar from "./CustomNavbar";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "../api/axios";
-import Login from "./Login";
+
 const Register = () => {
   const navigate = useNavigate();
 
@@ -89,7 +89,6 @@ const Register = () => {
         password: password,
       });
       console.log(response.data);
-      //console.log(response.accessToken);
       console.log(JSON.stringify(response));
       setSuccess(true);
       navigate("/login");
@@ -139,12 +138,11 @@ const Register = () => {
               type="text"
               required
               placeholder="Username"
-              //id="username"
               ref={userRef}
               autoComplete="off"
               onChange={(e) => setUser(e.target.value)}
               aria-invalid={validName ? "false" : "true"}
-              aria-describedby="uidnote" //per fornire ulteriori indicazioni all'utente
+              aria-describedby="uidnote"
               onFocus={() => setUserFocus(true)}
               onBlur={() => setUserFocus(false)}
             />
@@ -219,12 +217,11 @@ const Register = () => {
               type="password"
               required
               placeholder="Password"
-              //id="password"
               ref={passwordRef}
               autoComplete="off"
               onChange={(e) => setPassword(e.target.value)}
               aria-invalid={validPassword ? "false" : "true"}
-              aria-describedby="passwordnote" //per fornire ulteriori indicazioni all'utente
+              aria-describedby="passwordnote"
               onFocus={() => setPasswordFocus(true)}
               onBlur={() => setPasswordFocus(false)}
             />
@@ -250,7 +247,6 @@ const Register = () => {
           </Form.Group>
 
           {/* METCHED PASSWORD */}
-
           <Form.Group className="mb-3" controlId="form">
             <Form.Label>
               Conferma Password
@@ -265,12 +261,11 @@ const Register = () => {
               type="password"
               required
               placeholder="Conferma Password"
-              //id="password"
               ref={passwordRef}
               autoComplete="off"
               onChange={(e) => setMatchPwd(e.target.value)}
               aria-invalid={validMatch ? "false" : "true"}
-              aria-describedby="confirmnote" //per fornire ulteriori indicazioni all'utente
+              aria-describedby="confirmnote"
               onFocus={() => setMatchFocus(true)}
               onBlur={() => setMatchFocus(false)}
             />

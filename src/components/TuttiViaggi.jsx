@@ -1,4 +1,3 @@
-//import axios from "axios";
 import { Row, Col, Container } from "react-bootstrap";
 import SingleCard from "./SingleCard";
 import React, { useState, useEffect } from "react";
@@ -7,7 +6,6 @@ import CustomNavbar from "./CustomNavbar";
 
 const TuttiViaggi = () => {
   const urlAll = "/vacanze/pageable?page=2&size=6";
-  //const urlAll = "/vacanze";
   const [data, setData] = useState([]);
 
   useEffect(() => {

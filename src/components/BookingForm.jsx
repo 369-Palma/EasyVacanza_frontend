@@ -28,15 +28,8 @@ const BookingForm = ({ selectedVacanza, token }) => {
   const [data, setData] = useState({});
   const [prenotazioni, setPrenotazioni] = useState([]);
   const [accodion, setAccodion] = useState();
-  //const urlGet = `/cliente/id/`;
-  const urlPost = `/cliente`;
-  //const [cliente, setCliente] = useState();
 
-  /*  useEffect(() => {
-    if (idCliente) {
-      getCliente();
-    }
-  }, [idCliente]); */
+  const urlPost = `/cliente`;
 
   useEffect(() => {
     if (selectedVacanza) {
@@ -48,22 +41,6 @@ const BookingForm = ({ selectedVacanza, token }) => {
       }); // Riprendi i dati della vacanza selezionata
     }
   }, [selectedVacanza]);
-
-  /* const getCliente = async function () {
-    try {
-      const response = await axios.get(urlGet + idCliente, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        withCredentials: true,
-      });
-      setCliente(response.data);
-    } catch (error) {
-      if (!error?.response) {
-        console.log("C'è stato un errore nel contattare il server");
-      }
-    }
-  }; */
 
   //funzione per settare il numero di prenotazione
   function generaCodice() {
