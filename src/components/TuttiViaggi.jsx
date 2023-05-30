@@ -6,7 +6,7 @@ import axios from "../api/axios";
 import CustomNavbar from "./CustomNavbar";
 
 const TuttiViaggi = () => {
-  const urlAll = "/vacanze/pageable?page=2&size=8";
+  const urlAll = "/vacanze/pageable?page=2&size=6";
   //const urlAll = "/vacanze";
   const [data, setData] = useState([]);
 

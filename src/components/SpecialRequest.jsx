@@ -7,12 +7,12 @@ const SpecialRequest = () => {
       <CustomNavbar className="mynavbar" claim="Scrivici!" />
       <Form>
         <fieldset>
-          <h2>Contact us</h2>
+          <h2>Contattaci</h2>
           <Form.Label>Name</Form.Label>
 
           <Form.Control
             type="name"
-            id="name"
+            name="name"
             placeholder="Enter your name"
             required
           />
@@ -20,21 +20,21 @@ const SpecialRequest = () => {
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
-            id="email"
+            name="email"
             placeholder="Enter your email"
             required
           />
 
           <Form.Label>Message</Form.Label>
           <textarea
-            id="message"
+            name="message"
             cols="30"
             rows="10"
             placeholder="Enter your message"
             required
           ></textarea>
 
-          <Form.Control type="submit" value="Send" className="submit-btn" />
+          <Form.Control type="submit" value="Invia" className="submit-btn" />
         </fieldset>
       </Form>
     </>

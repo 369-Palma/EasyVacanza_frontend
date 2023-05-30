@@ -67,7 +67,7 @@ const AccordionPrenotazione = ({
                   Il tuo codice di prenotazione è:
                   <strong> {data?.numeroprenotazione}</strong>
                   <br />A breve riceverai una email all'indirizzo
-                  <strong> {email}</strong> . Ricordati di controllare nella
+                  <strong> {email}</strong>. Ricordati di controllare nella
                   cartella dello spam!
                   <span className="ps-2">
                     <FontAwesomeIcon icon={faFaceSmileWink} />
@@ -98,8 +98,10 @@ const AccordionPrenotazione = ({
                     {prenotazioni[0]?.vacanza?.attivita[0]?.attivita}
                   </strong>
                   . <br />
-                  Questa è un'attività di livello di difficoltà{" "}
-                  {prenotazioni[0]?.vacanza?.attivita[0]?.difficolta}.{" "}
+                  Ti ricordiamo che l'attività ha un di livello di difficoltà{" "}
+                  {prenotazioni[0]?.vacanza?.attivita[0]?.difficolta}. Se hai
+                  richieste o domande puoi contattaci{" "}
+                  <Link to="/contatti"> qui </Link>
                 </p>
               </Accordion.Body>
             </Accordion.Item>
