@@ -245,7 +245,7 @@ const BookingForm = ({ selectedVacanza, token }) => {
                     <Form.Label>Età</Form.Label>
                     <Form.Control
                       type="number"
-                      placeholder="Inserisci la tu età"
+                      placeholder="Inserisci la tua età"
                       value={bookingData.ageInt}
                       onChange={(e) => {
                         console.log(e.target.value);
