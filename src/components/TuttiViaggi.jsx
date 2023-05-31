@@ -3,7 +3,7 @@ import SingleCard from "./SingleCard";
 import React, { useState, useEffect } from "react";
 import axios from "../api/axios";
 import CustomNavbar from "./CustomNavbar";
-
+import "../styles/home.css";
 const TuttiViaggi = () => {
   const urlAll = "/vacanze/pageable?page=2&size=6";
   const [data, setData] = useState([]);
@@ -26,7 +26,7 @@ const TuttiViaggi = () => {
       <CustomNavbar className="mynavbar" claim="Were dreams come true!" />
       <Container className="my-auto">
         <Row className="justify-content-center ">
-          <h2 className="mt-4">
+          <h2 className="margineH2 ">
             {" "}
             Lasciati ispirare dalle nostre offerte speciali!
           </h2>
