@@ -1,3 +1,18 @@
 .cardSingola {
   min-width: 350px;
 }
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: min-content;
+}
+#searchTab {
+  border-radius: 0.6em;
+  width: 18em;
+  height: 2.5em;
+  text-align: center;
+  border-color: rgba(13, 202, 240, 1);
+  box-shadow: 0 1px 0px 1px rgb(2 2 2 / 70%);
+}

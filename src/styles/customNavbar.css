@@ -1,0 +1,7 @@
+#navLinks .nav-link {
+  margin-right: 30px;
+}
+#navLinks .nav-link:hover {
+  transform: scale(1.2);
+  font-weight: bold;
+}

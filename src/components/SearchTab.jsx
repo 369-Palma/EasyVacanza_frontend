@@ -63,7 +63,7 @@ const SearchTab = () => {
         <Container className="searchContent">
           <div>
             <h1> Cerca la tua vacanza </h1>
-            <Form className="formContainer">
+            <Form className="formContainer mx-auto align-center">
               <Form.Label className="fs-2">La tua destinazione:</Form.Label>
               <Form.Control
                 className="searchCity d-flex mt-1 mb-3"
