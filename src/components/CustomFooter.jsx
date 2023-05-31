@@ -127,7 +127,7 @@ function CustomFooter() {
               </p>
               <p>
                 <FontAwesomeIcon icon={faEnvelope} className="me-3" />
-                palmaiacobelli92@gmail.com
+                p.iacobelli92@gmail.com
               </p>
               <p>
                 <FontAwesomeIcon icon={faPhone} className="me-3" /> + 39 371 332
