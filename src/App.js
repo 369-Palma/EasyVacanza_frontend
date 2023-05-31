@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import CustomNavbar from "./components/CustomNavbar";
+import CustomFooter from "./components/CustomFooter";
 import HomePage from "./components/HomePage";
 import TuttiViaggi from "./components/TuttiViaggi";
 import Register from "./components/Register";
@@ -23,7 +23,6 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      {/* <CustomNavbar className="mynavbar" claim="Where dreams come true!" /> */}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/offerte" element={<TuttiViaggi />} />
@@ -60,7 +59,7 @@ const App = () => {
         <Route path="/contatti" element={<SpecialRequest />} />
       </Routes>
 
-      {/*   <CustomFooter /> */}
+      <CustomFooter />
     </BrowserRouter>
   );
 };

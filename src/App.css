@@ -28,9 +28,6 @@ h2 {
   padding-top: 1em;
   padding-bottom: 1em;
 }
-h4 {
-  margin-bottom: 2em;
-}
 
 .boxContainer {
   background-color: rgb(223 234 240);
@@ -41,9 +38,10 @@ h4 {
   display: flex;
   flex-direction: column;
   margin-top: 1em;
-  box-shadow: 0 2px 1px 1px rgb(150, 146, 146);
+  box-shadow: 0 0px 1px 1px rgb(150, 146, 146);
 }
 
-.footer-links p {
+Link,
+a {
   text-decoration-line: none;
 }
