@@ -120,7 +120,10 @@ const Register = () => {
         </Col>
         <h4 className="mb-3 text-center w-100"> Registrati</h4>
 
-        <Form onSubmit={handleSubmit} className="p-5 mx-auto border rounded-2">
+        <Form
+          onSubmit={handleSubmit}
+          className="formBox p-5 mx-auto border rounded-2"
+        >
           <Form.Group className="mb-3" controlId="formBasicName">
             <Form.Label>
               Username:

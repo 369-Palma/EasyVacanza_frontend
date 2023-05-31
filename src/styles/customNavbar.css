@@ -1,12 +1,8 @@
 .navbar {
   padding-top: 0;
   background-color: #9cbfe5d6;
-  /* background-color: #fefefe13; */
 }
 
-/* .navbar ::after {
-  background-color: #0aa9ac;
-} */
 #navLinks .nav-link {
   margin-right: 30px;
 }

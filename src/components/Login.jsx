@@ -46,10 +46,7 @@ const Login = ({ setToken }) => {
           withCredentials: true,
         }
       );
-      // console.log(response.data);
-      // console.log(response.data.accessToken);
       setToken(response.data.accessToken);
-      //console.log(JSON.stringify(response));
 
       setSuccess(true);
       navigate("/dashboard");
@@ -63,7 +60,6 @@ const Login = ({ setToken }) => {
       } else {
         setErrMsg("Il login non è andato a buon fine!");
       }
-      //errRef.current.focus();
     }
   };
 
@@ -84,7 +80,10 @@ const Login = ({ setToken }) => {
         </Col>
         <h4 className="mb-3 text-center w-100"> Sign in </h4>
 
-        <Form onSubmit={handleSubmit} className="p-5 mx-auto border rounded-2">
+        <Form
+          onSubmit={handleSubmit}
+          className="formBox p-5 mx-auto border rounded-2"
+        >
           <Form.Group className="mb-3" controlId="formUsername">
             <Form.Label>Username:</Form.Label>
             <Form.Control
@@ -107,9 +106,6 @@ const Login = ({ setToken }) => {
               value={password}
             />
           </Form.Group>
-          {/* <Form.Group className="mb-3" controlId="formCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
-          </Form.Group> */}
           <Button
             className="bottone mt-3"
             id="submit"
