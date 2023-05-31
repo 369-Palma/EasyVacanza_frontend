@@ -23,7 +23,7 @@ const TuttiViaggi = () => {
 
   return (
     <>
-      <CustomNavbar className="mynavbar" claim="Were dreams come true!" />
+      <CustomNavbar className="mynavbar" claim="Where dreams come true!" />
       <Container className="my-auto">
         <Row className="justify-content-center ">
           <h2 className="margineH2 ">

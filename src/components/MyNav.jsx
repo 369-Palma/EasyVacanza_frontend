@@ -1,6 +1,6 @@
-import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-
+import "../styles/customNavbar.css";
 const MyNav = ({ claim }) => {
   const location = useLocation();
 
@@ -8,9 +8,8 @@ const MyNav = ({ claim }) => {
     <Navbar
       collapseOnSelect
       expand="lg"
-      bg="info"
       variant="light"
-      /* fixed="top" */
+      fixed="top"
       className="navbar m-0 h-auto"
     >
       <Container className="d-flex justify-content-between w-100 mx-1.5">

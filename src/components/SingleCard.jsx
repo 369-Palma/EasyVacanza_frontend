@@ -17,7 +17,7 @@ const SingleCard = (props) => {
         />
       </Link>
       <Card.Body>
-        <Card.Title>{data?.citta}</Card.Title>
+        <Card.Title className="stileFamily">{data?.citta}</Card.Title>
         <Card.Text>{data?.descrizione}</Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
