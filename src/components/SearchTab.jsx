@@ -1,5 +1,5 @@
 import "../styles/searchTab.css";
-import { Container, Col, Form } from "react-bootstrap";
+import { Container, Row, Col, Form } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import axios from "../api/axios";
 import "../styles/home.css";
@@ -93,25 +93,26 @@ const SearchTab = () => {
           </div>
         </Container>
       </section>
-
-      {data && data.length === 1 && showSingleCard && (
-        <Col
-          xs={4}
-          className="cardSingola sx-justify-content-center mx-auto my-3 text-md-center"
-        >
-          <SingleCard data={data[0]} />
-        </Col>
-      )}
-      {data && data?.length > 1 && !showSingleCard ? (
-        <Col
-          xs={6}
-          className="justify-content-center mx-auto my-3 text-md-center"
-        >
-          <Carosello data={data} />
-        </Col>
-      ) : (
-        <Col className="d-none"></Col>
-      )}
+      <Row className="offerta">
+        {data && data.length === 1 && showSingleCard && (
+          <Col
+            xs={4}
+            className="cardSingola sx-justify-content-center mx-auto my-3 text-md-center"
+          >
+            <SingleCard data={data[0]} />
+          </Col>
+        )}
+        {data && data?.length > 1 && !showSingleCard ? (
+          <Col
+            xs={6}
+            className="justify-content-center mx-auto my-3 text-md-center"
+          >
+            <Carosello data={data} />
+          </Col>
+        ) : (
+          <Col className="d-none"></Col>
+        )}
+      </Row>
     </>
   );
 };

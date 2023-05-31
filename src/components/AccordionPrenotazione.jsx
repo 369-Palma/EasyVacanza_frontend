@@ -34,9 +34,7 @@ const AccordionPrenotazione = ({
       );
       console.log("risposta ok");
       setData(response.data);
-      console.log(response.data);
-      console.log(response.data?.vacanza?.attivita[0].attivita);
-      console.log(response.data?.vacanza?.attivita[0].difficolta);
+      //console.log(response.data);
     } catch (error) {
       if (!error?.response) {
         console.log("C'è stato un errore nel contattare il server", error);
@@ -46,9 +44,6 @@ const AccordionPrenotazione = ({
 
   useEffect(() => {
     getPrenotazione();
-    console.log(prenotazioni[0]?.vacanza?.citta);
-    console.log(data?.prenotazioni[0]?.vacanza?.citta);
-    console.log(data);
   }, []);
 
   //per invio email
@@ -61,7 +56,9 @@ const AccordionPrenotazione = ({
         from_name: "Easy Vacanza",
         subject: "Dettagli della tua prenotazione",
         data: data,
+        attivita: data.vacanza.attivita[0].attivita,
         accodion: accodion,
+        difficolta: data.vacanza.attivita[0].difficolta,
         prenotazioni,
       };
       await emailjs.send("service_uf2isy6", "template_bzx7lll", templateParams);

@@ -15,7 +15,7 @@ const BookingForm = ({ selectedVacanza, token }) => {
       {
         numeroprenotazione: 0,
         dataprenotazione: "",
-        numerospiti: 0,
+        numerospiti: 1,
         stato: "IN_ELABORAZIONE",
         vacanza: selectedVacanza,
       },

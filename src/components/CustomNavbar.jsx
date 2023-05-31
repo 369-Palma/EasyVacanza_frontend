@@ -19,7 +19,7 @@ const CustomNavbar = ({ claim }) => {
         <Link to="/" className="navbar-brand">
           <strong> EasyVacanza</strong> - {claim}
         </Link>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        {/* <Navbar.Toggle aria-controls="responsive-navbar-nav" /> */}
         <Navbar.Collapse
           id="responsive-navbar-nav"
           className="d-flex align-items-end"

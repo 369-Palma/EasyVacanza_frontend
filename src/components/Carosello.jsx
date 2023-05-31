@@ -1,3 +1,4 @@
+import "../styles/singleCard.css";
 import { Carousel } from "react-bootstrap";
 import { useState } from "react";
 import SingleCard from "./SingleCard";
@@ -10,7 +11,7 @@ const Carosello = ({ data }) => {
   };
 
   return (
-    <Carousel activeIndex={index} onSelect={handleSelect}>
+    <Carousel className="offerta" activeIndex={index} onSelect={handleSelect}>
       {data?.map((item) => (
         <Carousel.Item key={item.id}>
           <SingleCard data={item} />

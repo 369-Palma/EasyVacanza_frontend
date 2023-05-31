@@ -107,7 +107,7 @@ const Register = () => {
     <>
       <CustomNavbar claim="Accedi alla tua area privata!" />
 
-      <Col md={6} className="authForm">
+      <Col xs={12} className="authForm">
         <p
           ref={errRef}
           className={errMsg ? "errMsg" : "offscreen"}
@@ -121,9 +121,9 @@ const Register = () => {
             oppure registrati qui.
           </p>
         </Col>
-        <h4 className="ms-5 mb-3"> Registrati</h4>
+        <h4 className="mb-3 text-center w-100"> Registrati</h4>
 
-        <Form onSubmit={handleSubmit} className="p-3">
+        <Form onSubmit={handleSubmit} className="p-5 mx-auto border rounded-2">
           <Form.Group className="mb-3" controlId="formBasicName">
             <Form.Label>
               Username:
