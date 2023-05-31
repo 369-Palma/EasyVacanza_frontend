@@ -93,10 +93,10 @@ const SearchTab = () => {
           </div>
         </Container>
       </section>
-      <Row className="offerta">
+      <Row className="offerta mx-auto">
         {data && data.length === 1 && showSingleCard && (
           <Col
-            xs={4}
+            xs={8}
             className="cardSingola sx-justify-content-center mx-auto my-3 text-md-center"
           >
             <SingleCard data={data[0]} />
@@ -104,7 +104,8 @@ const SearchTab = () => {
         )}
         {data && data?.length > 1 && !showSingleCard ? (
           <Col
-            xs={6}
+            xs={11}
+            md={9}
             className="justify-content-center mx-auto my-3 text-md-center"
           >
             <Carosello data={data} />

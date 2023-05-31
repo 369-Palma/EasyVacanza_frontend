@@ -149,7 +149,7 @@ const BookingForm = ({ selectedVacanza, token }) => {
 
   return (
     <>
-      <MyNav />
+      {/* <MyNav /> */}
       {success && idCliente ? (
         <>
           <AccordionPrenotazione
@@ -165,7 +165,7 @@ const BookingForm = ({ selectedVacanza, token }) => {
       ) : (
         <>
           <Container>
-            <Row className="justify-content-center  mt-5">
+            <Row className="justify-content-center">
               <Col xs={12} md={6}>
                 <h2 className="text-center">Prenota la tua vacanza:</h2>
                 <Form onSubmit={handleSubmit}>

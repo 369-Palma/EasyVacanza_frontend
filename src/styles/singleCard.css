@@ -3,3 +3,12 @@
   min-height: 400px;
   max-height: 450px;
 }
+.bottone {
+  background: rgb(18, 131, 27);
+  background: linear-gradient(
+    31deg,
+    rgba(18, 131, 27, 0.7820378151260504) 0%,
+    rgba(29, 222, 253, 1) 79%,
+    rgba(232, 206, 170, 0.4234943977591037) 100%
+  );
+}

@@ -1,7 +1,20 @@
+.navbar ::before {
+  padding-top: 0;
+  background-color: #fefefe13;
+}
+
+.navbar ::after {
+  background-color: #0aa9ac;
+}
 #navLinks .nav-link {
   margin-right: 30px;
 }
 #navLinks .nav-link:hover {
   transform: scale(1.2);
   font-weight: bold;
+}
+
+.welcomeUser {
+  font-weight: bold;
+  font-size: small;
 }

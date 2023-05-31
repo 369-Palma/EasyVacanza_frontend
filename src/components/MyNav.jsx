@@ -10,14 +10,14 @@ const MyNav = ({ claim }) => {
       expand="lg"
       bg="info"
       variant="light"
-      fixed="top"
-      className="m-0 h-auto"
+      /* fixed="top" */
+      className="navbar m-0 h-auto"
     >
       <Container className="d-flex justify-content-between w-100 mx-1.5">
         <Link to="/" className="navbar-brand">
           <strong> EasyVacanza</strong>
         </Link>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+
         <Navbar.Collapse
           id="responsive-navbar-nav"
           className="d-flex align-items-end"
@@ -57,7 +57,7 @@ const MyNav = ({ claim }) => {
             >
               Logout
             </Link>
-            <span> Welcome user!</span>
+            <span className="ps-0 small welcomeUser"> Welcome user!</span>
           </Nav>
         </Navbar.Collapse>
       </Container>

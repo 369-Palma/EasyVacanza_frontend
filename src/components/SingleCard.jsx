@@ -29,7 +29,7 @@ const SingleCard = (props) => {
         <ListGroup.Item> {data?.prezzo} €</ListGroup.Item>
       </ListGroup>
       <Button
-        className="bottone bg-info text-primary fs-6"
+        className="bottone text-light text-primary fs-6"
         onClick={() => navigate("/details/" + data.id)}
       >
         DETTAGLI
