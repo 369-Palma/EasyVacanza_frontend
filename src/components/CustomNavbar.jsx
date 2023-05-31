@@ -12,7 +12,7 @@ const CustomNavbar = ({ claim }) => {
       expand="lg"
       variant="light"
       fixed="top"
-      className="navbar m-0 h-auto pt-0"
+      className="navbar m-0 h-auto pt-0 "
     >
       <Container className="d-flex justify-content-between w-100 mx-1.5">
         <Link to="/" className="navbar-brand">

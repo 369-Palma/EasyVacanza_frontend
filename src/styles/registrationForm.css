@@ -8,3 +8,11 @@
   font-weight: 700;
   font-size: large;
 }
+
+Link {
+  text-decoration-line: none;
+}
+
+.formBox {
+  box-shadow: 2px, 2px, 4px, 2px;
+}

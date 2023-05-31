@@ -1,3 +1,4 @@
+import "../styles/dashboard.css";
 import { Row, Col, Accordion, Button } from "react-bootstrap";
 import { faFaceSmileWink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -34,7 +35,6 @@ const AccordionPrenotazione = ({
       );
       console.log("risposta ok");
       setData(response.data);
-      //console.log(response.data);
     } catch (error) {
       if (!error?.response) {
         console.log("C'è stato un errore nel contattare il server", error);
@@ -72,7 +72,17 @@ const AccordionPrenotazione = ({
   return (
     <Row>
       <h2> Prenotazione avvenuta con successo!</h2>
-      <Col>
+      <Col xs={12}>
+        <h6>
+          {" "}
+          Clicca per ricevere il dettaglio della tua prenotazione al tuo
+          indirizzo email.{" "}
+        </h6>
+        <Button className="bottone" onClick={sendEmail}>
+          Inviami il dettaglio
+        </Button>
+      </Col>
+      <Col xs={12}>
         {prenotazioni && prenotazioni?.length > 0 ? (
           <Accordion defaultActiveKey="0" flush>
             <Accordion.Item eventKey="0">
@@ -84,8 +94,10 @@ const AccordionPrenotazione = ({
                     {" "}
                     {nome} {cognome}
                   </strong>
-                  , grazie per aver scelto Easy Vacanza! Ecco i dettagli della
-                  tua prenotazione.
+                  ,
+                  <br />
+                  grazie per aver scelto Easy Vacanza! <br />
+                  Ecco i dettagli della tua prenotazione.
                   <br />
                   Il tuo codice di prenotazione è:
                   <strong> {data?.numeroprenotazione}</strong>
@@ -132,14 +144,6 @@ const AccordionPrenotazione = ({
         ) : (
           <p>Non ci sono prenotazioni.</p>
         )}
-      </Col>
-      <Col>
-        <h3>
-          {" "}
-          Clicca per ricevere il dettaglio della tua prenotazione al tuo
-          indirizzo email.{" "}
-        </h3>
-        <Button onClick={sendEmail}>Inviami il dettaglio</Button>
       </Col>
     </Row>
   );

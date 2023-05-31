@@ -17,3 +17,6 @@
   bottom: 0;
   z-index: 1;
 }
+Link {
+  text-decoration-line: none;
+}

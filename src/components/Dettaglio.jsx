@@ -47,8 +47,8 @@ const Dettaglio = ({ selectedVacanza, updateSelectedVacanza }) => {
     <>
       <CustomNav className="mynavbar" claim="Scopri di più" />
       <Container>
-        <Row className=" cardVacanza flex-row">
-          <Col className="h-25">
+        <Row className="cardVacanza flex-row ">
+          <Col sx={12} md={8} lg={6} className="h-25 my-auto">
             <img
               className="coverpic w-100"
               src={data?.immagineurl}
@@ -57,15 +57,16 @@ const Dettaglio = ({ selectedVacanza, updateSelectedVacanza }) => {
           </Col>
 
           <Col>
-            <h1>
+            <h1 className="mx-auto my-3">
               Visita <strong>{data?.citta}</strong>
             </h1>
-            <h3>{data?.descrizione}</h3>
+            <h3 className="mb-3">{data?.descrizione}</h3>
             <p>
               {" "}
-              Dal {data?.datainizio} al {data?.datafine} presso{" "}
-              {data?.indirizzo}. <br />
-              Alloggerai presso un{" "}
+              Dal <span className="minuscolo">{data?.datainizio}</span> al{" "}
+              <span className="minuscolo"> {data?.datafine}</span> presso{" "}
+              <span className="minuscolo"> {data?.indirizzo}</span>. <br />
+              Alloggerai presso il nostro
               <span className="minuscolo"> {data?.alloggio} </span>. <br />
               Riesci già a sentire il profumo della {data?.tipoluogo}? Prenota
               subito!
@@ -75,7 +76,7 @@ const Dettaglio = ({ selectedVacanza, updateSelectedVacanza }) => {
             </Button>
           </Col>
           <Row className="flex-column">
-            <Col>
+            <Col className="my-3">
               <h2>
                 Attività proposta:{" "}
                 {/* <strong> {data?.attivita[0].attivita}</strong> */}
@@ -84,8 +85,8 @@ const Dettaglio = ({ selectedVacanza, updateSelectedVacanza }) => {
               <p>{attivita[0]?.descrizione}.</p>
             </Col>
             <Col>
-              <h3> Cosa dicono i nostri clienti?</h3>
-              <ListGroup>
+              <h3 className="my-3"> Cosa dicono i nostri clienti?</h3>
+              <ListGroup className="mb-5">
                 {testimonianze.length > 0 ? (
                   testimonianze.map((test) => (
                     <ListGroup.Item key={`feedback-${test.id}`}>

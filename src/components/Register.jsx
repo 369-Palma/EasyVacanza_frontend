@@ -105,7 +105,7 @@ const Register = () => {
   //REGISTRATION FORM
   return (
     <>
-      <CustomNavbar claim="Accedi alla tua area privata!" />
+      <CustomNavbar claim="Registrati qui!" />
 
       <Col xs={12} className="authForm">
         <p
@@ -116,10 +116,7 @@ const Register = () => {
           {errMsg}
         </p>
         <Col className="titolo mx-auto">
-          <p className="ms-5 ">
-            Per prenotare il tuo pacchetto vacanza accedi alla tua area privata
-            oppure registrati qui.
-          </p>
+          <p>Per prenotare il tuo pacchetto vacanza</p>
         </Col>
         <h4 className="mb-3 text-center w-100"> Registrati</h4>
 
@@ -203,7 +200,7 @@ const Register = () => {
           {/* PASSWORD */}
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>
-              Password
+              Password:
               <span className={validPassword ? "valid" : "d-none"}>
                 <FontAwesomeIcon icon={faCheck} style={{ color: "#00ff00" }} />
               </span>
@@ -249,7 +246,7 @@ const Register = () => {
           {/* METCHED PASSWORD */}
           <Form.Group className="mb-3" controlId="form">
             <Form.Label>
-              Conferma Password
+              Conferma Password:
               <span className={validMatch && matchPwd ? "valid" : "d-none"}>
                 <FontAwesomeIcon icon={faCheck} style={{ color: "#00ff00" }} />
               </span>
@@ -291,12 +288,13 @@ const Register = () => {
             }
             variant="primary"
             type="button "
+            className="bottone"
           >
             REGISTRAMI
           </Button>
         </Form>
         <Col className="ms-5">
-          <p className="mt-4">
+          <p className="mt-3 mx-auto">
             Hai già un account? <br />
             <Link to="/login">Accedi qui </Link>
           </p>

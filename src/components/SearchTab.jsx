@@ -93,7 +93,7 @@ const SearchTab = () => {
           </div>
         </Container>
       </section>
-      <Row className="offerta mx-auto">
+      <Row className="offerta mx-auto my-auto">
         {data && data.length === 1 && showSingleCard && (
           <Col
             xs={8}

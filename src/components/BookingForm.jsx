@@ -168,7 +168,7 @@ const BookingForm = ({ selectedVacanza, token }) => {
             <Row className="justify-content-center">
               <Col xs={12} md={6}>
                 <h2 className="text-center">Prenota la tua vacanza:</h2>
-                <Form onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmit} className="mb-5">
                   <Form.Group className="mb-3">
                     <Form.Label>Nome</Form.Label>
                     <Form.Control
@@ -266,7 +266,7 @@ const BookingForm = ({ selectedVacanza, token }) => {
                   <Button
                     variant="primary"
                     type="submit"
-                    className="d-block mx-auto"
+                    className="d-block mx-auto my-4"
                   >
                     Submit
                   </Button>

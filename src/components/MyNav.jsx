@@ -15,7 +15,7 @@ const MyNav = ({ claim }) => {
     >
       <Container className="d-flex justify-content-between w-100 mx-1.5">
         <Link to="/" className="navbar-brand">
-          <strong> EasyVacanza</strong>
+          <strong> EasyVacanza</strong> - Welcome!
         </Link>
 
         <Navbar.Collapse
@@ -57,7 +57,6 @@ const MyNav = ({ claim }) => {
             >
               Logout
             </Link>
-            <span className="ps-0 small welcomeUser"> Welcome user!</span>
           </Nav>
         </Navbar.Collapse>
       </Container>

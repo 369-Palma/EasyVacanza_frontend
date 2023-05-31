@@ -24,9 +24,12 @@ const TuttiViaggi = () => {
   return (
     <>
       <CustomNavbar className="mynavbar" claim="Were dreams come true!" />
-      <Container className="mt-5">
-        <Row className="justify-content-center">
-          <h2> Lasciati ispirare dalle nostre offerte speciali!</h2>
+      <Container className="my-auto">
+        <Row className="justify-content-center ">
+          <h2 className="mt-4">
+            {" "}
+            Lasciati ispirare dalle nostre offerte speciali!
+          </h2>
           {data?.map((content) => (
             <Col xs={12} md={6} lg={4} key={content.id}>
               <SingleCard data={content} />
