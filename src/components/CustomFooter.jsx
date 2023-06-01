@@ -107,6 +107,7 @@ function CustomFooter() {
                 </Link>
               </p>
             </Col>
+            {/* Section: Links */}
 
             <Col md={4} lg={3} xl={3} className="mx-auto mb-md-0 mb-4">
               <h6 className="text-uppercase fw-bold mb-4">Contatti</h6>
@@ -127,7 +128,9 @@ function CustomFooter() {
 
           <Row>
             <Col className=" col-12 text-xs-center text-lg-left mb-2 mt-2 copyright">
-              <p>EasyVacanza &copy; {new Date().getFullYear()}</p>
+              <small style={{ fontStyle: "italic" }}>
+                EasyVacanza &copy; {new Date().getFullYear()}
+              </small>
             </Col>
           </Row>
         </Container>

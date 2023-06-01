@@ -5,19 +5,30 @@ import axios from "../api/axios";
 import CustomNavbar from "./CustomNavbar";
 import "../styles/home.css";
 const TuttiViaggi = () => {
-  const urlAll = "/vacanze/pageable?page=2&size=6";
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const resp = await axios.get(urlAll);
-        setData(resp.data.content);
-        console.log(resp.data.content);
-      } catch (error) {
-        console.error("Errore durante la richiesta: ", error);
+  const fetchData = async () => {
+    try {
+      const resp = await axios.get(`/vacanze`);
+
+      let listaOfferte = resp.data;
+
+      let listaShowOfferte = [];
+      let numSelezionati = new Set();
+      while (numSelezionati.size < 6) {
+        let numRandom = Math.floor(Math.random() * listaOfferte.length);
+        if (!numSelezionati.has(numRandom)) {
+          numSelezionati.add(numRandom);
+          let offertaRandom = listaOfferte[numRandom];
+          listaShowOfferte.push(offertaRandom);
+        }
       }
-    };
+      setData(listaShowOfferte);
+    } catch (error) {
+      console.error("Errore durante la richiesta: ", error);
+    }
+  };
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -30,9 +41,9 @@ const TuttiViaggi = () => {
             {" "}
             Lasciati ispirare dalle nostre offerte speciali!
           </h2>
-          {data?.map((content) => (
-            <Col xs={12} md={6} lg={4} key={content.id}>
-              <SingleCard data={content} />
+          {data?.map((data) => (
+            <Col xs={12} md={6} lg={4} key={data?.id}>
+              <SingleCard data={data} />
             </Col>
           ))}
         </Row>
