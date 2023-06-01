@@ -1,6 +1,9 @@
 # EasyVacanza - Sito web di prenotazione vacanze
 
-L'estate sta arrivando e inizi a sognare la tua prossima vacanza? EasyVacanza realizza i tuoi sogni. Con EasyVacanza puoi trovare e prenotare facilmente la tua vacanza ideale, garantendo un'esperienza memorabile e piacevole.
+L'estate sta arrivando e inizi a sognare la tua prossima vacanza? EasyVacanza realizza i tuoi sogni.
+
+Con EasyVacanza puoi trovare e prenotare facilmente la tua vacanza ideale, garantendo un'esperienza memorabile e piacevole.
+
 
 ## Informazioni
 
@@ -19,12 +22,13 @@ Funzionalità e vantaggi
 ## Tecnologie utilizzate
 
 EasyVacanza utilizza tecnologie all'avanguardia per offrire un'interfaccia utente moderna e coinvolgente:
+
 • Frontend: React, React Bootstrap, HTML5, CSS
+
 • Backend: Spring Boot, PostgreSQL
+
 • Simulazione dei dati: modulo Faker e libreria OkHttp per generare dati simulati restituiti dalle API.
 
-## Approfondimenti
-Puoi trovare ulteriori dettagli nella README del mio progetto backend a questo link: https://github.com/369-Palma/Capstone-project.git
 
 ## Installazione
 Per visualizzare e interagire con questo progetto è necessario clonare il progetto backend di EasyVacanza (puoi seguire le istruzioni presenti nel file README del progetto che trovi a questo link: https://github.com/369-Palma/Capstone-project.git ). Una volta mandato in esecuzione il progetto backend puoi seguire questi passaggi per clonare, visualizzare e interagire con il progetto EasyVacanza:
@@ -39,10 +43,12 @@ Per visualizzare e interagire con questo progetto è necessario clonare il proge
 4. Una volta completato il clone, naviga nella directory del progetto appena clonato usando il comando cd nomeprogetto.
 Assicurati di avere Node.js installato sul tuo sistema. Puoi verificarlo eseguendo node -v nel terminale. Se Node.js non è installato, puoi scaricarlo e installarlo dal sito ufficiale di Node.js (https://nodejs.org).
 
-5. Nel terminale, esegui il comando ### npm install 
+5. Nel terminale, esegui il comando 
+### npm install 
   per installare tutte le dipendenze del progetto indicate nel file package.json. 
   
-6. Una volta completata l'installazione delle dipendenze, esegui il comando ### npm start
+6. Una volta completata l'installazione delle dipendenze, esegui il comando 
+### npm start
   per avviare l'applicazione React.
  
 L'applicazione verrà avviata e sarà disponibile all'indirizzo http://localhost:3000 nel tuo browser.
