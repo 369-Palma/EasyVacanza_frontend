@@ -51,3 +51,7 @@ Link,
 a {
   text-decoration-line: none;
 }
+
+input {
+  max-width: 90vw;
+}
