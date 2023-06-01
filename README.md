@@ -30,13 +30,13 @@ EasyVacanza utilizza tecnologie all'avanguardia per offrire un'interfaccia utent
 
 
 ## Installazione
-Per visualizzare e interagire con questo progetto è necessario clonare il progetto backend di EasyVacanza (puoi seguire le istruzioni presenti nel file README del progetto che trovi a questo link: https://github.com/369-Palma/Capstone-project.git ). Una volta mandato in esecuzione il progetto backend puoi seguire questi passaggi per clonare, visualizzare e interagire con il progetto EasyVacanza:
+Per visualizzare e interagire con questo progetto è necessario clonare il progetto backend di EasyVacanza (puoi seguire le istruzioni presenti nel file README del progetto che trovi a questo link: https://github.com/369-Palma/EasyVacanza_backend.git. Una volta mandato in esecuzione il progetto backend puoi seguire questi passaggi per clonare, visualizzare e interagire con il progetto EasyVacanza:
 
 - Aprire il terminale sul tuo computer.
 
 - Navigare nella directory in cui desideri clonare il progetto.
 
-- Eseguire il comando git clone https://github.com/369-Palma/easyvacanzareact.git
+- Eseguire il comando git clone https://github.com/369-Palma/EasyVacanza_frontend.git
    per clonare il repository del progetto. 
    
 - Navigare nella directory del progetto appena clonato usando il comando cd nomeprogetto.
