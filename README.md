@@ -37,18 +37,16 @@ Per visualizzare e interagire con questo progetto è necessario clonare il proge
 
 2. Naviga nella directory in cui desideri clonare il progetto.
 
-3. Esegui il comando ### git clone https://github.com/369-Palma/easyvacanzareact.git
+3. Esegui il comando git clone https://github.com/369-Palma/easyvacanzareact.git
    per clonare il repository del progetto. 
    
 4. Una volta completato il clone, naviga nella directory del progetto appena clonato usando il comando cd nomeprogetto.
 Assicurati di avere Node.js installato sul tuo sistema. Puoi verificarlo eseguendo node -v nel terminale. Se Node.js non è installato, puoi scaricarlo e installarlo dal sito ufficiale di Node.js (https://nodejs.org).
 
-5. Nel terminale, esegui il comando 
-### npm install 
+5. Nel terminale, esegui il comando npm install 
   per installare tutte le dipendenze del progetto indicate nel file package.json. 
   
-6. Una volta completata l'installazione delle dipendenze, esegui il comando 
-### npm start
+6. Una volta completata l'installazione delle dipendenze, esegui il comando npm start
   per avviare l'applicazione React.
  
 L'applicazione verrà avviata e sarà disponibile all'indirizzo http://localhost:3000 nel tuo browser.
