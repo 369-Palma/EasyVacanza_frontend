@@ -56,7 +56,7 @@ const Dettaglio = ({ selectedVacanza, updateSelectedVacanza }) => {
             />
           </Col>
 
-          <Col>
+          <Col className="ps-4">
             <h1 className="mx-auto my-3">
               Visita <strong>{data?.citta}</strong>
             </h1>
