@@ -17,7 +17,7 @@ const SingleCard = (props) => {
         />
       </Link>
       <Card.Body>
-        <Card.Title>{data?.citta}</Card.Title>
+        <Card.Title className="stileFamily">{data?.citta}</Card.Title>
         <Card.Text>{data?.descrizione}</Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
@@ -29,7 +29,7 @@ const SingleCard = (props) => {
         <ListGroup.Item> {data?.prezzo} €</ListGroup.Item>
       </ListGroup>
       <Button
-        className="bottone bg-info text-primary fs-6"
+        className="bottone text-light text-primary fs-6"
         onClick={() => navigate("/details/" + data.id)}
       >
         DETTAGLI

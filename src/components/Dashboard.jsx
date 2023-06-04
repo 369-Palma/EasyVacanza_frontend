@@ -3,7 +3,7 @@ import BookingForm from "./BookingForm";
 import MyNav from "./MyNav";
 import { Container, Row, Col } from "react-bootstrap";
 
-const Dashboard = () => {
+const Dashboard = ({ selectedVacanza, token }) => {
   return (
     <>
       <MyNav />
@@ -12,9 +12,8 @@ const Dashboard = () => {
       </section>
       <Container className="contenitoreP bg-light">
         <Row>
-          <h1> Prenota la tua vacanza </h1>
           <Col>
-            <BookingForm />
+            <BookingForm selectedVacanza={selectedVacanza} token={token} />
           </Col>
         </Row>
       </Container>

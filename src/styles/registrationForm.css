@@ -8,3 +8,15 @@
   font-weight: 700;
   font-size: large;
 }
+
+Link {
+  text-decoration-line: none;
+}
+
+.formBox {
+  box-shadow: rgba(25, 25, 25, 0.04) 0 0 1px 0, rgba(0, 0, 0, 0.1) 0 3px 4px 0;
+}
+
+.margineH2 {
+  margin-top: 5rem;
+}

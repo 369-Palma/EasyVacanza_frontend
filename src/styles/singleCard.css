@@ -3,3 +3,16 @@
   min-height: 400px;
   max-height: 450px;
 }
+.bottone {
+  background: rgb(18, 131, 27);
+  background: linear-gradient(
+    31deg,
+    rgba(18, 131, 27, 0.7820378151260504) 0%,
+    rgb(29 158 253) 79%,
+    rgba(232, 206, 170, 0.4234943977591037) 100%
+  );
+  font-weight: 500;
+}
+.stileFamily {
+  font-family: "Pacifico", cursive;
+}

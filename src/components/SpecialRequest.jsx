@@ -1,56 +1,79 @@
-import { Form, Button } from "react-bootstrap";
+import "../styles/registrationForm.css";
+import CustomNavbar from "./CustomNavbar";
+import { Form, Button, Col } from "react-bootstrap";
+import emailjs from "emailjs-com";
+import { toast } from "react-toastify";
 
 const SpecialRequest = () => {
+  const inviaEmail = (e) => {
+    e.preventDefault();
+    emailjs
+      .sendForm(
+        `service_uf2isy6`,
+        `template_j8faovd`,
+        e.target,
+        `3cG7_5IGDFHm5po4E`
+      )
+      .then(
+        (result) => {
+          toast.success("Email inviata con successo");
+          console.log(result.text);
+        },
+        (error) => {
+          toast.error("Invio Email non riuscito");
+          console.log(error.text);
+        }
+      );
+    e.target.reset();
+  };
+
   return (
-    <form action="example-server.com">
-      <fieldset>
-        <legend>Contact me</legend>
-        <div class="form-control">
-          <label for="name">Name</label>
-          <input type="name" id="name" placeholder="Enter your name" required />
-        </div>
+    <>
+      <CustomNavbar className="mynavbar" claim="Scrivici!" />
+      <Col className="titolo mt-5 mx-auto">
+        <h2 className="margineH2 text-center w-100"> Contattaci </h2>
+      </Col>
 
-        <div class="form-control">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Enter your email"
+      <Form
+        onSubmit={inviaEmail}
+        className="formBox p-5 mx-auto border rounded-2"
+      >
+        <Form.Group className="mb-3" controlId="formUsername">
+          <Form.Label>Nome:</Form.Label>
+          <Form.Control
+            type="text"
+            name="name"
             required
+            placeholder="Inserisci il tuo nome"
+            autoComplete="off"
           />
-        </div>
-
-        <div class="form-control">
-          <label for="message">Message</label>
-          <textarea
-            id="message"
-            cols="30"
-            rows="10"
-            placeholder="Enter your message"
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formUsername">
+          <Form.Label>Email:</Form.Label>
+          <Form.Control
+            type="email"
+            name="email"
             required
-          ></textarea>
-        </div>
-        <input type="submit" value="Send" class="submit-btn" />
-      </fieldset>
-    </form>
+            placeholder="Inserisci la tua email"
+            autoComplete="off"
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+          <Form.Label>Messaggio:</Form.Label>
+          <Form.Control
+            type="textarea"
+            name="message"
+            required
+            placeholder="Scrivi qui il tuo messaggio"
+            autoComplete="off"
+            rows={5}
+          />
+        </Form.Group>
+        <Button className="bottone mt-3" variant="primary" type="submit">
+          INVIA
+        </Button>
+      </Form>
+    </>
   );
-  {
-    /* <Form>
-      <Form.Group className="mb-3">
-        <Form.Label>Richieste Speciali</Form.Label>
-        <Form.Control
-          type="text"
-          as="textarea"
-          rows={5}
-          placeholder="Domande, richieste per bambini, attrezzature..."
-        />
-      </Form.Group>
-      <Button variant="primary" type="submit" className="d-block mx-auto">
-        Submit
-      </Button>
-    </Form> 
-  );*/
-  }
 };
-
 export default SpecialRequest;

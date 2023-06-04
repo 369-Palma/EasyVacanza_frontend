@@ -1,6 +1,6 @@
-import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-
+import "../styles/customNavbar.css";
 const MyNav = ({ claim }) => {
   const location = useLocation();
 
@@ -8,16 +8,15 @@ const MyNav = ({ claim }) => {
     <Navbar
       collapseOnSelect
       expand="lg"
-      bg="info"
       variant="light"
       fixed="top"
-      className="m-0 h-auto"
+      className="navbar m-0 h-auto"
     >
       <Container className="d-flex justify-content-between w-100 mx-1.5">
         <Link to="/" className="navbar-brand">
-          <strong> EasyVacanza</strong>
+          <strong> EasyVacanza</strong> - Welcome!
         </Link>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+
         <Navbar.Collapse
           id="responsive-navbar-nav"
           className="d-flex align-items-end"
@@ -40,25 +39,6 @@ const MyNav = ({ claim }) => {
             >
               Prenota
             </Link>
-
-            {/*  <Link
-              className={`nav-link ${
-                location.pathname === "/offerte" ? "active" : ""
-              }`}
-              to="/offerte"
-            >
-              Offerte
-            </Link> */}
-
-            <Link
-              className={`nav-link ${
-                location.pathname === "/recensioni" ? "active" : ""
-              }`}
-              to="/recensioni"
-            >
-              Recensioni
-            </Link>
-
             <Link
               className={`nav-link ${
                 location.pathname === "/contatti" ? "active" : ""
@@ -76,7 +56,6 @@ const MyNav = ({ claim }) => {
             >
               Logout
             </Link>
-            <span> Welcome user!</span>
           </Nav>
         </Navbar.Collapse>
       </Container>

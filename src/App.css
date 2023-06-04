@@ -4,6 +4,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  /* font-family: "Roboto", sans-serif; */
 }
 
 span {
@@ -13,9 +14,10 @@ span {
   width: 100%;
   margin: 0;
   padding: 0;
+  font-family: "Roboto", sans-serif;
 }
 Form {
-  width: 300px;
+  max-width: 300px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -25,55 +27,31 @@ Form {
   padding: 0;
 }
 h2 {
-  margin-top: 2em;
-  text-align: center;
   padding-top: 1em;
   padding-bottom: 1em;
 }
+h1,
+h2,
 h4 {
-  margin-bottom: 2em;
-}
-
-#navLinks .nav-link {
-  margin-right: 30px;
-}
-#navLinks .nav-link:hover {
-  transform: scale(1.2);
-  font-weight: bold;
-}
-
-#searchTab {
-  padding-top: 2em;
-  border-radius: 0.6em;
-  width: 30em;
-  height: 1em;
-  text-align: center;
-  padding-bottom: 2em;
-  margin-top: 7em;
-  border-color: rgba(13, 202, 240, 1);
-  box-shadow: 0 1px 0px 1px rgb(2 2 2 / 70%);
+  font-family: "Playfair Display", serif;
 }
 .boxContainer {
   background-color: rgb(223 234 240);
   border-radius: 0.6em;
-  min-width: 400px;
+  min-width: 100px;
   min-height: 350px;
   max-width: 1695px;
   display: flex;
   flex-direction: column;
   margin-top: 1em;
-  box-shadow: 0 2px 1px 1px rgb(150, 146, 146);
+  box-shadow: 0 0px 1px 1px rgb(150, 146, 146);
 }
 
-/* .gradient-container {
-  background: rgb(17, 17, 205);
-  background: linear-gradient(
-    0deg,
-    rgb(209, 213, 5) 0%,
-    rgba(13, 202, 240, 1) 69%
-  );
-} */
-
-.footer-links p {
+Link,
+a {
   text-decoration-line: none;
+}
+
+input {
+  max-width: 90vw;
 }

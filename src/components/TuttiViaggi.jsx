@@ -1,37 +1,49 @@
-//import axios from "axios";
 import { Row, Col, Container } from "react-bootstrap";
 import SingleCard from "./SingleCard";
 import React, { useState, useEffect } from "react";
 import axios from "../api/axios";
 import CustomNavbar from "./CustomNavbar";
-
+import "../styles/home.css";
 const TuttiViaggi = () => {
-  const urlAll = "/vacanze/pageable?page=1&size=6";
-  //const urlAll = "/vacanze";
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const resp = await axios.get(urlAll);
-        setData(resp.data.content);
-        console.log(resp.data.content);
-      } catch (error) {
-        console.error("Errore durante la richiesta: ", error);
+  const fetchData = async () => {
+    try {
+      const resp = await axios.get(`/vacanze`);
+
+      let listaOfferte = resp.data;
+
+      let listaShowOfferte = [];
+      let numSelezionati = new Set();
+      while (numSelezionati.size < 6) {
+        let numRandom = Math.floor(Math.random() * listaOfferte.length);
+        if (!numSelezionati.has(numRandom)) {
+          numSelezionati.add(numRandom);
+          let offertaRandom = listaOfferte[numRandom];
+          listaShowOfferte.push(offertaRandom);
+        }
       }
-    };
+      setData(listaShowOfferte);
+    } catch (error) {
+      console.error("Errore durante la richiesta: ", error);
+    }
+  };
+  useEffect(() => {
     fetchData();
   }, []);
 
   return (
     <>
-      <CustomNavbar className="mynavbar" claim="Were dreams come true!" />
-      <Container className="mt-5">
-        <Row className="justify-content-center">
-          <h2> Lasciati ispirare dalle nostre offerte speciali!</h2>
-          {data?.map((content) => (
-            <Col xs={6} md={4} key={content.id}>
-              <SingleCard data={content} />
+      <CustomNavbar className="mynavbar" claim="Where dreams come true!" />
+      <Container className="my-auto">
+        <Row className="justify-content-center ">
+          <h2 className="margineH2 ">
+            {" "}
+            Lasciati ispirare dalle nostre offerte speciali!
+          </h2>
+          {data?.map((data) => (
+            <Col xs={12} md={6} lg={4} key={data?.id}>
+              <SingleCard data={data} />
             </Col>
           ))}
         </Row>

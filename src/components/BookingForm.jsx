@@ -4,7 +4,8 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import axios from "../api/axios";
 import MyNav from "./MyNav";
 import AccordionPrenotazione from "./AccordionPrenotazione";
-const BookingForm = () => {
+
+const BookingForm = ({ selectedVacanza, token }) => {
   const [bookingData, setBookingData] = useState({
     nome: "",
     cognome: "",
@@ -14,9 +15,9 @@ const BookingForm = () => {
       {
         numeroprenotazione: 0,
         dataprenotazione: "",
-        numerospiti: 0,
+        numerospiti: 1,
         stato: "IN_ELABORAZIONE",
-        vacanza: {},
+        vacanza: selectedVacanza,
       },
     ],
     testimonianze: [],
@@ -24,46 +25,32 @@ const BookingForm = () => {
 
   const [idCliente, setIdCliente] = useState();
   const [success, setSuccess] = useState(false);
-  const [dataCliente, setDataCliente] = useState({});
+  const [data, setData] = useState({});
+  const [prenotazioni, setPrenotazioni] = useState([]);
+  const [accodion, setAccodion] = useState();
 
-  const urlGet = `/cliente/id/`;
   const urlPost = `/cliente`;
-  const token = `eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJwYWxtYWlhY29iZWxsaTkyQGdtYWlsLmNvbSIsImlhdCI6MTY4NTAwNDg2MiwiZXhwIjoxNjkyODk0MjYyfQ.ilGOQRgPFa545J3KDTMfpU7rCpLcSZviJUtGKqb1FZ6DJXD4G0ZcJGRRIi8oK-NE`;
 
   useEffect(() => {
-    if (idCliente) {
-      getCliente();
-      console.log("Nuovo valore di idCliente:", idCliente);
+    if (selectedVacanza) {
+      setBookingData({
+        ...bookingData,
+        prenotazioni: [
+          { ...bookingData.prenotazioni[0], vacanza: selectedVacanza },
+        ],
+      }); // Riprendi i dati della vacanza selezionata
     }
-  }, [idCliente]);
-
-  const getCliente = async function () {
-    try {
-      const response = await axios.get(urlGet + idCliente, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        withCredentials: true,
-      });
-
-      console.log(response.data);
-
-      setDataCliente(response.data);
-    } catch (error) {
-      if (!error?.response) {
-        console.log("C'è stato un errore nel contattare il server");
-      }
-    }
-  };
+  }, [selectedVacanza]);
 
   //funzione per settare il numero di prenotazione
   function generaCodice() {
-    const min = 1000000000; // Numero minimo di 10 cifre
-    const max = 9999999999; // Numero massimo di 10 cifre
+    const min = 1000000000;
+    const max = 9999999999;
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
   //funzione per settare la data di prenotazione corrente
+
   function getCurrentDate() {
     const date = new Date();
     const year = date.getFullYear();
@@ -74,12 +61,28 @@ const BookingForm = () => {
 
   // CAMBIO DI STATO
   const handleChange = (propertyName, propertyValue) => {
-    setBookingData({ ...bookingData, [propertyName]: propertyValue });
+    if (propertyName === "numerospiti") {
+      const updatedPrenotazioni = [
+        {
+          ...bookingData.prenotazioni[0],
+          numerospiti: propertyValue,
+        },
+      ];
+      setBookingData({ ...bookingData, prenotazioni: updatedPrenotazioni });
+    } else {
+      setBookingData({ ...bookingData, [propertyName]: propertyValue });
+    }
   };
 
   // Funzione per gestire la sottomissione del form
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Verifica se la vacanza selezionata è presente
+    if (!selectedVacanza) {
+      console.log("Errore: nessuna vacanza selezionata");
+      return;
+    }
 
     //conversione da stringa a intero del numero ospiti.
     const numerospitiInt = parseInt(
@@ -96,7 +99,7 @@ const BookingForm = () => {
     const ageInt = parseInt(bookingData.age, 10);
 
     if (isNaN(ageInt)) {
-      console.error("Il valore del campo etè non è valido.");
+      console.error("Il valore del campo età non è valido.");
       return;
     }
 
@@ -115,23 +118,30 @@ const BookingForm = () => {
       prenotazioni: [updatedPrenotazioni],
     };
 
+    console.log(token);
+
     try {
-      const response = await axios.post(urlPost, updatedBookingData, {
+      const postResp = await axios.post(urlPost, updatedBookingData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
         withCredentials: true,
       });
 
-      console.log(response.data);
+      console.log(postResp.data);
       setSuccess(true);
-      setIdCliente(response.data.id);
-      console.log(response.data.id);
+      setIdCliente(postResp.data.id);
+      setData(postResp.data);
+      console.log(postResp.data);
+      setPrenotazioni(postResp.data?.prenotazioni[0]);
+      console.log(postResp.data.prenotazioni[0]);
+      setAccodion(updatedBookingData);
+
       alert(
         `La tua richiesta è andata a buon fine. La prenotazione è stata creata con codice di prenotazione: ${updatedPrenotazioni.numeroprenotazione}`
       );
     } catch (error) {
-      if (!error?.response) {
+      if (!error?.postResp) {
         console.log("C'è stato un errore nel contattare il server");
       }
     }
@@ -139,18 +149,26 @@ const BookingForm = () => {
 
   return (
     <>
-      <MyNav />
+      {/* <MyNav /> */}
       {success && idCliente ? (
         <>
-          <AccordionPrenotazione />
+          <AccordionPrenotazione
+            nome={data.nome}
+            cognome={data.cognome}
+            prenotazioni={accodion.prenotazioni}
+            email={data.email}
+            token={token}
+            accodion={accodion}
+            //cliente={cliente}
+          />
         </>
       ) : (
         <>
           <Container>
-            <Row className="justify-content-center  mt-5">
+            <Row className="justify-content-center">
               <Col xs={12} md={6}>
                 <h2 className="text-center">Prenota la tua vacanza:</h2>
-                <Form onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmit} className="mb-5">
                   <Form.Group className="mb-3">
                     <Form.Label>Nome</Form.Label>
                     <Form.Control
@@ -173,7 +191,6 @@ const BookingForm = () => {
                       value={bookingData.cognome}
                       onChange={(e) => {
                         console.log(e.target.value);
-
                         handleChange("cognome", e.target.value);
                       }}
                     />
@@ -182,8 +199,8 @@ const BookingForm = () => {
                   <Form.Group className="mb-3">
                     <Form.Label>Età</Form.Label>
                     <Form.Control
-                      type="text"
-                      placeholder="Inserisci la tu età"
+                      type="number"
+                      placeholder="Inserisci la tua età"
                       value={bookingData.ageInt}
                       onChange={(e) => {
                         console.log(e.target.value);
@@ -207,10 +224,13 @@ const BookingForm = () => {
                   </Form.Group>
 
                   <Form.Group className="mb-3">
-                    <Form.Label>Numero di ospiti</Form.Label>
+                    <Form.Label className="w-min">Numero di ospiti</Form.Label>
                     <Form.Select
                       aria-label="Default select example"
-                      value={bookingData.prenotazioni[0].numerospiti}
+                      value={
+                        bookingData.prenotazioni?.length > 0 &&
+                        bookingData.prenotazioni[0].numerospiti
+                      }
                       onChange={(e) => {
                         console.log(e.target.value);
                         const updatedPrenotazioni = [
@@ -246,7 +266,7 @@ const BookingForm = () => {
                   <Button
                     variant="primary"
                     type="submit"
-                    className="d-block mx-auto"
+                    className="d-block mx-auto my-4"
                   >
                     Submit
                   </Button>
