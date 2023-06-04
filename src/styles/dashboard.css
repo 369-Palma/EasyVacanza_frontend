@@ -1,7 +1,8 @@
 .coverPrivate {
   position: relative;
   width: 100%;
-  height: 400px;
+  /* height: 400px; */
+  height: 60vh;
   display: flex;
   margin: auto;
   align-items: center;
@@ -10,8 +11,12 @@
 #overlayPrivate {
   position: absolute;
   width: 100%;
-  background: wheat url("../assets/img/viaggioontheroad.jpg") no-repeat center
-    center;
+  height: 100%;
+  /* background: wheat url("../assets/img/viaggioontheroad.jpg") no-repeat center
+    center; */
+  background: wheat
+    url("../assets/img/tramonto-via-orizzonte-autostrada-sfondo.jpg") no-repeat
+    center center;
   background-size: cover;
   top: 0;
   bottom: 0;

@@ -78,7 +78,7 @@ const AccordionPrenotazione = ({
           Clicca per ricevere il dettaglio della tua prenotazione al tuo
           indirizzo email.{" "}
         </h6>
-        <Button className="bottone" onClick={sendEmail}>
+        <Button className="bottone my-3" onClick={sendEmail}>
           Inviami il dettaglio
         </Button>
       </Col>
@@ -86,7 +86,10 @@ const AccordionPrenotazione = ({
         {prenotazioni && prenotazioni?.length > 0 ? (
           <Accordion defaultActiveKey="0" flush>
             <Accordion.Item eventKey="0">
-              <Accordion.Header>Dati della tua prenotazione</Accordion.Header>
+              <Accordion.Header className="fs-2 text-uppercase fw-bold">
+                {" "}
+                Dati della tua prenotazione
+              </Accordion.Header>
               <Accordion.Body>
                 <p>
                   Gentile
@@ -115,7 +118,7 @@ const AccordionPrenotazione = ({
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
-              <Accordion.Header>
+              <Accordion.Header className="fs-2 text-uppercase fw-bold">
                 Informazioni sul tuo pacchetto vacanza
               </Accordion.Header>
               <Accordion.Body>

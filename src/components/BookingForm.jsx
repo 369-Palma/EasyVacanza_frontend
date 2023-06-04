@@ -224,7 +224,7 @@ const BookingForm = ({ selectedVacanza, token }) => {
                   </Form.Group>
 
                   <Form.Group className="mb-3">
-                    <Form.Label>Numero di ospiti</Form.Label>
+                    <Form.Label className="w-min">Numero di ospiti</Form.Label>
                     <Form.Select
                       aria-label="Default select example"
                       value={
