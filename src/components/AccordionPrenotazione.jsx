@@ -71,8 +71,8 @@ const AccordionPrenotazione = ({
 
   return (
     <Row>
-      <h2> Prenotazione avvenuta con successo!</h2>
-      <Col xs={12}>
+      <h2 className="margineH2"> Prenotazione avvenuta con successo!</h2>
+      <Col xs={12} className="bloccoDettaglio">
         <h6>
           {" "}
           Clicca per ricevere il dettaglio della tua prenotazione al tuo
