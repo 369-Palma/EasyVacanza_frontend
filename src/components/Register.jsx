@@ -116,7 +116,7 @@ const Register = () => {
           {errMsg}
         </p>
         <Col className="titolo mx-auto">
-          <p>Per prenotare il tuo pacchetto vacanza</p>
+          <p>Per prenotare la tua vacanza</p>
         </Col>
         <h4 className="mb-3 text-center w-100"> Registrati</h4>
 

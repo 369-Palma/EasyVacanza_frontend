@@ -149,7 +149,7 @@ const BookingForm = ({ selectedVacanza, token }) => {
 
   return (
     <>
-      {/* <MyNav /> */}
+      <MyNav />
       {success && idCliente ? (
         <>
           <AccordionPrenotazione
@@ -159,12 +159,13 @@ const BookingForm = ({ selectedVacanza, token }) => {
             email={data.email}
             token={token}
             accodion={accodion}
+            className="marginetop"
             //cliente={cliente}
           />
         </>
       ) : (
         <>
-          <Container>
+          <Container className="marginetop">
             <Row className="justify-content-center">
               <Col xs={12} md={6}>
                 <h2 className="text-center">Prenota la tua vacanza:</h2>
@@ -266,7 +267,7 @@ const BookingForm = ({ selectedVacanza, token }) => {
                   <Button
                     variant="primary"
                     type="submit"
-                    className="d-block mx-auto my-4"
+                    className="bottone d-block mx-auto my-4"
                   >
                     Submit
                   </Button>

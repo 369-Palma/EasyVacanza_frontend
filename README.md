@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# EasyVacanza - Sito web di prenotazione vacanze
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+L'estate sta arrivando e inizi a sognare la tua prossima vacanza? EasyVacanza realizza i tuoi sogni.
 
-## Available Scripts
+Con EasyVacanza puoi trovare e prenotare facilmente la tua vacanza ideale, garantendo un'esperienza memorabile e piacevole.
 
-In the project directory, you can run:
 
-### `npm start`
+## Informazioni
+EasyVacanza è un sito web di prenotazione vacanze user-friendly che offre una piattaforma semplice e intuitiva per cercare, filtrare e prenotare la tua vacanza da sogno. Il sito fornisce una vasta gamma di opzioni di vacanza archiviate nel database, consentendoti di esplorare varie destinazioni e trovare la combinazione perfetta per le tue preferenze.
+Funzionalità e vantaggi
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Ricerca senza sforzo: utilizza dei filtri di ricerca avanzati, inclusi luogo e data, per scoprire rapidamente le destinazioni che soddisfano le esigenze del cliente.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Informazioni dettagliate: ogni offerta di vacanza include dettagli completi sulla destinazione, attività e recensioni degli utenti, aiutandoti a prendere decisioni informate.
 
-### `npm test`
+- Processo di prenotazione semplice: una volta trovata la vacanza ideale, l'utente viene guidato nel processo di registrazione e di prenotazione e riceverà la conferma della sua prenotazione.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Conferma e dettagli di viaggio: il cliente ha la possibilità di richiedere una email di conferma con tutte le informazioni necessarie per il suo viaggio, garantendo un'esperienza di viaggio senza problemi.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Tecnologie utilizzate
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+EasyVacanza utilizza tecnologie all'avanguardia per offrire un'interfaccia utente moderna e coinvolgente:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Frontend: React, React Bootstrap, HTML5, CSS
 
-### `npm run eject`
+- Backend: Spring Boot, PostgreSQL
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Simulazione dei dati: modulo Faker e libreria OkHttp per generare dati simulati restituiti dalle API.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Installazione
+Per visualizzare e interagire con questo progetto è necessario clonare il progetto backend di EasyVacanza (puoi seguire le istruzioni presenti nel file README del progetto che trovi a questo link: https://github.com/369-Palma/EasyVacanza_backend.git. Una volta mandato in esecuzione il progetto backend puoi seguire questi passaggi per clonare, visualizzare e interagire con il progetto EasyVacanza:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Aprire il terminale sul tuo computer.
 
-## Learn More
+- Navigare nella directory in cui desideri clonare il progetto.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Eseguire il comando git clone https://github.com/369-Palma/EasyVacanza_frontend.git
+   per clonare il repository del progetto. 
+   
+- Navigare nella directory del progetto appena clonato usando il comando cd nomeprogetto.
+NB: Assicurati di avere Node.js installato sul tuo sistema. Puoi verificarlo eseguendo node -v nel terminale. Se Node.js non è installato, puoi scaricarlo e installarlo dal sito ufficiale di Node.js (https://nodejs.org).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Nel terminale, eseguire il comando npm install (oppure npm i)
+  per installare tutte le dipendenze del progetto indicate nel file package.json. 
+  
+- Eseguire il comando npm start per avviare l'applicazione React.
+ 
+L'applicazione verrà avviata e sarà disponibile all'indirizzo http://localhost:3000 nel tuo browser.
 
-### Code Splitting
+## Future implementazioni
+E' mia intenzione migliorare la user experience dell'utente offrendogli la possibilità di filtrare la sua vacanza ideale anche per tipologia di evento, per tipo di alloggio e per preferenze speciali (quali accessibilità disabili, location pet-friendly etc..). Inoltre vorrei implementare anche alcune funzionalità speciali per l'utente registrato, quali la possibilità di scrivere feedback e visualizzare i dettagli delle sue prenotazioni anche nella sua area privata.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

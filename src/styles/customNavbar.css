@@ -9,11 +9,25 @@
   margin-right: 30px;
 }
 #navLinks .nav-link:hover {
-  transform: scale(1.2);
-  font-weight: bold;
+  transform: scale(1);
+  font-weight: 600px;
 }
 
 .welcomeUser {
   font-weight: bold;
   font-size: small;
+}
+.offcanvasBox {
+  background: #9cbfe5d6;
+
+  font-size: 18px;
+  font-family: "Playfair Display", serif;
+}
+
+.nav-link {
+  font-weight: 400px;
+}
+.nav-link:hover {
+  transform: scale(1);
+  font-weight: bolder;
 }
