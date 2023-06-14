@@ -12,6 +12,7 @@ import Dashboard from "./components/Dashboard";
 import BookingForm from "./components/BookingForm";
 import SpecialRequest from "./components/SpecialRequest";
 import Dettaglio from "./components/Dettaglio";
+import Preferenze from "./components/Preferenze";
 
 const App = () => {
   const [selectedVacanza, setSelectedVacanza] = useState({});
@@ -36,10 +37,10 @@ const App = () => {
           }
         />
         <Route path="/prenotazione" element={<Register />} />
-        {/* <Route path="/prenotazione" element={<RegistrationPage />} /> */}
+
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login setToken={setToken} />} />
-        {/* <Route path="/recensioni" element={<RecensioneForm />} /> */}
+
         <Route
           path="/dashboard"
           element={
@@ -57,6 +58,7 @@ const App = () => {
           }
         />
         <Route path="/contatti" element={<SpecialRequest />} />
+        <Route path="/preferenze" element={<Preferenze />} />
       </Routes>
 
       <CustomFooter />

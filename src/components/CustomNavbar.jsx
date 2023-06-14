@@ -4,9 +4,7 @@ import {
   Container,
   Nav,
   Offcanvas,
-  Button,
   NavDropdown,
-  Form,
 } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 
@@ -75,7 +73,15 @@ const CustomNavbar = ({ claim }) => {
                     className="OffcanvasFiltri"
                   >
                     <NavDropdown.Item href="#action3">
-                      Preferenze
+                      <Link
+                        className={`nav-link ${
+                          location.pathname === "/preferenze" ? "active" : ""
+                        }`}
+                        to="/preferenze"
+                      >
+                        {" "}
+                        Preferenze{" "}
+                      </Link>
                     </NavDropdown.Item>
                     <NavDropdown.Item href="#action4">
                       Tipologia evento
