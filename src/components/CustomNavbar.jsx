@@ -84,7 +84,24 @@ const CustomNavbar = ({ claim }) => {
                       </Link>
                     </NavDropdown.Item>
                     <NavDropdown.Item href="#action4">
-                      Tipologia evento
+                      <Link
+                        className={`nav-link ${
+                          location.pathname === "/luogo" ? "active" : ""
+                        }`}
+                        to="/luogo"
+                      >
+                        Tipologia paesaggio
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="#action4">
+                      <Link
+                        className={`nav-link ${
+                          location.pathname === "/attivita" ? "active" : ""
+                        }`}
+                        to="/attivita"
+                      >
+                        Tipologia evento
+                      </Link>
                     </NavDropdown.Item>
                   </NavDropdown>
                   <Link

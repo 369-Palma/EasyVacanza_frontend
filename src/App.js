@@ -13,6 +13,8 @@ import BookingForm from "./components/BookingForm";
 import SpecialRequest from "./components/SpecialRequest";
 import Dettaglio from "./components/Dettaglio";
 import Preferenze from "./components/Preferenze";
+import FiltriPaesaggio from "./components/FiltriPaesaggio";
+import FiltriEvento from "./components/FiltriEvento";
 
 const App = () => {
   const [selectedVacanza, setSelectedVacanza] = useState({});
@@ -59,6 +61,8 @@ const App = () => {
         />
         <Route path="/contatti" element={<SpecialRequest />} />
         <Route path="/preferenze" element={<Preferenze />} />
+        <Route path="/luogo" element={<FiltriPaesaggio />} />
+        <Route path="/attivita" element={<FiltriEvento />} />
       </Routes>
 
       <CustomFooter />
