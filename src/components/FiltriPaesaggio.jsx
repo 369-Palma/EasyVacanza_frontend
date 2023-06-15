@@ -4,13 +4,13 @@ import axios from "../api/axios";
 import CustomNavbar from "./CustomNavbar";
 import SingleCard from "./SingleCard";
 
-const Preferenze = () => {
+const FiltriPaesaggio = () => {
   const [data, setData] = useState([]);
-  const [preferenza, setPreferenza] = useState("");
+  const [luogo, setLuogo] = useState("");
   const [success, setSuccess] = useState(false);
 
-  const url = `/vacanze/preferenza/`;
-
+  /* const url = `/attivita/attivita/`; */
+  const url = `/vacanze/tipoluogo/`;
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -18,7 +18,7 @@ const Preferenze = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(url + preferenza);
+        const response = await axios.get(url + luogo);
         setData(response.data.content);
         console.log(response.data.content);
         setSuccess(true);
@@ -27,36 +27,36 @@ const Preferenze = () => {
       }
     };
 
-    if (preferenza) {
+    if (luogo) {
       fetchData();
     } else {
       setData([]);
       setSuccess(false);
     }
-  }, [preferenza]);
+  }, [luogo]);
 
   return (
     <>
       <CustomNavbar className="mynavbar" />
       <Container>
-        <h2 className="margineH2">
-          Personalizza la ricerca della tua vacanza da sogno
+        <h2 className="margineH2 text-center">
+          Scegli il tuo paesaggio da sogno
         </h2>
 
         <Form onSubmit={handleSubmit} className="mb-5 mx-auto w-50">
           <Form.Group className="mb-3">
-            <Form.Label>Preferenze</Form.Label>
+            <Form.Label>Attività</Form.Label>
             <Form.Control
               as="select"
-              value={preferenza}
-              onChange={(event) => setPreferenza(event.target.value)}
+              value={luogo}
+              onChange={(event) => setLuogo(event.target.value)}
             >
-              <option value="">Seleziona una preferenza</option>
-              <option value="accessibilità_disabili">
-                Accessibilità disabili
-              </option>
-              <option value="pet_friendly">Pet-friendly</option>
-              <option value="famiglie">Famiglia</option>
+              <option value="">Tipologia di luogo</option>
+              <option value="mare">Mare</option>
+              <option value="montagna">Montagna</option>
+              <option value="foresta">Foresta</option>
+              <option value="campagna">Campagna</option>
+              <option value="metropoli">Metropoli</option>
             </Form.Control>
           </Form.Group>
           {/* <Button type="submit">Cerca</Button> */}
@@ -76,13 +76,11 @@ const Preferenze = () => {
             </Col>
           ))
         ) : (
-          <p className="text-center p-0">
-            Scegli un' opzione per vedere i risultati
-          </p>
+          <p>Scegli un' opzione per vedere i risultati</p>
         )}
       </Row>
     </>
   );
 };
 
-export default Preferenze;
+export default FiltriPaesaggio;
