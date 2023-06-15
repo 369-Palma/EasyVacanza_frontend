@@ -4,12 +4,12 @@ import axios from "../api/axios";
 import CustomNavbar from "./CustomNavbar";
 import SingleCard from "./SingleCard";
 
-const FiltriPaesaggio = () => {
+const FiltriEvento = () => {
   const [data, setData] = useState([]);
-  const [luogo, setLuogo] = useState("");
+  const [evento, setEvento] = useState("");
   const [success, setSuccess] = useState(false);
 
-  const url = `/vacanze/tipoluogo/`;
+  const url = `/vacanze/attivita/`;
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -17,7 +17,7 @@ const FiltriPaesaggio = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(url + luogo);
+        const response = await axios.get(url + evento);
         setData(response.data.content);
         console.log(response.data.content);
         setSuccess(true);
@@ -26,20 +26,20 @@ const FiltriPaesaggio = () => {
       }
     };
 
-    if (luogo) {
+    if (evento) {
       fetchData();
     } else {
       setData([]);
       setSuccess(false);
     }
-  }, [luogo]);
+  }, [evento]);
 
   return (
     <>
       <CustomNavbar className="mynavbar" />
       <Container>
         <h2 className="margineH2 text-center">
-          Scegli il tuo paesaggio da sogno
+          Scegli la tua attività preferita
         </h2>
 
         <Form onSubmit={handleSubmit} className="mb-5 mx-auto w-50">
@@ -47,22 +47,21 @@ const FiltriPaesaggio = () => {
             <Form.Label>Attività</Form.Label>
             <Form.Control
               as="select"
-              value={luogo}
-              onChange={(event) => setLuogo(event.target.value)}
+              value={evento}
+              onChange={(event) => setEvento(event.target.value)}
             >
-              <option value="">Tipologia di luogo</option>
-              <option value="mare">Mare</option>
-              <option value="montagna">Montagna</option>
-              <option value="foresta">Foresta</option>
-              <option value="campagna">Campagna</option>
-              <option value="metropoli">Metropoli</option>
+              <option value="">Tipologia di evento</option>
+              <option value="Escursione">Escursione</option>
+              <option value="Arrampicata">Arrampicata</option>
+              <option value="Esplorazione">Esplorazione</option>
+              <option value="Canottaggio">Canottaggio</option>
+              <option value="Degustazione">Degustazione</option>
             </Form.Control>
           </Form.Group>
-          {/* <Button type="submit">Cerca</Button> */}
         </Form>
       </Container>
       <Row className="offerta mx-auto my-auto">
-        {success && data.length !== 0 ? (
+        {success && data?.length !== 0 ? (
           data.map((item) => (
             <Col
               className="mx-auto d-flex"
@@ -84,4 +83,4 @@ const FiltriPaesaggio = () => {
   );
 };
 
-export default FiltriPaesaggio;
+export default FiltriEvento;
