@@ -34,12 +34,10 @@ const TuttiViaggi = () => {
 
   return (
     <>
-      <CustomNavbar
-        className="mynavbar" /* claim="Where dreams come true!" */
-      />
+      <CustomNavbar id="marginNav" /* claim="Where dreams come true!" */ />
       <Container className="my-auto">
-        <Row className="justify-content-center ">
-          <h2 className="margineH2 ">
+        <Row className="justify-content-center">
+          <h2 className="margineH2 mx-auto my-5 ">
             {" "}
             Lasciati ispirare dalle nostre offerte speciali!
           </h2>

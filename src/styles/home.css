@@ -40,4 +40,8 @@
 }
 .margineH2 {
   margin-top: 5.5rem;
+  padding-top: 5.5rem;
+}
+#marginNav {
+  padding-bottom: 5.5rem;
 }
