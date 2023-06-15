@@ -55,3 +55,10 @@ a {
 input {
   max-width: 90vw;
 }
+
+.smallBold {
+  font-size: small;
+  font-weight: bold;
+  text-align: center;
+  padding: 0;
+}

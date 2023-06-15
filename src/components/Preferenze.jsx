@@ -39,7 +39,7 @@ const Preferenze = () => {
     <>
       <CustomNavbar className="mynavbar" />
       <Container>
-        <h2 className="margineH2">
+        <h2 className="margineH2 text-center">
           Personalizza la ricerca della tua vacanza da sogno
         </h2>
 
@@ -63,7 +63,7 @@ const Preferenze = () => {
         </Form>
       </Container>
       <Row className="offerta mx-auto my-auto">
-        {success && data.length > 0 ? (
+        {success && data.length !== 0 ? (
           data.map((item) => (
             <Col
               className="mx-auto d-flex"
@@ -75,10 +75,10 @@ const Preferenze = () => {
               <SingleCard data={item} />
             </Col>
           ))
+        ) : success && data.length === 0 ? (
+          <p className="smallBold">Non ci sono risultati per questa opzione</p>
         ) : (
-          <p className="text-center p-0">
-            Scegli un' opzione per vedere i risultati
-          </p>
+          <p className="smallBold">Scegli un' opzione per vedere i risultati</p>
         )}
       </Row>
     </>
