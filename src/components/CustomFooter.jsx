@@ -31,11 +31,7 @@ function CustomFooter() {
           >
             <FontAwesomeIcon icon={faGoogle} />
           </Link>
-          <Link
-            to="https://www.instagram.com/palmaiacobelli/"
-            target="_blank"
-            className="me-4 text-reset"
-          >
+          <Link to="#" target="_blank" className="me-4 text-reset">
             <FontAwesomeIcon icon={faInstagram} />
           </Link>
           <Link
