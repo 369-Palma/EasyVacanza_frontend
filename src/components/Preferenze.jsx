@@ -1,4 +1,4 @@
-import { Form, Button, Row, Col, Container } from "react-bootstrap";
+import { Form, Row, Col, Container } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import axios from "../api/axios";
 import CustomNavbar from "./CustomNavbar";
@@ -59,7 +59,6 @@ const Preferenze = () => {
               <option value="famiglie">Famiglia</option>
             </Form.Control>
           </Form.Group>
-          {/* <Button type="submit">Cerca</Button> */}
         </Form>
       </Container>
       <Row className="offerta mx-auto my-auto">

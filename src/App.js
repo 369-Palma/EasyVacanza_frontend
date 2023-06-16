@@ -7,7 +7,6 @@ import HomePage from "./components/HomePage";
 import TuttiViaggi from "./components/TuttiViaggi";
 import Register from "./components/Register";
 import Login from "./components/Login";
-//import RegistrationPage from "./components/RegistrationPage";
 import Dashboard from "./components/Dashboard";
 import BookingForm from "./components/BookingForm";
 import SpecialRequest from "./components/SpecialRequest";

@@ -4,7 +4,6 @@ import CustomNavbar from "./CustomNavbar";
 import { Col, Button, Form } from "react-bootstrap";
 import axios from "../api/axios";
 import { Link, useNavigate } from "react-router-dom";
-import Dashboard from "./Dashboard";
 
 const Login = ({ setToken }) => {
   const loginUrl = `/auth/login`;
@@ -29,8 +28,6 @@ const Login = ({ setToken }) => {
   }, [username, password]);
 
   const handleSubmit = async (e) => {
-    //e.preventDefault();
-
     // Validazione dei campi di input
     if (!username || !password) {
       setErrMsg("Inserisci username e password");

@@ -34,7 +34,7 @@ const TuttiViaggi = () => {
 
   return (
     <>
-      <CustomNavbar id="marginNav" /* claim="Where dreams come true!" */ />
+      <CustomNavbar id="marginNav" />
       <Container className="my-auto">
         <Row className="justify-content-center">
           <h2 className="margineH2 mx-auto my-5 ">

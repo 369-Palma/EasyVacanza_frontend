@@ -1,12 +1,4 @@
-import {
-  Navbar,
-  Container,
-  Nav,
-  Offcanvas,
-  Button,
-  NavDropdown,
-  Form,
-} from "react-bootstrap";
+import { Navbar, Container, Nav, Offcanvas } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import "../styles/customNavbar.css";
 const MyNav = ({ claim }) => {

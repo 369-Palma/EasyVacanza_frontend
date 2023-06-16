@@ -2,7 +2,7 @@ import "../styles/specialRequest.css";
 import React, { useState, useEffect } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import axios from "../api/axios";
-
+import MyNav from "./MyNav";
 import AccordionPrenotazione from "./AccordionPrenotazione";
 
 const BookingForm = ({ selectedVacanza, token }) => {
@@ -38,7 +38,7 @@ const BookingForm = ({ selectedVacanza, token }) => {
         prenotazioni: [
           { ...bookingData.prenotazioni[0], vacanza: selectedVacanza },
         ],
-      }); // Riprendi i dati della vacanza selezionata
+      });
     }
   }, [selectedVacanza]);
 
@@ -112,7 +112,7 @@ const BookingForm = ({ selectedVacanza, token }) => {
       stato: "CONFERMATO",
     };
 
-    // Aggiorna i dati della prenotazione
+    // Aggiornare i dati della prenotazione
     const updatedBookingData = {
       ...bookingData,
       prenotazioni: [updatedPrenotazioni],
