@@ -2,7 +2,7 @@ import "../styles/specialRequest.css";
 import React, { useState, useEffect } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import axios from "../api/axios";
-
+import MyNav from "./MyNav";
 import AccordionPrenotazione from "./AccordionPrenotazione";
 
 const BookingForm = ({ selectedVacanza, token }) => {
