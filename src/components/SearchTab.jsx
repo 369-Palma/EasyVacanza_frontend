@@ -105,7 +105,8 @@ const SearchTab = () => {
         {data && data?.length > 1 && !showSingleCard ? (
           <Col
             xs={11}
-            md={9}
+            md={8}
+            lg={6}
             className="justify-content-center mx-auto my-3 text-md-center"
           >
             <Carosello data={data} />
