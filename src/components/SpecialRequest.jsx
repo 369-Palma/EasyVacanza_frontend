@@ -30,8 +30,11 @@ const SpecialRequest = () => {
   return (
     <>
       <CustomNavbar className="mynavbar" claim="Scrivici!" />
-      <Col className="titolo mt-5 mx-auto">
-        <h2 className="margineH2 text-center mx-auto w-100"> Contattaci </h2>
+      <Col className="titolo mx-auto">
+        <h2 className="text-center p-3 margineH2 mx-auto w-100">
+          {" "}
+          Contattaci{" "}
+        </h2>
       </Col>
 
       <Form

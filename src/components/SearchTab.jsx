@@ -96,7 +96,9 @@ const SearchTab = () => {
       <Row className="offerta mx-auto my-auto">
         {data && data.length === 1 && showSingleCard && (
           <Col
-            xs={8}
+            xs={11}
+            md={8}
+            lg={6}
             className="cardSingola sx-justify-content-center mx-auto my-3 text-md-center"
           >
             <SingleCard data={data[0]} />
@@ -105,7 +107,8 @@ const SearchTab = () => {
         {data && data?.length > 1 && !showSingleCard ? (
           <Col
             xs={11}
-            md={9}
+            md={8}
+            lg={6}
             className="justify-content-center mx-auto my-3 text-md-center"
           >
             <Carosello data={data} />
