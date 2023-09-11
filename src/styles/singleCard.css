@@ -16,3 +16,9 @@
 .stileFamily {
   font-family: "Pacifico", cursive;
 }
+
+.disponibili {
+  color: red;
+  font-size: small;
+  font-style: italic;
+}

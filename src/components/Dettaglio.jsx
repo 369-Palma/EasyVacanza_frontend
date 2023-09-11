@@ -14,7 +14,7 @@ const Dettaglio = ({ selectedVacanza, updateSelectedVacanza }) => {
 
   console.log("PARAMS", id);
 
-  //funzione per memrizzare i dati della vacanza selezionata e reindirizzamento al from di registrazione
+  //funzione per memorizzare i dati della vacanza selezionata e reindirizzamento al from di registrazione
   const handlePrenotaClick = () => {
     updateSelectedVacanza(data);
     navigate("/prenotazione");
@@ -74,9 +74,19 @@ const Dettaglio = ({ selectedVacanza, updateSelectedVacanza }) => {
               Riesci già a sentire il profumo della {data?.tipoluogo}? Prenota
               subito!
             </p>
-            <Button className="bottone" onClick={handlePrenotaClick}>
-              PRENOTA
-            </Button>
+            <div className="d-flex">
+              <Button className="bottone" onClick={handlePrenotaClick}>
+                PRENOTA
+              </Button>
+              {data?.numeroMax - data?.numeroOspitiPrenotati <= 5 ? (
+                <p className="disponibili ms-4 mt-2">
+                  Solo {data?.numeroMax - data?.numeroOspitiPrenotati} posti
+                  disponibili!
+                </p>
+              ) : (
+                <p className="d-none"></p>
+              )}
+            </div>
           </Col>
           <Row className="flex-column">
             <Col className="my-3">

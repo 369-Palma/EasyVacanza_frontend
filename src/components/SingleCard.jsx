@@ -17,7 +17,17 @@ const SingleCard = (props) => {
         />
       </Link>
       <Card.Body>
-        <Card.Title className="stileFamily">{data?.citta}</Card.Title>
+        <div className="d-flex justify-content-between ">
+          <Card.Title className="stileFamily">{data?.citta}</Card.Title>
+          {data?.numeroMax - data?.numeroOspitiPrenotati <= 5 ? (
+            <ListGroup.Item className="disponibili">
+              Solo {data?.numeroMax - data?.numeroOspitiPrenotati} posti
+              disponibili!
+            </ListGroup.Item>
+          ) : (
+            <ListGroup.Item className="d-none"></ListGroup.Item>
+          )}
+        </div>
         <Card.Text>{data?.descrizione}</Card.Text>
       </Card.Body>
       <ListGroup className="list-group-flush">
