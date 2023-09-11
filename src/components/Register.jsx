@@ -110,7 +110,7 @@ const Register = () => {
       <Col xs={12} className="authForm">
         <p
           ref={errRef}
-          className={errMsg ? "errMsg" : "offscreen"}
+          className={errMsg ? "errMsg" : "offscreen errMsg"}
           aria-live="assertive"
         >
           {errMsg}

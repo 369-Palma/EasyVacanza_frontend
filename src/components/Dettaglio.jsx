@@ -5,8 +5,10 @@ import { Container, Row, Col, Button, Badge, ListGroup } from "react-bootstrap";
 import axios from "../api/axios";
 import { useParams } from "react-router-dom";
 import CustomNav from "./CustomNavbar";
+import { scrollToTop } from "../functions/functions";
 
 const Dettaglio = ({ selectedVacanza, updateSelectedVacanza }) => {
+  scrollToTop();
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -16,6 +18,7 @@ const Dettaglio = ({ selectedVacanza, updateSelectedVacanza }) => {
   const handlePrenotaClick = () => {
     updateSelectedVacanza(data);
     navigate("/prenotazione");
+    scrollToTop();
   };
 
   const [data, setData] = useState({});

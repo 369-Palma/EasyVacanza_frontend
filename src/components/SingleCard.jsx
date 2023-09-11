@@ -8,7 +8,7 @@ const SingleCard = (props) => {
   const data = props.data;
   return (
     <Card className="offerta mb-4">
-      <Link to={"/detail/" + data?.id}>
+      <Link to={"/details/" + data?.id}>
         <Card.Img
           className="img-fluid"
           variant="top"

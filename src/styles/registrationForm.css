@@ -20,3 +20,8 @@ Link {
 .margineH2 {
   margin-top: 5rem;
 }
+
+.errMsg {
+  color: red;
+  margin-left: 2em;
+}
