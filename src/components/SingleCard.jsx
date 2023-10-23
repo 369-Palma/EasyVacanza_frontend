@@ -23,7 +23,7 @@ const SingleCard = (props) => {
           <Card.Body>
             <div className="d-flex justify-content-between ">
               <Card.Title className="stileFamily">{data?.citta}</Card.Title>
-              {data?.numeroMax - data?.numeroOspitiPrenotati <= 5 ? (
+              {data?.numeroMax - data?.numeroOspitiPrenotati <= 7 ? (
                 <ListGroup.Item className="disponibili">
                   Solo {data?.numeroMax - data?.numeroOspitiPrenotati} posti
                   disponibili!
